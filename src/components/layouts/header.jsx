@@ -1,17 +1,16 @@
 import { Logo } from "@/components/Logo"
-import { Link } from "@/components/ui/link"
-
-const LINKS = []
+import { MenuTheme } from "@/components/layouts/MenuTheme"
+import { Button } from "@/components/ui/button"
 
 export const Header = () => (
-	<header className="w-full bg-blue-500 p-4">
-		<Logo />
-		<nav>
-			<div className="flex items-center gap-3">
-				{LINKS.map(link => (
-					<Link key={link.href} {...link} />
-				))}
-			</div>
-		</nav>
+	<header className="w-full p-4 flex items-center justify-evenly">
+		<div className="flex items-center gap-2">
+			<Logo />
+			<span className="font-bold">Chooseyourplace</span>
+		</div>
+		<div className="flex items-center gap-3">
+			<Button>Add</Button>
+			<MenuTheme />
+		</div>
 	</header>
 )

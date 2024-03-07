@@ -1,8 +1,8 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Avatar } from "@/components/ui/avatar"
+import { Plane } from "lucide-react"
 
 export const Logo = () => (
 	<Avatar>
-		<AvatarImage />
-		<AvatarFallback>Logo</AvatarFallback>
+		<Plane />
 	</Avatar>
 )
