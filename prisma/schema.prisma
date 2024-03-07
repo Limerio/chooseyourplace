@@ -6,3 +6,20 @@ datasource db {
   provider = "mongodb"
   url      = env("DATABASE_URL")
 }
+
+model Place {
+  id Int @id @map("_id")
+  type TypeOfPlaces
+  name String @unique
+  city String
+  postcode Int
+  country String
+}
+
+enum TypeOfPlaces {
+  bar
+  museum_pay
+  museum_free
+  restaurant
+  monument
+}
