@@ -1,1 +1,5 @@
-export const MainLayout = ({ children }) => <nav>{children}</nav>
+export const MainLayout = ({ children }) => (
+	<div className="h-screen flex flex-col">
+		<main>{children}</main>
+	</div>
+)
