@@ -1,0 +1,35 @@
+{
+	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
+	"labels": ["dependencies"],
+	"extends": ["config:recommended"],
+	"packageRules": [
+		{
+			"matchCategories": ["kubernetes"],
+			"labels": ["kubernetes"],
+			"schedule": [
+				"after 6pm every weekday",
+				"before 9am every weekday",
+				"every weekend"
+			]
+		},
+		{
+			"matchCategories": ["github-actions"],
+			"labels": ["github-actions"],
+			"schedule": ["every weekend"]
+		},
+		{
+			"matchCategories": ["dockerfile"],
+			"labels": ["docker"],
+			"schedule": ["every weekend"]
+		},
+		{
+			"matchCategories": ["npm"],
+			"labels": ["npm"],
+			"schedule": [
+				"after 6pm every weekday",
+				"before 9am every weekday",
+				"every weekend"
+			]
+		}
+	]
+}
