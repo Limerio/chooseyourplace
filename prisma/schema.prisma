@@ -1,0 +1,26 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Place {
+  id Int @id @map("_id")
+  type TypeOfPlaces
+  name String @unique
+  city String
+  zipcode Int
+  country String
+  updatedAt DateTime @updatedAt
+}
+
+enum TypeOfPlaces {
+  bar
+  museum_pay
+  museum_free
+  restaurant
+  monument
+}
