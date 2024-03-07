@@ -12,8 +12,9 @@ model Place {
   type TypeOfPlaces
   name String @unique
   city String
-  postcode Int
+  zipcode Int
   country String
+  updatedAt DateTime @updatedAt
 }
 
 enum TypeOfPlaces {
