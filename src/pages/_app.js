@@ -1,4 +1,5 @@
-import { ThemeProvider } from "@/components/theme-provider"
+import { ThemeProvider } from "@/components/providers/theme"
+import { MainLayout } from "@/layouts/Main"
 import "@/styles/globals.css"
 
 export default function App({ Component, pageProps }) {
@@ -9,7 +10,9 @@ export default function App({ Component, pageProps }) {
 			enableSystem
 			disableTransitionOnChange
 		>
-			<Component {...pageProps} />
+			<MainLayout>
+				<Component {...pageProps} />
+			</MainLayout>
 		</ThemeProvider>
 	)
 }
