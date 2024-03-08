@@ -8,9 +8,6 @@
 		"start": "next start",
 		"lint": "next lint",
 		"format": "prettier -w .",
-		"seed": "prisma db seed"
-	},
-	"prisma": {
 		"seed": "node prisma/seed.js"
 	},
 	"dependencies": {
