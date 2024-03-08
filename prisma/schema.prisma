@@ -8,13 +8,13 @@ datasource db {
 }
 
 model Place {
-  id Int @id @map("_id")
-  type TypeOfPlaces
-  name String @unique
-  city String
-  zipcode Int
-  country String
-  updatedAt DateTime @updatedAt
+  id        String       @id @default(auto()) @map("_id") @db.ObjectId
+  type      TypeOfPlaces
+  name      String       @unique
+  city      String
+  zipcode   Int
+  country   String
+  updatedAt DateTime     @updatedAt
 }
 
 enum TypeOfPlaces {
