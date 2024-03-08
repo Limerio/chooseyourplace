@@ -15,7 +15,7 @@ async function main() {
 				"monument",
 			]),
 			name: faker.company.name(),
-			zipcode: faker.location.zipCode(),
+			zipcode: parseInt(faker.location.zipCode(), 10),
 			country: faker.location.country(),
 			city: faker.location.city(),
 		})
