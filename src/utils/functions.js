@@ -13,3 +13,8 @@ export const handlerApi = handle => (req, res) => {
 
 	return handle(req, res)
 }
+
+export const requiredArgSchema = type => ({
+	required: true,
+	type,
+})
