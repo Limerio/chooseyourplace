@@ -86,3 +86,26 @@ export const typesOfBuilding = {
 		"fusion",
 	],
 }
+
+export const artisticMovements = [
+	"renaissance",
+	"baroque",
+	"romanticism",
+	"impressionism",
+	"expressionism",
+	"cubism",
+	"surrealism",
+	"abstract expressionism",
+	"pop",
+	"minimalism",
+	"contemporary",
+	"abstract",
+	"realism",
+	"post-impressionism",
+	"fauvism",
+	"dadaism",
+	"symbolism",
+	"neoclassicism",
+	"surrealist",
+	"cubist",
+]
