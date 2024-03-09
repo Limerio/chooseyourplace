@@ -2,13 +2,14 @@
 	"name": "chooseyourplace",
 	"version": "0.1.0",
 	"private": true,
+	"type": "module",
 	"scripts": {
 		"dev": "next dev",
 		"build": "next build",
 		"start": "next start",
 		"lint": "next lint",
 		"format": "prettier -w .",
-		"seed": "node scripts/seed.js"
+		"seed": "node --env-file .env scripts/seed.js"
 	},
 	"dependencies": {
 		"@radix-ui/react-alert-dialog": "^1.0.5",
@@ -21,7 +22,6 @@
 		"@tanstack/react-table": "^8.13.2",
 		"class-variance-authority": "^0.7.0",
 		"clsx": "^2.1.0",
-		"dotenv": "^16.4.5",
 		"lucide-react": "^0.350.0",
 		"mongodb": "^6.4.0",
 		"mongoose": "^8.2.1",
