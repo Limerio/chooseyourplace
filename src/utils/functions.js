@@ -2,9 +2,13 @@ import { clsx } from "clsx"
 import mongoose from "mongoose"
 import { twMerge } from "tailwind-merge"
 
-export function cn(...inputs) {
-	return twMerge(clsx(inputs))
-}
+/**
+ *
+ * @param  {...string} inputs
+ * @returns {string}
+ */
+
+export const cn = (...inputs) => twMerge(clsx(inputs))
 
 /**
  *
@@ -39,6 +43,12 @@ export const enumSchema = (type, enums) => ({
 	enum: enums,
 	type,
 })
+
+/**
+ *
+ * @param {number} number
+ * @returns {number[]}
+ */
 
 export const generateArray = number => {
 	const data = []
