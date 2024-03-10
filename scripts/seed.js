@@ -23,7 +23,7 @@ async function main() {
 				"park",
 			])
 			const dataBuild = {
-				type: faker.helpers.arrayElement(
+				typeOf: faker.helpers.arrayElement(
 					typesOfBuilding[randomTypesOfBuilding],
 				),
 			}
@@ -70,13 +70,18 @@ async function main() {
 				}
 			}
 
+			const date = new Date()
+
 			data.push({
-				type: randomTypesOfBuilding,
+				building: randomTypesOfBuilding,
 				name: faker.company.name(),
 				zipcode: parseInt(faker.location.zipCode(), 10),
 				country: faker.location.country(),
 				city: faker.location.city(),
 				[randomTypesOfBuilding]: dataBuild,
+				createdAt: date,
+				updatedAt: date,
+				__v: 0,
 			})
 		}
 
