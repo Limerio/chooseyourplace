@@ -27,6 +27,7 @@ const columns = [
 		accessorKey: "name",
 		header: ({ column }) => (
 			<Button
+				className="text-md"
 				variant="ghost"
 				onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
 			>
