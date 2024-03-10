@@ -1,20 +1,28 @@
 import { requestAPI } from "@/utils/functions"
-import useSWR from "swr"
-
-const cacheKey = "/api/locations"
+import { QueryClient, dehydrate, useQuery } from "@tanstack/react-query"
 
 export const getServerSideProps = async () => {
-	const { data: locations } = await requestAPI(true, "/locations")
+	const queryClient = new QueryClient()
+
+	await queryClient.prefetchQuery({
+		queryKey: ["locations"],
+		queryFn: () => requestAPI(true, "/locations"),
+	})
 
 	return {
-		fallback: {
-			[cacheKey]: locations,
+		props: {
+			dehydratedState: dehydrate(queryClient),
 		},
 	}
 }
 
 export default function Home() {
-	const { data } = useSWR(cacheKey)
+	const { data } = useQuery({
+		queryKey: ["locations"],
+		queryFn: () => requestAPI(false, "/locations"),
+	})
 
-	return JSON.stringify(data)
+	return (
+		<div className="text-black dark:text-white">{JSON.stringify(data)}</div>
+	)
 }
