@@ -3,6 +3,7 @@ import { DataTable } from "@/components/ui/data-table"
 import { requestAPI } from "@/utils/functions"
 import { QueryClient, dehydrate, useQuery } from "@tanstack/react-query"
 import { ArrowUpDown } from "lucide-react"
+import Head from "next/head"
 
 export const getServerSideProps = async () => {
 	const queryClient = new QueryClient()
@@ -65,9 +66,15 @@ export default function Home() {
 	}
 
 	return (
-		<div className="container mx-auto py-10">
-			<h1 className="text-6xl text-center">List of places</h1>
-			<DataTable filterInput={"name"} columns={columns} data={data} />
-		</div>
+		<>
+			<Head>
+				<title>List of places - chooseyourplace</title>
+				<meta name="description" content="List of places page" />
+			</Head>
+			<div className="container mx-auto py-10 flex flex-col gap-2">
+				<h1 className="text-6xl text-center">List of places</h1>
+				<DataTable filterInput="name" columns={columns} data={data} />
+			</div>
+		</>
 	)
 }
