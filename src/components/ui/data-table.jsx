@@ -1,6 +1,15 @@
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import {
+	Select,
+	SelectContent,
+	SelectGroup,
+	SelectItem,
+	SelectLabel,
+	SelectTrigger,
+	SelectValue,
+} from "@/components/ui/select"
+import {
 	Table,
 	TableBody,
 	TableCell,
@@ -55,7 +64,7 @@ export const DataTable = ({ columns, data, filterInput }) => {
 						{table.getHeaderGroups().map(headerGroup => (
 							<TableRow key={headerGroup.id}>
 								{headerGroup.headers.map(header => (
-									<TableHead key={header.id}>
+									<TableHead className="text-md" key={header.id}>
 										{header.isPlaceholder
 											? null
 											: flexRender(
@@ -114,6 +123,21 @@ export const DataTable = ({ columns, data, filterInput }) => {
 				>
 					Next
 				</Button>
+				<Select onValueChange={value => table.setPageSize(value)}>
+					<SelectTrigger className="w-[180px]">
+						<SelectValue placeholder="Define page size" />
+					</SelectTrigger>
+					<SelectContent>
+						<SelectGroup>
+							<SelectLabel>Pages</SelectLabel>
+							{[10, 20, 30, 40, 50].map(pageSize => (
+								<SelectItem key={pageSize} value={pageSize}>
+									{pageSize}
+								</SelectItem>
+							))}
+						</SelectGroup>
+					</SelectContent>
+				</Select>
 			</div>
 		</>
 	)
