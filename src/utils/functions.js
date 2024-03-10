@@ -49,3 +49,19 @@ export const generateArray = number => {
 
 	return data
 }
+
+/**
+ *
+ * @param {string} path
+ * @param {RequestInit} options
+ * @returns
+ */
+
+export const requestAPI = async (server, path, options) => {
+	const res = await fetch(
+		`${server && "http://localhost:3000"}/api${path}`,
+		options,
+	)
+
+	return { data: await res.json(), status: res.status, url: res.url }
+}
