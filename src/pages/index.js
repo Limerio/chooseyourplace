@@ -37,7 +37,7 @@ const columns = [
 	},
 	{
 		accessorKey: "city",
-		header: "city",
+		header: "City",
 	},
 	{
 		accessorKey: "zipcode",
