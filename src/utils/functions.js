@@ -68,13 +68,9 @@ export const generateArray = number => {
  */
 
 export const requestAPI = async (server, path, options) => {
-	let res = null
-
 	if (server) {
-		res = await fetch(`http://localhost:3000/api${path}`, options)
-	} else {
-		res = await fetch(`/api${path}`, options)
+		return (await fetch(`http://localhost:3000/api${path}`, options)).json()
 	}
 
-	return { data: await res.json(), status: res.status, url: res.url }
+	return (await fetch(`/api${path}`, options)).json()
 }
