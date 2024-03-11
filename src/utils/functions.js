@@ -1,4 +1,3 @@
-import { FormFieldInput } from "@/components/ui/forms"
 import { clsx } from "clsx"
 import mongoose from "mongoose"
 import { twMerge } from "tailwind-merge"
@@ -79,8 +78,3 @@ export const requestAPI = async (server, path, options) => {
 
 	return (await fetch(`/api${path}`, options)).json()
 }
-
-export const generateFormFieldInput = ({ name, ...fieldInputProps }) => ({
-	name,
-	render: ({ field }) => <FormFieldInput field={field} {...fieldInputProps} />,
-})
