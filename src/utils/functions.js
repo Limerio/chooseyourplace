@@ -12,14 +12,18 @@ export const cn = (...inputs) => twMerge(clsx(inputs))
 
 /**
  *
- * @param {Function} handle
+ * @param {Function | Promise<Function>} handle
  * @returns {Function}
  */
 
 export const handlerApi = handle => async (req, res) => {
-	await mongoose.connect(process.env.DATABASE_URL)
+	try {
+		await mongoose.connect(process.env.DATABASE_URL)
 
-	return handle(req, res)
+		handle(req, res)
+	} catch (error) {
+		res.status(500).json({ error: "Database connection failed" })
+	}
 }
 
 /**
@@ -58,4 +62,19 @@ export const generateArray = number => {
 	}
 
 	return data
+}
+
+/**
+ *
+ * @param {string} path
+ * @param {RequestInit} options
+ * @returns
+ */
+
+export const requestAPI = async (server, path, options) => {
+	if (server) {
+		return (await fetch(`http://localhost:3000/api${path}`, options)).json()
+	}
+
+	return (await fetch(`/api${path}`, options)).json()
 }
