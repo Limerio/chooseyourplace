@@ -2,12 +2,12 @@ import { createPlaceSchema } from "@/schemas"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 
+import { generateFormFieldInput } from "@/components/forms/functions"
 import { Button } from "@/components/ui/button"
 import { Form, FormField } from "@/components/ui/form"
 import { FormFieldSelect } from "@/components/ui/forms"
 import { useMultiStepsForm } from "@/hooks/forms"
 import { listOfBuildings } from "@/utils/constants"
-import { generateFormFieldInput } from "@/utils/functions"
 import { faker } from "@faker-js/faker"
 
 const defaultFormFields = [
