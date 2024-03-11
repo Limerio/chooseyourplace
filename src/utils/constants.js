@@ -111,3 +111,5 @@ export const artisticMovements = [
 ]
 
 export const listOfBuildings = ["bar", "museum", "restaurant", "park"]
+
+export const freeOrPay = ["free", "pay"]

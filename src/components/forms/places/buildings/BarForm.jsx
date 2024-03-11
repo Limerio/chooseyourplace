@@ -50,8 +50,7 @@ export const BarForm = () => {
 		resolver: zodResolver(barSchema),
 		defaultValues: {
 			typeOf: "",
-			stars: 0,
-			city: 0,
+			averageCost: 0,
 		},
 	})
 	const onSubmit = values => {
