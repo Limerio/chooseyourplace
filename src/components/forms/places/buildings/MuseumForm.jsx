@@ -1,47 +1,53 @@
+import { generateFormFieldInput } from "@/components/forms/functions"
 import { Button } from "@/components/ui/button"
-import {
-	Form,
-	FormControl,
-	FormField,
-	FormItem,
-	FormLabel,
-} from "@/components/ui/form"
+import { Form, FormField } from "@/components/ui/form"
 import { FormFieldSelect } from "@/components/ui/forms"
-import { Slider } from "@/components/ui/slider"
 import { useMultiStepsForm } from "@/hooks/forms"
 import { museumSchema } from "@/schemas/Museum"
-import { typesOfBuilding } from "@/utils/constants"
+import { artisticMovements, typesOfBuilding } from "@/utils/constants"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 
-const barFormFields = [
+const museumFormFields = [
 	{
 		name: "typeOf",
 		render: ({ field }) => (
 			<FormFieldSelect
 				field={field}
-				label="Bar"
-				placeholder="Select a type of bar"
+				label="Museum"
+				placeholder="Select a type of museum"
 				list={typesOfBuilding.bar}
 			/>
 		),
 	},
 	{
-		name: "averageCost",
+		name: "artisticMovements",
 		render: ({ field }) => (
-			<FormItem>
-				<FormLabel>Average Cost</FormLabel>
-				<FormControl>
-					<Slider
-						onValueChange={field.onChange}
-						defaultValue={[0]}
-						max={5}
-						step={1}
-					/>
-				</FormControl>
-			</FormItem>
+			<FormFieldSelect
+				field={field}
+				label="Artistic movements"
+				placeholder="Select an artistic movement"
+				list={artisticMovements}
+			/>
 		),
 	},
+	{
+		name: "freeOrPay",
+		render: ({ field }) => (
+			<FormFieldSelect
+				field={field}
+				label="Free or Pay ?"
+				placeholder="Choose between free or pay"
+				list={["free", "pay"]}
+			/>
+		),
+	},
+	generateFormFieldInput({
+		name: "price",
+		label: "Price",
+		placeholder: "Give the price of the museum",
+		type: "number",
+	}),
 ]
 
 export const MuseumForm = () => {
@@ -50,6 +56,9 @@ export const MuseumForm = () => {
 		resolver: zodResolver(museumSchema),
 		defaultValues: {
 			typeOf: "",
+			averageCost: "",
+			freeOrPay: "",
+			price: 0,
 		},
 	})
 	const onSubmit = values => {
@@ -63,7 +72,7 @@ export const MuseumForm = () => {
 				onSubmit={form.handleSubmit(onSubmit)}
 				className="flex flex-col gap-4"
 			>
-				{barFormFields.map(formField => (
+				{museumFormFields.map(formField => (
 					<FormField
 						key={formField.name}
 						control={form.control}
