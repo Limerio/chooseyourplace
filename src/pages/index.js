@@ -1,24 +1,10 @@
 import { Button } from "@/components/ui/button"
 import { DataTable } from "@/components/ui/data-table"
 import { requestAPI } from "@/utils/functions"
-import { QueryClient, dehydrate, useQuery } from "@tanstack/react-query"
+import { useQuery } from "@tanstack/react-query"
 import { ArrowUpDown } from "lucide-react"
 import Head from "next/head"
 
-export const getServerSideProps = async () => {
-	const queryClient = new QueryClient()
-
-	await queryClient.prefetchQuery({
-		queryKey: ["locations"],
-		queryFn: () => requestAPI(true, "/locations"),
-	})
-
-	return {
-		props: {
-			dehydratedState: dehydrate(queryClient),
-		},
-	}
-}
 const columns = [
 	{
 		accessorKey: "building",
@@ -53,16 +39,16 @@ const columns = [
 
 export default function Home() {
 	const { data, isLoading, isError } = useQuery({
-		queryKey: ["locations"],
-		queryFn: () => requestAPI(false, "/locations"),
+		queryKey: ["places"],
+		queryFn: () => requestAPI(false, "/places"),
 	})
 
 	if (isLoading) {
 		return <div className="bg-slate-500">Loading...</div>
 	}
 
-	if (isError) {
-		return <div className="bg-red-600">Error</div>
+	if (isError || data.error) {
+		return <div className="bg-red-600">{data.error}</div>
 	}
 
 	return (
