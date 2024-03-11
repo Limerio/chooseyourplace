@@ -56,7 +56,7 @@ export const MuseumForm = () => {
 		resolver: zodResolver(museumSchema),
 		defaultValues: {
 			typeOf: "",
-			averageCost: "",
+			artisticMovements: "",
 			freeOrPay: "",
 			price: 0,
 		},
