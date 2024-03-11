@@ -67,7 +67,7 @@ export const RestaurantForm = () => {
 		defaultValues: {
 			typeOf: "",
 			stars: 0,
-			city: 0,
+			averageCost: 0,
 		},
 	})
 	const onSubmit = values => {
