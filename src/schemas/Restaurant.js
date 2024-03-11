@@ -15,5 +15,5 @@ export const RestaurantSchema = new Schema({
 export const restaurantSchema = z.object({
 	typeOf: z.enum(typesOfBuilding.restaurant),
 	stars: z.enum(stars),
-	city: z.enum(averageCost),
+	averageCost: z.enum(averageCost),
 })
