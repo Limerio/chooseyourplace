@@ -78,3 +78,11 @@ export const requestAPI = async (server, path, options) => {
 
 	return (await fetch(`/api${path}`, options)).json()
 }
+
+/**
+ *
+ * @param {string} text
+ * @returns {string}
+ */
+
+export const capitalize = text => text.charAt(0).toUpperCase() + text.slice(1)

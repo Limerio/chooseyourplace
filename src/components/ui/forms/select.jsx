@@ -11,6 +11,7 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@/components/ui/select"
+import { capitalize } from "@/utils/functions"
 
 export const FormFieldSelect = ({ label, field, list, placeholder }) => (
 	<FormItem>
@@ -24,7 +25,7 @@ export const FormFieldSelect = ({ label, field, list, placeholder }) => (
 			<SelectContent>
 				{list.map(building => (
 					<SelectItem value={building} key={building}>
-						{building}
+						{capitalize(building)}
 					</SelectItem>
 				))}
 			</SelectContent>
