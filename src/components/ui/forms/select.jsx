@@ -25,7 +25,7 @@ export const FormFieldSelect = ({ label, field, list, placeholder }) => (
 			<SelectContent>
 				{list.map(building => (
 					<SelectItem value={building} key={building}>
-						{capitalize(building)}
+						{capitalize(building).replace("_", " ")}
 					</SelectItem>
 				))}
 			</SelectContent>
