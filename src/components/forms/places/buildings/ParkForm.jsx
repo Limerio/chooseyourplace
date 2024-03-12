@@ -22,8 +22,8 @@ const museumFormFields = [
 		render: ({ field }) => (
 			<FormFieldSelect
 				field={field}
-				label="Museum"
-				placeholder="Select a type of museum"
+				label="Park"
+				placeholder="Select a type of park"
 				list={typesOfBuilding.park}
 			/>
 		),
