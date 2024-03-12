@@ -1,14 +1,22 @@
-import { typesOfBuilding } from "@/utils/constants"
+import { freeOrPay, typesOfBuilding } from "@/utils/constants"
 import { enumSchema } from "@/utils/functions"
 import { Schema } from "mongoose"
+import { z } from "zod"
 
 export const ParkSchema = new Schema({
 	typeOf: enumSchema(String, typesOfBuilding.park),
 	public: Boolean,
-	freeOrPay: enumSchema(String, ["free", "pay"]),
+	freeOrPay: enumSchema(String, freeOrPay),
 	price: {
 		type: Number,
 		// eslint-disable-next-line no-invalid-this
 		required: () => this?.freeOrPay === "pay",
 	},
+})
+
+export const parkSchema = z.object({
+	typeOf: z.enum(typesOfBuilding.park),
+	public: z.boolean(),
+	freeOrPay: z.enum(freeOrPay),
+	price: z.number().nullable(),
 })

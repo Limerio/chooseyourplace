@@ -1,6 +1,8 @@
 import { requiredArgSchema } from "@/utils/functions"
 /* eslint-disable no-invalid-this */
+import { listOfBuildings } from "@/utils/constants.js"
 import { Schema } from "mongoose"
+import { z } from "zod"
 import { BarSchema } from "./Bar.js"
 import { MuseumSchema } from "./Museum.js"
 import { ParkSchema } from "./Park.js"
@@ -10,7 +12,7 @@ export const PlaceSchema = new Schema(
 	{
 		building: {
 			type: String,
-			enum: ["bar", "museum", "restaurant", "park"],
+			enum: listOfBuildings,
 		},
 		name: {
 			...requiredArgSchema(String),
@@ -41,3 +43,11 @@ export const PlaceSchema = new Schema(
 		timestamps: true,
 	},
 )
+
+export const createPlaceSchema = z.object({
+	building: z.enum(listOfBuildings),
+	name: z.string().min(3),
+	city: z.string().min(3),
+	zipcode: z.string().min(4),
+	country: z.string().min(3),
+})
