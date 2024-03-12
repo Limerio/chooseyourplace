@@ -86,3 +86,11 @@ export const requestAPI = async (server, path, options) => {
  */
 
 export const capitalize = text => text.charAt(0).toUpperCase() + text.slice(1)
+
+/**
+ *
+ * @param {string} text
+ * @returns {string}
+ */
+export const addSpaceBetweenCapitalizeLetter = text =>
+	text.replace(/([a-z])([A-Z])/gu, "$1 $2")
