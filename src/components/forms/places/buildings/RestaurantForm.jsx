@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button"
+import { MenuForm } from "@/components/forms/places"
 import {
 	Form,
 	FormControl,
@@ -61,7 +61,7 @@ const restaurantFormFields = [
 ]
 
 export const RestaurantForm = () => {
-	const { next, addDataForm, back } = useMultiStepsForm()
+	const { next, addDataForm } = useMultiStepsForm()
 	const form = useForm({
 		resolver: zodResolver(restaurantSchema),
 		defaultValues: {
@@ -88,14 +88,7 @@ export const RestaurantForm = () => {
 						{...formField}
 					/>
 				))}
-				<div className="flex items-center gap-2">
-					<Button className="w-full" onClick={() => back()}>
-						Previous
-					</Button>
-					<Button className="w-full" type="submit">
-						Next
-					</Button>
-				</div>
+				<MenuForm />
 			</form>
 		</Form>
 	)
