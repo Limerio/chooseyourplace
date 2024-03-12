@@ -15,7 +15,7 @@ export const ParkSchema = new Schema({
 })
 
 export const parkSchema = z.object({
-	typeOf: z.enum(typesOfBuilding.museum),
+	typeOf: z.enum(typesOfBuilding.park),
 	public: z.boolean(),
 	freeOrPay: z.enum(freeOrPay),
 	price: z.number().nullable(),
