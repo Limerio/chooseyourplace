@@ -24,7 +24,7 @@ const museumFormFields = [
 				field={field}
 				label="Museum"
 				placeholder="Select a type of museum"
-				list={typesOfBuilding.museum}
+				list={typesOfBuilding.park}
 			/>
 		),
 	},
