@@ -1,6 +1,19 @@
+/* eslint-disable max-lines */
+import { PlaceDetails } from "@/components/info/places"
 import { Button } from "@/components/ui/button"
 import { DataTable } from "@/components/ui/data-table"
-import { requestAPI } from "@/utils/functions"
+import {
+	Dialog,
+	DialogClose,
+	DialogContent,
+	DialogFooter,
+	DialogHeader,
+	DialogTitle,
+} from "@/components/ui/dialog"
+import { Link } from "@/components/ui/link"
+import { capitalize, requestAPI } from "@/utils/functions"
+import { DialogTrigger } from "@radix-ui/react-dialog"
+import { DotsHorizontalIcon, EnterFullScreenIcon } from "@radix-ui/react-icons"
 import { useQuery } from "@tanstack/react-query"
 import { ArrowUpDown } from "lucide-react"
 import Head from "next/head"
@@ -9,6 +22,7 @@ const columns = [
 	{
 		accessorKey: "building",
 		header: "Building",
+		cell: ({ row }) => capitalize(row.original.building),
 	},
 	{
 		accessorKey: "name",
@@ -22,10 +36,12 @@ const columns = [
 				<ArrowUpDown className="ml-2 h-4 w-4" />
 			</Button>
 		),
+		cell: ({ row }) => capitalize(row.original.name),
 	},
 	{
 		accessorKey: "city",
 		header: "City",
+		cell: ({ row }) => capitalize(row.original.city),
 	},
 	{
 		accessorKey: "zipcode",
@@ -34,6 +50,46 @@ const columns = [
 	{
 		accessorKey: "country",
 		header: "Country",
+		cell: ({ row }) => capitalize(row.original.country),
+	},
+	{
+		id: "actions",
+		enableHiding: false,
+		cell: ({ row }) => {
+			const place = row.original
+
+			return (
+				<Dialog>
+					<DialogTrigger asChild>
+						<Button variant="ghost" className="h-8 w-8 p-0">
+							<span className="sr-only">Open menu</span>
+							<DotsHorizontalIcon className="h-4 w-4" />
+						</Button>
+					</DialogTrigger>
+					<DialogContent>
+						<DialogHeader>
+							<DialogTitle>Information about "{place.name}"</DialogTitle>
+						</DialogHeader>
+						<PlaceDetails place={place} />
+						<DialogFooter>
+							<Button>
+								<DialogClose asChild>
+									<Link
+										// eslint-disable-next-line no-underscore-dangle
+										href={`/places/${place._id}`}
+										className="flex items-center gap-1.5"
+									>
+										<EnterFullScreenIcon />
+										Full screen mode
+									</Link>
+								</DialogClose>
+							</Button>
+							<Button variant="destructive">Delete</Button>
+						</DialogFooter>
+					</DialogContent>
+				</Dialog>
+			)
+		},
 	},
 ]
 

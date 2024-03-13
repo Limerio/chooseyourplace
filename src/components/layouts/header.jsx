@@ -30,8 +30,8 @@ export const Header = () => (
 					</DialogHeader>
 					<CreatePlacesForm />
 					<DialogFooter>
-						<DialogClose asChild>
-							<Button variant="destructive">
+						<Button variant="destructive">
+							<DialogClose asChild>							
 								<Link
 									href="/places/create"
 									className="flex items-center gap-1.5"
@@ -39,8 +39,8 @@ export const Header = () => (
 									<EnterFullScreenIcon />
 									Full screen mode
 								</Link>
+								</DialogClose>
 							</Button>
-						</DialogClose>
 					</DialogFooter>
 				</DialogContent>
 			</Dialog>
