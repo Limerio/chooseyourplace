@@ -18,7 +18,7 @@ const handler = handlerApi(async (req, res) => {
 		return res.json(newPlace)
 	}
 
-	return res.send("Method not allowed")
+	return res.status(405).send("Method not allowed")
 })
 
 export default handler
