@@ -94,3 +94,21 @@ export const capitalize = text => text.charAt(0).toUpperCase() + text.slice(1)
  */
 export const addSpaceBetweenCapitalizeLetter = text =>
 	text.replace(/([a-z])([A-Z])/gu, "$1 $2")
+
+/**
+ *
+ * @param {Date} date
+ * @returns {string}
+ */
+export const formatDate = date => {
+	const dateIntl = new Intl.DateTimeFormat("en-GB", {
+		day: "2-digit",
+		month: "long",
+		weekday: "long",
+		year: "numeric",
+		hour: "2-digit",
+		minute: "2-digit",
+	})
+
+	return dateIntl.format(date)
+}
