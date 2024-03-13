@@ -11,6 +11,7 @@ import {
 	DialogTitle,
 } from "@/components/ui/dialog"
 import { Link } from "@/components/ui/link"
+import { DeleteDialogValidation } from "@/features/places/delete/dialogValidation"
 import { capitalize, requestAPI } from "@/utils/functions"
 import { DialogTrigger } from "@radix-ui/react-dialog"
 import { DotsHorizontalIcon, EnterFullScreenIcon } from "@radix-ui/react-icons"
@@ -75,7 +76,6 @@ const columns = [
 							<Button>
 								<DialogClose asChild>
 									<Link
-										// eslint-disable-next-line no-underscore-dangle
 										href={`/places/${place._id}`}
 										className="flex items-center gap-1.5"
 									>
@@ -84,7 +84,9 @@ const columns = [
 									</Link>
 								</DialogClose>
 							</Button>
-							<Button variant="destructive">Delete</Button>
+							<DeleteDialogValidation reload placeId={place._id}>
+								<Button variant="destructive">Delete</Button>
+							</DeleteDialogValidation>
 						</DialogFooter>
 					</DialogContent>
 				</Dialog>

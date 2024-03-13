@@ -122,7 +122,10 @@
 		"no-throw-literal": "error",
 		"no-undef-init": "error",
 		"no-undefined": "error",
-		"no-underscore-dangle": ["error", { "allowFunctionParams": false }],
+		"no-underscore-dangle": [
+			"error",
+			{ "allowFunctionParams": false, "allow": ["_id"] }
+		],
 		"no-unneeded-ternary": ["error", { "defaultAssignment": false }],
 		"no-unused-expressions": ["error", { "enforceForJSX": true }],
 		"no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
