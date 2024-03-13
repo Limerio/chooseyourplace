@@ -1,5 +1,4 @@
 import { Logo } from "@/components/Logo"
-import { CreatePlacesForm } from "@/components/forms/places"
 import { MenuTheme } from "@/components/layouts/MenuTheme"
 import { Button } from "@/components/ui/button"
 import {
@@ -12,6 +11,7 @@ import {
 	DialogTrigger,
 } from "@/components/ui/dialog"
 import { Link } from "@/components/ui/link"
+import { CreatePlacesForm } from "@/features/places/components/forms"
 import { EnterFullScreenIcon } from "@radix-ui/react-icons"
 
 export const Header = () => (

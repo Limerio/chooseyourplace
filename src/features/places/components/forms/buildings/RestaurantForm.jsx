@@ -1,4 +1,3 @@
-import { MenuForm } from "@/components/forms/places"
 import {
 	Form,
 	FormControl,
@@ -8,22 +7,39 @@ import {
 } from "@/components/ui/form"
 import { FormFieldSelect } from "@/components/ui/forms"
 import { Slider } from "@/components/ui/slider"
+import { MenuForm } from "@/features/places/components/forms"
 import { useMultiStepsForm } from "@/hooks/forms"
-import { barSchema } from "@/schemas/Bar"
+import { restaurantSchema } from "@/schemas/Restaurant"
 import { typesOfBuilding } from "@/utils/constants"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 
-const barFormFields = [
+const restaurantFormFields = [
 	{
 		name: "typeOf",
 		render: ({ field }) => (
 			<FormFieldSelect
 				field={field}
-				label="Bar"
-				placeholder="Select a type of bar"
-				list={typesOfBuilding.bar}
+				label="Restaurant"
+				placeholder="Select a type of restaurant"
+				list={typesOfBuilding.restaurant}
 			/>
+		),
+	},
+	{
+		name: "stars",
+		render: ({ field }) => (
+			<FormItem>
+				<FormLabel>Stars</FormLabel>
+				<FormControl>
+					<Slider
+						onValueChange={field.onChange}
+						defaultValue={[0]}
+						max={3}
+						step={1}
+					/>
+				</FormControl>
+			</FormItem>
 		),
 	},
 	{
@@ -44,12 +60,13 @@ const barFormFields = [
 	},
 ]
 
-export const BarForm = () => {
+export const RestaurantForm = () => {
 	const { next, addDataForm } = useMultiStepsForm()
 	const form = useForm({
-		resolver: zodResolver(barSchema),
+		resolver: zodResolver(restaurantSchema),
 		defaultValues: {
 			typeOf: "",
+			stars: 0,
 			averageCost: 0,
 		},
 	})
@@ -64,7 +81,7 @@ export const BarForm = () => {
 				onSubmit={form.handleSubmit(onSubmit)}
 				className="flex flex-col gap-4"
 			>
-				{barFormFields.map(formField => (
+				{restaurantFormFields.map(formField => (
 					<FormField
 						key={formField.name}
 						control={form.control}

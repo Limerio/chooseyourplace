@@ -10,7 +10,7 @@ import {
 	AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 import { Button } from "@/components/ui/button"
-import { requestAPI } from "@/utils/functions"
+import { requestDeletePlace } from "@/features/places/utils/api"
 import { useRouter } from "next/router"
 
 export const DeleteDialogValidation = ({
@@ -20,7 +20,7 @@ export const DeleteDialogValidation = ({
 }) => {
 	const router = useRouter()
 	const deletePlace = () => async () => {
-		await requestAPI(false, `/places/${placeId}`, { method: "DELETE" })
+		await requestDeletePlace(placeId)
 
 		if (!reload) {
 			router.push("/")

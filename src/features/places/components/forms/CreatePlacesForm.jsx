@@ -1,9 +1,9 @@
+import { MultiStepProvider } from "@/context/forms"
 import {
 	BuildingInfoForm,
 	DefaultForm,
 	FinalStep,
-} from "@/components/forms/places"
-import { MultiStepProvider } from "@/context/forms"
+} from "@/features/places/components/forms"
 
 export const CreatePlacesForm = () => (
 	<MultiStepProvider
