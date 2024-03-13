@@ -1,5 +1,4 @@
 /* eslint-disable max-lines */
-import { PlaceDetails } from "@/components/info/places"
 import { Button } from "@/components/ui/button"
 import { DataTable } from "@/components/ui/data-table"
 import {
@@ -11,8 +10,10 @@ import {
 	DialogTitle,
 } from "@/components/ui/dialog"
 import { Link } from "@/components/ui/link"
-import { DeleteDialogValidation } from "@/features/places/delete/dialogValidation"
-import { capitalize, requestAPI } from "@/utils/functions"
+import { DeleteDialogValidation } from "@/features/places/components/delete/dialogValidation"
+import { PlaceDetails } from "@/features/places/components/info"
+import { requestGetPlaces } from "@/features/places/utils/api"
+import { capitalize } from "@/utils/functions"
 import { DialogTrigger } from "@radix-ui/react-dialog"
 import { DotsHorizontalIcon, EnterFullScreenIcon } from "@radix-ui/react-icons"
 import { useQuery } from "@tanstack/react-query"
@@ -98,7 +99,7 @@ const columns = [
 export default function Home() {
 	const { data, isLoading, isError } = useQuery({
 		queryKey: ["places"],
-		queryFn: () => requestAPI(false, "/places"),
+		queryFn: () => requestGetPlaces(),
 	})
 
 	if (isLoading) {

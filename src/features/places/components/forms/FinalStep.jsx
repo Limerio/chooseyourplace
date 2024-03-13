@@ -1,7 +1,8 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { requestPostPlace } from "@/features/places/utils/api"
 import { useMultiStepsForm } from "@/hooks/forms"
-import { capitalize, requestAPI } from "@/utils/functions"
+import { capitalize } from "@/utils/functions"
 import { useRouter } from "next/router"
 
 const finalStepCards = ["Information about the building", "Details"]
@@ -16,13 +17,7 @@ export const FinalStep = () => {
 			details: formsData[1].data,
 		}
 
-		await requestAPI(false, "/places", {
-			method: "POST",
-			body: JSON.stringify(body),
-			headers: {
-				"Content-Type": "application/json",
-			},
-		})
+		await requestPostPlace(body)
 		router.push("/")
 	}
 
