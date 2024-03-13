@@ -1,4 +1,4 @@
-import { CreatePlacesForm } from "@/components/forms/places"
+import { CreatePlacesForm } from "@/features/places/components/forms"
 import Head from "next/head"
 
 const CreatePlacePage = () => (

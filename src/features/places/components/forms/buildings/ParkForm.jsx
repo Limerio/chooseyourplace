@@ -1,5 +1,4 @@
-import { generateFormFieldInput } from "@/components/forms/functions"
-import { MenuForm } from "@/components/forms/places"
+import { generateFormFieldInput } from "@/components/functions"
 import {
 	Form,
 	FormControl,
@@ -10,6 +9,7 @@ import {
 } from "@/components/ui/form"
 import { FormFieldSelect } from "@/components/ui/forms"
 import { Switch } from "@/components/ui/switch"
+import { MenuForm } from "@/features/places/components/forms"
 import { useMultiStepsForm } from "@/hooks/forms"
 import { parkSchema } from "@/schemas/Park"
 import { typesOfBuilding } from "@/utils/constants"
