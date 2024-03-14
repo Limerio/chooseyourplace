@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Link } from "@/components/ui/link"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { DeleteDialogValidation } from "@/features/places/components/delete"
 import { PlaceDetails } from "@/features/places/components/info"
@@ -12,7 +13,8 @@ import Head from "next/head"
 import { useRouter } from "next/router"
 import { useMemo } from "react"
 
-export async function getServerSideProps({ placeId }) {
+export async function getServerSideProps({ params }) {
+	const { placeId } = params
 	const queryClient = new QueryClient()
 
 	await queryClient.prefetchQuery({
@@ -52,9 +54,9 @@ const PlaceDetailsPage = () => {
 				<Card>
 					<CardHeader>
 						<CardTitle>
-							<h1 className="text-3xl text-center">
+							<span className="text-3xl text-center">
 								Information about <span className="font-bold">{data.name}</span>
-							</h1>
+							</span>
 						</CardTitle>
 					</CardHeader>
 					<CardContent>
@@ -63,6 +65,9 @@ const PlaceDetailsPage = () => {
 						</ScrollArea>
 					</CardContent>
 				</Card>
+				<Button>
+					<Link href={`/places/${placeId}/update`}>Update</Link>
+				</Button>
 				<DeleteDialogValidation placeId={placeId}>
 					<Button variant="destructive">Delete</Button>
 				</DeleteDialogValidation>

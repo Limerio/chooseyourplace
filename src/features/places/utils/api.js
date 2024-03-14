@@ -27,3 +27,10 @@ export const requestPostPlace = async body =>
 		body: JSON.stringify(body),
 		...defaultOptions,
 	})
+
+export const requestPutPlace = async (placeId, body) =>
+	await requestAPI(false, `/places/${placeId}`, {
+		method: "PUT",
+		body: JSON.stringify(body),
+		...defaultOptions,
+	})

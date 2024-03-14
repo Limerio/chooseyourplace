@@ -1,13 +1,13 @@
-import { placeSchema } from "@/schemas"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-
 import { generateFormFieldInput } from "@/components/functions"
-import { Button } from "@/components/ui/button"
 import { Form, FormField } from "@/components/ui/form"
 import { FormFieldSelect } from "@/components/ui/forms"
-import { useMultiStepsForm } from "@/hooks/forms"
+import { requestGetPlace, requestPutPlace } from "@/features/places/utils/api"
+import { buildingForms } from "@/features/places/utils/constants"
 import { listOfBuildings } from "@/utils/constants"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useQuery } from "@tanstack/react-query"
+import { useRouter } from "next/router"
+import { useForm } from "react-hook-form"
 
 const defaultFormFields = [
 	{
@@ -43,21 +43,28 @@ const defaultFormFields = [
 	}),
 ]
 
-export const DefaultForm = () => {
-	const { next, addDataForm } = useMultiStepsForm()
-	const form = useForm({
-		resolver: zodResolver(placeSchema),
-		defaultValues: {
-			building: "",
-			name: "",
-			zipcode: "",
-			country: "",
-			city: "",
-		},
+export const UpdateForm = ({ id }) => {
+	const router = useRouter()
+	const { data, isLoading, isError } = useQuery({
+		queryKey: ["places", id],
+		queryFn: () => requestGetPlace(id),
 	})
-	const onSubmit = values => {
-		addDataForm(values)
-		next()
+	const form = useForm({
+		resolver: zodResolver(),
+		defaultValues: data,
+	})
+
+	if (isLoading) {
+		return <div className="bg-slate-500">Loading...</div>
+	}
+
+	if (isError || data.error) {
+		return <div className="bg-red-600">{data.error}</div>
+	}
+
+	const onSubmit = async values => {
+		await requestPutPlace(id, values)
+		router.push("/")
 	}
 
 	return (
@@ -73,7 +80,7 @@ export const DefaultForm = () => {
 						{...formField}
 					/>
 				))}
-				<Button type="submit">Next</Button>
+				{buildingForms[form.watch("building")]}
 			</form>
 		</Form>
 	)

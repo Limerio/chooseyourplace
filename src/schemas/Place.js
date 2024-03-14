@@ -3,10 +3,10 @@ import { requiredArgSchema } from "@/utils/functions"
 import { listOfBuildings } from "@/utils/constants.js"
 import { Schema } from "mongoose"
 import { z } from "zod"
-import { BarSchema } from "./Bar.js"
-import { MuseumSchema } from "./Museum.js"
-import { ParkSchema } from "./Park.js"
-import { RestaurantSchema } from "./Restaurant.js"
+import { BarSchema, updateBarSchema } from "./Bar.js"
+import { MuseumSchema, updateMuseumSchema } from "./Museum.js"
+import { ParkSchema, updateParkSchema } from "./Park.js"
+import { RestaurantSchema, updateRestaurantSchema } from "./Restaurant.js"
 
 export const PlaceSchema = new Schema(
 	{
@@ -44,10 +44,23 @@ export const PlaceSchema = new Schema(
 	},
 )
 
-export const createPlaceSchema = z.object({
+export const placeSchema = z.object({
 	building: z.enum(listOfBuildings),
 	name: z.string().min(3),
 	city: z.string().min(3),
-	zipcode: z.string().min(4),
+	zipcode: z
+		.string()
+		.min(4)
+		.transform(arg => parseInt(arg, 10))
+		.or(z.number()),
 	country: z.string().min(3),
 })
+
+export const updatePlaceSchema = placeSchema.partial()
+
+export const subSchemas = {
+	bar: updateBarSchema,
+	museum: updateMuseumSchema,
+	park: updateParkSchema,
+	restaurant: updateRestaurantSchema,
+}

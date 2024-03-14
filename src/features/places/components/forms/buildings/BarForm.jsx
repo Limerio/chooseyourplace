@@ -43,15 +43,16 @@ const barFormFields = [
 		),
 	},
 ]
+const defaultValues = {
+	typeOf: "",
+	averageCost: 0,
+}
 
-export const BarForm = () => {
+export const BarForm = ({ data }) => {
 	const { next, addDataForm } = useMultiStepsForm()
 	const form = useForm({
 		resolver: zodResolver(barSchema),
-		defaultValues: {
-			typeOf: "",
-			averageCost: 0,
-		},
+		defaultValues: data ?? defaultValues,
 	})
 	const onSubmit = values => {
 		addDataForm(values)

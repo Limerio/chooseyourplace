@@ -1,12 +1,5 @@
+import { buildingForms } from "@/features/places/utils/constants"
 import { useMultiStepsForm } from "@/hooks/forms"
-import { BarForm, MuseumForm, ParkForm, RestaurantForm } from "./buildings"
-
-const buildingForms = {
-	bar: <BarForm />,
-	museum: <MuseumForm />,
-	restaurant: <RestaurantForm />,
-	park: <ParkForm />,
-}
 
 export const BuildingInfoForm = () => {
 	const { formsData } = useMultiStepsForm()
