@@ -3,10 +3,12 @@ import { Form, FormField } from "@/components/ui/form"
 import { FormFieldSelect } from "@/components/ui/forms"
 import { requestGetPlace, requestPutPlace } from "@/features/places/utils/api"
 import { buildingForms } from "@/features/places/utils/constants"
+import { subSchemas, updatePlaceSchema } from "@/schemas"
 import { listOfBuildings } from "@/utils/constants"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useQuery } from "@tanstack/react-query"
 import { useRouter } from "next/router"
+import { useMemo } from "react"
 import { useForm } from "react-hook-form"
 
 const defaultFormFields = [
@@ -43,27 +45,21 @@ const defaultFormFields = [
 	}),
 ]
 
-export const UpdateForm = ({ id }) => {
+export const UpdateForm = () => {
 	const router = useRouter()
-	const { data, isLoading, isError } = useQuery({
-		queryKey: ["places", id],
-		queryFn: () => requestGetPlace(id),
+	const placeId = useMemo(() => router.query.placeId, [router.query.placeId])
+	const { data } = useQuery({
+		queryKey: ["places", placeId],
+		queryFn: () => requestGetPlace(placeId),
 	})
 	const form = useForm({
-		resolver: zodResolver(),
+		resolver: zodResolver(
+			updatePlaceSchema.extend(subSchemas[form.watch("building")]),
+		),
 		defaultValues: data,
 	})
-
-	if (isLoading) {
-		return <div className="bg-slate-500">Loading...</div>
-	}
-
-	if (isError || data.error) {
-		return <div className="bg-red-600">{data.error}</div>
-	}
-
 	const onSubmit = async values => {
-		await requestPutPlace(id, values)
+		await requestPutPlace(placeId, values)
 		router.push("/")
 	}
 
