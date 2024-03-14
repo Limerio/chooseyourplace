@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/form"
 import { FormFieldSelect } from "@/components/ui/forms"
 import { Slider } from "@/components/ui/slider"
-import { MenuForm } from "@/features/places/components/forms"
+import { MenuForm } from "@/features/places/components/forms/create"
 import { useMultiStepsForm } from "@/hooks/forms"
 import { barSchema } from "@/schemas/Bar"
 import { typesOfBuilding } from "@/utils/constants"

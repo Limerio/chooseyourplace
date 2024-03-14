@@ -1,18 +1,10 @@
 import { generateFormFieldInput } from "@/components/functions"
-import {
-	Form,
-	FormControl,
-	FormField,
-	FormItem,
-	FormLabel,
-	FormMessage,
-} from "@/components/ui/form"
+import { Form, FormField } from "@/components/ui/form"
 import { FormFieldSelect } from "@/components/ui/forms"
-import { Switch } from "@/components/ui/switch"
-import { MenuForm } from "@/features/places/components/forms"
+import { MenuForm } from "@/features/places/components/forms/create"
 import { useMultiStepsForm } from "@/hooks/forms"
-import { parkSchema } from "@/schemas/Park"
-import { typesOfBuilding } from "@/utils/constants"
+import { museumSchema } from "@/schemas/Museum"
+import { artisticMovements, typesOfBuilding } from "@/utils/constants"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 
@@ -22,22 +14,21 @@ const museumFormFields = [
 		render: ({ field }) => (
 			<FormFieldSelect
 				field={field}
-				label="Park"
-				placeholder="Select a type of park"
-				list={typesOfBuilding.park}
+				label="Museum"
+				placeholder="Select a type of museum"
+				list={typesOfBuilding.museum}
 			/>
 		),
 	},
 	{
-		name: "public",
+		name: "artisticMovements",
 		render: ({ field }) => (
-			<FormItem>
-				<FormLabel>Public ?</FormLabel>
-				<FormControl>
-					<Switch onChangeValue={field.onChange} />
-				</FormControl>
-				<FormMessage />
-			</FormItem>
+			<FormFieldSelect
+				field={field}
+				label="Artistic movements"
+				placeholder="Select an artistic movement"
+				list={artisticMovements}
+			/>
 		),
 	},
 	{
@@ -59,13 +50,13 @@ const museumFormFields = [
 	}),
 ]
 
-export const ParkForm = () => {
+export const MuseumForm = () => {
 	const { next, addDataForm } = useMultiStepsForm()
 	const form = useForm({
-		resolver: zodResolver(parkSchema),
+		resolver: zodResolver(museumSchema),
 		defaultValues: {
 			typeOf: "",
-			public: false,
+			artisticMovements: "",
 			freeOrPay: "",
 			price: 0,
 		},
