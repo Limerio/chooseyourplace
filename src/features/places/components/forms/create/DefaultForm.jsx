@@ -8,7 +8,6 @@ import { Form, FormField } from "@/components/ui/form"
 import { FormFieldSelect } from "@/components/ui/forms"
 import { useMultiStepsForm } from "@/hooks/forms"
 import { listOfBuildings } from "@/utils/constants"
-import { faker } from "@faker-js/faker"
 
 const defaultFormFields = [
 	{
@@ -50,10 +49,10 @@ export const DefaultForm = () => {
 		resolver: zodResolver(createPlaceSchema),
 		defaultValues: {
 			building: "",
-			name: faker.company.name(),
-			zipcode: faker.location.zipCode(),
-			country: faker.location.country(),
-			city: faker.location.city(),
+			name: "",
+			zipcode: "",
+			country: "",
+			city: "",
 		},
 	})
 	const onSubmit = values => {
