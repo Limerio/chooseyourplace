@@ -29,7 +29,7 @@ export const BarForm = ({ data }) => {
 				onSubmit={form.handleSubmit(onSubmit)}
 				className="flex flex-col gap-4"
 			>
-				{barFormFields.map(formField => (
+				{barFormFields().map(formField => (
 					<FormField
 						key={formField.name}
 						control={form.control}

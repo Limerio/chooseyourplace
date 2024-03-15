@@ -66,7 +66,9 @@ const PlaceDetailsPage = () => {
 					</CardContent>
 				</Card>
 				<Button>
-					<Link href={`/places/${placeId}/update`}>Update</Link>
+					<Link className="w-full h-full" href={`/places/${placeId}/update`}>
+						Update
+					</Link>
 				</Button>
 				<DeleteDialogValidation placeId={placeId}>
 					<Button variant="destructive">Delete</Button>

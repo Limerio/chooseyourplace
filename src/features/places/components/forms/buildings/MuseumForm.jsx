@@ -28,7 +28,7 @@ export const MuseumForm = () => {
 				onSubmit={form.handleSubmit(onSubmit)}
 				className="flex flex-col gap-4"
 			>
-				{museumFormFields.map(formField => (
+				{museumFormFields().map(formField => (
 					<FormField
 						key={formField.name}
 						control={form.control}

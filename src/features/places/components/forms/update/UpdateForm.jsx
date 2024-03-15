@@ -9,9 +9,8 @@ import {
 	parkFormFields,
 	restaurantFormFields,
 } from "@/features/places/utils/fields"
-import { updatePlaceSchema } from "@/schemas"
+import { subSchemas, updatePlaceSchema } from "@/schemas"
 import { listOfBuildings } from "@/utils/constants"
-import { zodResolver } from "@hookform/resolvers/zod"
 import { useQuery } from "@tanstack/react-query"
 import { useRouter } from "next/router"
 import { useMemo } from "react"
@@ -65,11 +64,13 @@ export const UpdateForm = () => {
 		queryFn: () => requestGetPlace(placeId),
 	})
 	const form = useForm({
-		resolver: zodResolver(updatePlaceSchema),
 		defaultValues: data,
 	})
 	const onSubmit = async values => {
-		await requestPutPlace(placeId, { ...data, ...values })
+		await updatePlaceSchema
+			.extend(subSchemas[values.building])
+			.parseAsync(values)
+		await requestPutPlace(placeId, values)
 		router.push("/")
 	}
 
@@ -86,7 +87,7 @@ export const UpdateForm = () => {
 						{...formField}
 					/>
 				))}
-				{subForms[form.watch("building")].map(formField => (
+				{subForms[form.watch("building")](true).map(formField => (
 					<FormField
 						key={formField.name}
 						control={form.control}

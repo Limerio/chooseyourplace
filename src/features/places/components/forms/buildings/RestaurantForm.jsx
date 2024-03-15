@@ -27,7 +27,7 @@ export const RestaurantForm = () => {
 				onSubmit={form.handleSubmit(onSubmit)}
 				className="flex flex-col gap-4"
 			>
-				{restaurantFormFields.map(formField => (
+				{restaurantFormFields().map(formField => (
 					<FormField
 						key={formField.name}
 						control={form.control}

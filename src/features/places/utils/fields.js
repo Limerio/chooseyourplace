@@ -10,9 +10,9 @@ import { Slider } from "@/components/ui/slider"
 import { Switch } from "@/components/ui/switch"
 import { artisticMovements, typesOfBuilding } from "@/utils/constants"
 
-export const barFormFields = [
+export const barFormFields = sub => [
 	{
-		name: "typeOf",
+		name: `${sub && "bar."}typeOf`,
 		render: ({ field }) => (
 			<FormFieldSelect
 				field={field}
@@ -23,7 +23,7 @@ export const barFormFields = [
 		),
 	},
 	{
-		name: "averageCost",
+		name: `${sub && "bar."}averageCost`,
 		render: ({ field }) => (
 			<FormItem>
 				<FormLabel>Average Cost</FormLabel>
@@ -40,9 +40,9 @@ export const barFormFields = [
 	},
 ]
 
-export const museumFormFields = [
+export const museumFormFields = sub => [
 	{
-		name: "typeOf",
+		name: `${sub && "museum."}typeOf`,
 		render: ({ field }) => (
 			<FormFieldSelect
 				field={field}
@@ -53,7 +53,7 @@ export const museumFormFields = [
 		),
 	},
 	{
-		name: "artisticMovements",
+		name: `${sub && "museum."}artisticMovements`,
 		render: ({ field }) => (
 			<FormFieldSelect
 				field={field}
@@ -64,7 +64,7 @@ export const museumFormFields = [
 		),
 	},
 	{
-		name: "freeOrPay",
+		name: `${sub && "museum."}freeOrPay`,
 		render: ({ field }) => (
 			<FormFieldSelect
 				field={field}
@@ -75,16 +75,16 @@ export const museumFormFields = [
 		),
 	},
 	generateFormFieldInput({
-		name: "price",
+		name: `${sub && "museum."}price`,
 		label: "Price",
 		placeholder: "Give the price of the museum",
 		type: "number",
 	}),
 ]
 
-export const parkFormFields = [
+export const parkFormFields = sub => [
 	{
-		name: "typeOf",
+		name: `${sub && "park."}typeOf`,
 		render: ({ field }) => (
 			<FormFieldSelect
 				field={field}
@@ -95,7 +95,7 @@ export const parkFormFields = [
 		),
 	},
 	{
-		name: "public",
+		name: `${sub && "park."}public`,
 		render: ({ field }) => (
 			<FormItem>
 				<FormLabel>Public ?</FormLabel>
@@ -107,7 +107,7 @@ export const parkFormFields = [
 		),
 	},
 	{
-		name: "freeOrPay",
+		name: `${sub && "park."}freeOrPay`,
 		render: ({ field }) => (
 			<FormFieldSelect
 				field={field}
@@ -118,16 +118,16 @@ export const parkFormFields = [
 		),
 	},
 	generateFormFieldInput({
-		name: "price",
+		name: `${sub && "park."}price`,
 		label: "Price",
 		placeholder: "Give the price of the museum",
 		type: "number",
 	}),
 ]
 
-export const restaurantFormFields = [
+export const restaurantFormFields = sub => [
 	{
-		name: "typeOf",
+		name: `${sub && "restaurant."}typeOf`,
 		render: ({ field }) => (
 			<FormFieldSelect
 				field={field}
@@ -138,7 +138,7 @@ export const restaurantFormFields = [
 		),
 	},
 	{
-		name: "stars",
+		name: `${sub && "restaurant."}stars`,
 		render: ({ field }) => (
 			<FormItem>
 				<FormLabel>Stars</FormLabel>
@@ -155,7 +155,7 @@ export const restaurantFormFields = [
 		// eslint-disable-next-line max-lines
 	},
 	{
-		name: "averageCost",
+		name: `${sub && "restaurant."}averageCost`,
 		render: ({ field }) => (
 			<FormItem>
 				<FormLabel>Average Cost</FormLabel>

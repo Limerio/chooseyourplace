@@ -28,7 +28,7 @@ export const ParkForm = () => {
 				onSubmit={form.handleSubmit(onSubmit)}
 				className="flex flex-col gap-4"
 			>
-				{parkFormFields.map(formField => (
+				{parkFormFields().map(formField => (
 					<FormField
 						key={formField.name}
 						control={form.control}

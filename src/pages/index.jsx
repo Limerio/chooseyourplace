@@ -78,7 +78,7 @@ const columns = [
 								<DialogClose asChild>
 									<Link
 										href={`/places/${place._id}`}
-										className="flex items-center gap-1.5"
+										className="flex items-center gap-1.5 w-full h-full"
 									>
 										<EnterFullScreenIcon />
 										Full screen mode
