@@ -1,9 +1,15 @@
 import { generateFormFieldInput } from "@/components/functions"
+import { Button } from "@/components/ui/button"
 import { Form, FormField } from "@/components/ui/form"
 import { FormFieldSelect } from "@/components/ui/forms"
 import { requestGetPlace, requestPutPlace } from "@/features/places/utils/api"
-import { buildingForms } from "@/features/places/utils/constants"
-import { subSchemas, updatePlaceSchema } from "@/schemas"
+import {
+	barFormFields,
+	museumFormFields,
+	parkFormFields,
+	restaurantFormFields,
+} from "@/features/places/utils/fields"
+import { updatePlaceSchema } from "@/schemas"
 import { listOfBuildings } from "@/utils/constants"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useQuery } from "@tanstack/react-query"
@@ -44,6 +50,12 @@ const defaultFormFields = [
 		label: "Country",
 	}),
 ]
+const subForms = {
+	bar: barFormFields,
+	museum: museumFormFields,
+	restaurant: restaurantFormFields,
+	park: parkFormFields,
+}
 
 export const UpdateForm = () => {
 	const router = useRouter()
@@ -53,13 +65,11 @@ export const UpdateForm = () => {
 		queryFn: () => requestGetPlace(placeId),
 	})
 	const form = useForm({
-		resolver: zodResolver(
-			updatePlaceSchema.extend(subSchemas[form.watch("building")]),
-		),
+		resolver: zodResolver(updatePlaceSchema),
 		defaultValues: data,
 	})
 	const onSubmit = async values => {
-		await requestPutPlace(placeId, values)
+		await requestPutPlace(placeId, { ...data, ...values })
 		router.push("/")
 	}
 
@@ -76,7 +86,14 @@ export const UpdateForm = () => {
 						{...formField}
 					/>
 				))}
-				{buildingForms[form.watch("building")]}
+				{subForms[form.watch("building")].map(formField => (
+					<FormField
+						key={formField.name}
+						control={form.control}
+						{...formField}
+					/>
+				))}
+				<Button type="submit">Update</Button>
 			</form>
 		</Form>
 	)
