@@ -12,5 +12,7 @@ export const BarSchema = new Schema({
 
 export const barSchema = z.object({
 	typeOf: z.enum(typesOfBuilding.bar),
-	city: z.enum(averageCost),
+	averageCost: z.number().min(1).max(5),
 })
+
+export const updateBarSchema = barSchema.partial()

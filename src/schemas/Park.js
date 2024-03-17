@@ -20,3 +20,5 @@ export const parkSchema = z.object({
 	freeOrPay: z.enum(freeOrPay),
 	price: z.number().nullable(),
 })
+
+export const updateParkSchema = parkSchema.partial()

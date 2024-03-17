@@ -1,22 +1,22 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Link } from "@/components/ui/link"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { DeleteDialogValidation } from "@/features/places/components/delete"
 import { PlaceDetails } from "@/features/places/components/info"
-import {
-	requestGetPlace,
-	requestServerGetPlace,
-} from "@/features/places/utils/api"
-import { QueryClient, dehydrate, useQuery } from "@tanstack/react-query"
+import { usePlace } from "@/features/places/hooks"
+import { requestServerGetPlace } from "@/features/places/utils/api"
+import { QueryClient, dehydrate } from "@tanstack/react-query"
 import Head from "next/head"
 import { useRouter } from "next/router"
 import { useMemo } from "react"
 
-export async function getServerSideProps({ placeId }) {
+export async function getServerSideProps({ params }) {
+	const { placeId } = params
 	const queryClient = new QueryClient()
 
 	await queryClient.prefetchQuery({
-		queryKey: ["posts", placeId],
+		queryKey: ["places", placeId],
 		queryFn: () => requestServerGetPlace(placeId),
 	})
 
@@ -29,10 +29,7 @@ export async function getServerSideProps({ placeId }) {
 const PlaceDetailsPage = () => {
 	const router = useRouter()
 	const placeId = useMemo(() => router.query.placeId, [router.query.placeId])
-	const { data, isLoading, isError } = useQuery({
-		queryKey: ["places", placeId],
-		queryFn: () => requestGetPlace(placeId),
-	})
+	const { data, isLoading, isError } = usePlace(placeId)
 
 	if (isLoading) {
 		return <div className="bg-slate-500">Loading...</div>
@@ -52,9 +49,9 @@ const PlaceDetailsPage = () => {
 				<Card>
 					<CardHeader>
 						<CardTitle>
-							<h1 className="text-3xl text-center">
+							<span className="text-3xl text-center">
 								Information about <span className="font-bold">{data.name}</span>
-							</h1>
+							</span>
 						</CardTitle>
 					</CardHeader>
 					<CardContent>
@@ -63,6 +60,11 @@ const PlaceDetailsPage = () => {
 						</ScrollArea>
 					</CardContent>
 				</Card>
+				<Button>
+					<Link className="w-full h-full" href={`/places/${placeId}/update`}>
+						Update
+					</Link>
+				</Button>
 				<DeleteDialogValidation placeId={placeId}>
 					<Button variant="destructive">Delete</Button>
 				</DeleteDialogValidation>

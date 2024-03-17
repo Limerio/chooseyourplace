@@ -1,4 +1,4 @@
-import { createPlaceSchema } from "@/schemas"
+import { placeSchema } from "@/schemas"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 
@@ -8,7 +8,6 @@ import { Form, FormField } from "@/components/ui/form"
 import { FormFieldSelect } from "@/components/ui/forms"
 import { useMultiStepsForm } from "@/hooks/forms"
 import { listOfBuildings } from "@/utils/constants"
-import { faker } from "@faker-js/faker"
 
 const defaultFormFields = [
 	{
@@ -47,13 +46,13 @@ const defaultFormFields = [
 export const DefaultForm = () => {
 	const { next, addDataForm } = useMultiStepsForm()
 	const form = useForm({
-		resolver: zodResolver(createPlaceSchema),
+		resolver: zodResolver(placeSchema),
 		defaultValues: {
 			building: "",
-			name: faker.company.name(),
-			zipcode: faker.location.zipCode(),
-			country: faker.location.country(),
-			city: faker.location.city(),
+			name: "",
+			zipcode: "",
+			country: "",
+			city: "",
 		},
 	})
 	const onSubmit = values => {

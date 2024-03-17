@@ -11,7 +11,7 @@ import {
 	DialogTrigger,
 } from "@/components/ui/dialog"
 import { Link } from "@/components/ui/link"
-import { CreatePlacesForm } from "@/features/places/components/forms"
+import { CreatePlacesForm } from "@/features/places/components/forms/create"
 import { EnterFullScreenIcon } from "@radix-ui/react-icons"
 
 export const Header = () => (

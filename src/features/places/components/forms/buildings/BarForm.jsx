@@ -1,57 +1,22 @@
-import {
-	Form,
-	FormControl,
-	FormField,
-	FormItem,
-	FormLabel,
-} from "@/components/ui/form"
-import { FormFieldSelect } from "@/components/ui/forms"
-import { Slider } from "@/components/ui/slider"
-import { MenuForm } from "@/features/places/components/forms"
+import { Form, FormField } from "@/components/ui/form"
+import { MenuForm } from "@/features/places/components/forms/create"
+import { barFormFields } from "@/features/places/utils/fields"
 import { useMultiStepsForm } from "@/hooks/forms"
 import { barSchema } from "@/schemas/Bar"
-import { typesOfBuilding } from "@/utils/constants"
+
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 
-const barFormFields = [
-	{
-		name: "typeOf",
-		render: ({ field }) => (
-			<FormFieldSelect
-				field={field}
-				label="Bar"
-				placeholder="Select a type of bar"
-				list={typesOfBuilding.bar}
-			/>
-		),
-	},
-	{
-		name: "averageCost",
-		render: ({ field }) => (
-			<FormItem>
-				<FormLabel>Average Cost</FormLabel>
-				<FormControl>
-					<Slider
-						onValueChange={field.onChange}
-						defaultValue={[0]}
-						max={5}
-						step={1}
-					/>
-				</FormControl>
-			</FormItem>
-		),
-	},
-]
+const defaultValues = {
+	typeOf: "",
+	averageCost: 0,
+}
 
-export const BarForm = () => {
+export const BarForm = ({ data }) => {
 	const { next, addDataForm } = useMultiStepsForm()
 	const form = useForm({
 		resolver: zodResolver(barSchema),
-		defaultValues: {
-			typeOf: "",
-			averageCost: 0,
-		},
+		defaultValues: data ?? defaultValues,
 	})
 	const onSubmit = values => {
 		addDataForm(values)
@@ -64,7 +29,7 @@ export const BarForm = () => {
 				onSubmit={form.handleSubmit(onSubmit)}
 				className="flex flex-col gap-4"
 			>
-				{barFormFields.map(formField => (
+				{barFormFields().map(formField => (
 					<FormField
 						key={formField.name}
 						control={form.control}

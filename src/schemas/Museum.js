@@ -24,3 +24,5 @@ export const museumSchema = z.object({
 	freeOrPay: z.enum(freeOrPay),
 	price: z.number().nullable(),
 })
+
+export const updateMuseumSchema = museumSchema.partial()

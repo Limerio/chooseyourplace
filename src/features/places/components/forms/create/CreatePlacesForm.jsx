@@ -3,7 +3,7 @@ import {
 	BuildingInfoForm,
 	DefaultForm,
 	FinalStep,
-} from "@/features/places/components/forms"
+} from "@/features/places/components/forms/create"
 
 export const CreatePlacesForm = () => (
 	<MultiStepProvider
