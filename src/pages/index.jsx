@@ -1,4 +1,5 @@
 /* eslint-disable max-lines */
+import { Head } from "@/components/layouts"
 import { Button } from "@/components/ui/button"
 import { DataTable } from "@/components/ui/data-table"
 import {
@@ -17,7 +18,6 @@ import { capitalize } from "@/utils/functions"
 import { DialogTrigger } from "@radix-ui/react-dialog"
 import { DotsHorizontalIcon, EnterFullScreenIcon } from "@radix-ui/react-icons"
 import { ArrowUpDown } from "lucide-react"
-import Head from "next/head"
 
 const columns = [
 	{
@@ -108,10 +108,10 @@ export default function Home() {
 
 	return (
 		<>
-			<Head>
-				<title>List of places - chooseyourplace</title>
-				<meta name="description" content="List of places page" />
-			</Head>
+			<Head
+				title="List of places - chooseyourplace"
+				description="List of places page"
+			/>
 			<div className="container mx-auto py-10 flex flex-col gap-2">
 				<h1 className="text-6xl text-center">List of places</h1>
 				<DataTable filterInput="name" columns={columns} data={data} />
