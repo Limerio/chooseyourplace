@@ -2,16 +2,16 @@ import { generateFormFieldInput } from "@/components/functions"
 import { Button } from "@/components/ui/button"
 import { Form, FormField } from "@/components/ui/form"
 import { FormFieldSelect } from "@/components/ui/forms"
-import { requestGetPlace, requestPutPlace } from "@/features/places/utils/api"
+import { usePlace } from "@/features/places/hooks"
+import { requestPutPlace } from "@/features/places/utils/api"
 import {
 	barFormFields,
 	museumFormFields,
 	parkFormFields,
 	restaurantFormFields,
 } from "@/features/places/utils/fields"
-import { subSchemas, updatePlaceSchema } from "@/schemas"
+import { updatePlaceSchema, updateSubSchemas } from "@/schemas"
 import { listOfBuildings } from "@/utils/constants"
-import { useQuery } from "@tanstack/react-query"
 import { useRouter } from "next/router"
 import { useMemo } from "react"
 import { useForm } from "react-hook-form"
@@ -59,18 +59,29 @@ const subForms = {
 export const UpdateForm = () => {
 	const router = useRouter()
 	const placeId = useMemo(() => router.query.placeId, [router.query.placeId])
-	const { data } = useQuery({
-		queryKey: ["places", placeId],
-		queryFn: () => requestGetPlace(placeId),
-	})
+	const { data } = usePlace(placeId)
 	const form = useForm({
 		defaultValues: data,
 	})
 	const onSubmit = async values => {
+		switch (values.building) {
+			case "bar":
+				values.bar.averageCost = values.bar.averageCost[0]
+
+				break
+
+			case "restaurant":
+				values.restaurant.averageCost = values.restaurant.averageCost[0]
+				values.restaurant.stars = values.restaurant.stars[0]
+
+				break
+		}
+
 		await updatePlaceSchema
-			.extend(subSchemas[values.building])
+			.merge(updateSubSchemas[values.building])
 			.parseAsync(values)
-		await requestPutPlace(placeId, values)
+		const datad = await requestPutPlace(placeId, values)
+		console.log(datad)
 		router.push("/")
 	}
 

@@ -1,5 +1,5 @@
 import { PlaceModel } from "@/models"
-import { subSchemas, updatePlaceSchema } from "@/schemas"
+import { updatePlaceSchema, updateSubSchemas } from "@/schemas"
 import { formatDate, handlerApi } from "@/utils/functions"
 
 const handler = handlerApi(async (req, res) => {
@@ -18,10 +18,15 @@ const handler = handlerApi(async (req, res) => {
 
 	if (req.method === "PUT") {
 		const { name, building, city, zipcode, country, ...buildings } = req.body
+		const newPlace = {}
 
 		try {
+			if (!Object.keys(buildings).includes(building)) {
+				return res.json({ error: "This is not the same building" })
+			}
+
 			Object.assign(
-				place,
+				newPlace,
 				await updatePlaceSchema.parseAsync({
 					name: name || place.name,
 					building: building || place.building,
@@ -31,21 +36,21 @@ const handler = handlerApi(async (req, res) => {
 				}),
 			)
 
-			if (!Object.keys(buildings).includes(place.building)) {
-				return res.send("This is not the same building")
+			if (place.building !== building) {
+				newPlace[building] = {}
 			}
 
 			Object.assign(
-				place[place.building],
-				await subSchemas[place.building].parseAsync(buildings[place.building]),
+				newPlace[building],
+				await updateSubSchemas[building].parseAsync(buildings[building]),
 			)
 
-			await place.save()
+			await place.replaceOne(newPlace)
 		} catch (error) {
-			return res.json(error)
+			return res.json({ error })
 		}
 
-		return res.json({ ...result, ...place.toJSON() })
+		return res.json(newPlace)
 	}
 
 	if (req.method === "DELETE") {

@@ -58,7 +58,7 @@ export const placeSchema = z.object({
 
 export const updatePlaceSchema = placeSchema.partial()
 
-export const subSchemas = {
+export const updateSubSchemas = {
 	bar: updateBarSchema,
 	museum: updateMuseumSchema,
 	park: updateParkSchema,
