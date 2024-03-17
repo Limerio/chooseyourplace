@@ -1,10 +1,8 @@
 import { Head } from "@/components/layouts"
 import { UpdateForm } from "@/features/places/components/forms/update"
-import {
-	requestGetPlace,
-	requestServerGetPlace,
-} from "@/features/places/utils/api"
-import { QueryClient, dehydrate, useQuery } from "@tanstack/react-query"
+import { usePlace } from "@/features/places/hooks"
+import { requestServerGetPlace } from "@/features/places/utils/api"
+import { QueryClient, dehydrate } from "@tanstack/react-query"
 import { useRouter } from "next/router"
 import { useMemo } from "react"
 
@@ -26,10 +24,7 @@ export async function getServerSideProps({ params }) {
 const UpdatePlace = () => {
 	const router = useRouter()
 	const placeId = useMemo(() => router.query.placeId, [router.query.placeId])
-	const { data, isLoading, isError } = useQuery({
-		queryKey: ["places", placeId],
-		queryFn: () => requestGetPlace(placeId),
-	})
+	const { data, isLoading, isError } = usePlace(placeId)
 
 	if (isLoading) {
 		return <div className="bg-slate-500">Loading...</div>
