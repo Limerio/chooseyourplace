@@ -1,3 +1,4 @@
+import { Head } from "@/components/layouts"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Link } from "@/components/ui/link"
@@ -7,7 +8,6 @@ import { PlaceDetails } from "@/features/places/components/info"
 import { usePlace } from "@/features/places/hooks"
 import { requestServerGetPlace } from "@/features/places/utils/api"
 import { QueryClient, dehydrate } from "@tanstack/react-query"
-import Head from "next/head"
 import { useRouter } from "next/router"
 import { useMemo } from "react"
 
@@ -41,10 +41,10 @@ const PlaceDetailsPage = () => {
 
 	return (
 		<>
-			<Head>
-				<title>Create a place - chooseyourplace</title>
-				<meta name="description" content="Creation page for places" />
-			</Head>
+			<Head
+				title={`${data.name} place - chooseyourplace`}
+				description={`${data.name} place`}
+			/>
 			<div className="container flex flex-col gap-8 py-2">
 				<Card>
 					<CardHeader>

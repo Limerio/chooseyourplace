@@ -37,8 +37,8 @@ const UpdatePlace = () => {
 	return (
 		<>
 			<Head
-				title="Update a place - chooseyourplace"
-				description="Update page for places"
+				title={`${data.name} place - chooseyourplace`}
+				description={`${data.name} place`}
 			/>
 			<div className="container">
 				<UpdateForm />
