@@ -12,11 +12,10 @@ import {
 import { Link } from "@/components/ui/link"
 import { DeleteDialogValidation } from "@/features/places/components/delete/dialogValidation"
 import { PlaceDetails } from "@/features/places/components/info"
-import { requestGetPlaces } from "@/features/places/utils/api"
+import { usePlaces } from "@/features/places/hooks"
 import { capitalize } from "@/utils/functions"
 import { DialogTrigger } from "@radix-ui/react-dialog"
 import { DotsHorizontalIcon, EnterFullScreenIcon } from "@radix-ui/react-icons"
-import { useQuery } from "@tanstack/react-query"
 import { ArrowUpDown } from "lucide-react"
 import Head from "next/head"
 
@@ -97,10 +96,7 @@ const columns = [
 ]
 
 export default function Home() {
-	const { data, isLoading, isError } = useQuery({
-		queryKey: ["places"],
-		queryFn: () => requestGetPlaces(),
-	})
+	const { data, isLoading, isError } = usePlaces()
 
 	if (isLoading) {
 		return <div className="bg-slate-500">Loading...</div>
