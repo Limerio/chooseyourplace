@@ -1,4 +1,4 @@
-import { Logo } from "@/components/Logo"
+import { Logo } from "@/components/layouts"
 import { MenuTheme } from "@/components/layouts/MenuTheme"
 import { Button } from "@/components/ui/button"
 import {

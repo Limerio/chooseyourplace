@@ -1,5 +1,5 @@
-import { PlaceModel } from "@/models"
-import { filterQueryPlace } from "@/schemas"
+import { PlaceModel } from "@/features/places/models"
+import { filterQueryPlace } from "@/features/places/schemas"
 import { handlerApi } from "@/utils/functions"
 
 const handler = handlerApi(async (req, res) => {

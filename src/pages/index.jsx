@@ -1,5 +1,5 @@
 /* eslint-disable max-lines */
-import { Head } from "@/components/layouts"
+import { Error, Head, Loading } from "@/components/layouts"
 import { Button } from "@/components/ui/button"
 import { DataTable } from "@/components/ui/data-table"
 import {
@@ -98,24 +98,18 @@ const columns = [
 export default function Home() {
 	const { data, isLoading, isError } = usePlaces()
 
-	if (isLoading) {
-		return <div className="bg-slate-500">Loading...</div>
-	}
-
-	if (isError || data.error) {
-		return <div className="bg-red-600">{data.error}</div>
-	}
-
 	return (
-		<>
-			<Head
-				title="List of places - chooseyourplace"
-				description="List of places page"
-			/>
-			<div className="container mx-auto py-10 flex flex-col gap-2">
-				<h1 className="text-6xl text-center">List of places</h1>
-				<DataTable filterInput="name" columns={columns} data={data} />
-			</div>
-		</>
+		<Loading isLoading={isLoading}>
+			<Error isError={isError || Boolean(data?.error)}>
+				<Head
+					title="List of places - chooseyourplace"
+					description="List of places page"
+				/>
+				<div className="container mx-auto py-10 flex flex-col gap-2">
+					<h1 className="text-6xl text-center">List of places</h1>
+					<DataTable filterInput="name" columns={columns} data={data} />
+				</div>
+			</Error>
+		</Loading>
 	)
 }

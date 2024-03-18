@@ -1,5 +1,5 @@
-import { PlaceModel } from "@/models"
-import { updatePlaceSchema, updateSubSchemas } from "@/schemas"
+import { PlaceModel } from "@/features/places/models"
+import { updatePlaceSchema, updateSubSchemas } from "@/features/places/schemas"
 import { formatDate, handlerApi } from "@/utils/functions"
 
 const handler = handlerApi(async (req, res) => {
