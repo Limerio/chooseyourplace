@@ -1,0 +1,50 @@
+{
+	"Header": {
+		"add_button": "Add",
+		"dialog": {
+			"title": "Create a place",
+			"close": "Full screen mode"
+		}
+	},
+	"Loader": {
+		"text": "Loading..."
+	},
+	"Error": {
+		"text": "Internal Server Error"
+	},
+	"MenuTheme": {
+		"title": "Toggle theme",
+		"light": "Light",
+		"dark": "Dark",
+		"system": "System"
+	},
+	"DataTable": {
+		"next": "Next",
+		"previous": "Previous",
+		"no_results": "No results.",
+		"search": "Search by {filterInput}...",
+		"pages": {
+			"title": "Pages",
+			"placeholder": "Define page size"
+		}
+	},
+	"Home": {
+		"title": "List of places",
+		"description": "List of places page",
+		"table": {
+			"columns": {
+				"building": "Building",
+				"name": "Name",
+				"city": "City",
+				"zipcode": "Zip Code",
+				"country": "Country",
+				"actions": {
+					"open": "Open menu",
+					"title": "Information about \"{name}\"",
+					"close": "Full screen mode",
+					"delete": "Delete"
+				}
+			}
+		}
+	}
+}

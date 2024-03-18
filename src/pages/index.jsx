@@ -14,15 +14,17 @@ import { Link } from "@/components/ui/link"
 import { DeleteDialogValidation } from "@/features/places/components/delete/dialogValidation"
 import { PlaceDetails } from "@/features/places/components/info"
 import { usePlaces } from "@/features/places/hooks"
-import { capitalize } from "@/utils/functions"
+import { MainLayout } from "@/layouts/Main"
+import { capitalize, serverTranslation } from "@/utils/functions"
 import { DialogTrigger } from "@radix-ui/react-dialog"
 import { DotsHorizontalIcon, EnterFullScreenIcon } from "@radix-ui/react-icons"
 import { ArrowUpDown } from "lucide-react"
+import { useTranslations } from "next-intl"
 
-const columns = [
+const columns = t => [
 	{
 		accessorKey: "building",
-		header: "Building",
+		header: t("table.columns.building"),
 		cell: ({ row }) => capitalize(row.original.building),
 	},
 	{
@@ -33,7 +35,7 @@ const columns = [
 				variant="ghost"
 				onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
 			>
-				Name
+				{t("table.columns.name")}
 				<ArrowUpDown className="ml-2 h-4 w-4" />
 			</Button>
 		),
@@ -41,16 +43,16 @@ const columns = [
 	},
 	{
 		accessorKey: "city",
-		header: "City",
+		header: t("table.columns.city"),
 		cell: ({ row }) => capitalize(row.original.city),
 	},
 	{
 		accessorKey: "zipcode",
-		header: "Zip Code",
+		header: t("table.columns.zipcode"),
 	},
 	{
 		accessorKey: "country",
-		header: "Country",
+		header: t("table.columns.country"),
 		cell: ({ row }) => capitalize(row.original.country),
 	},
 	{
@@ -63,13 +65,15 @@ const columns = [
 				<Dialog>
 					<DialogTrigger asChild>
 						<Button variant="ghost" className="h-8 w-8 p-0">
-							<span className="sr-only">Open menu</span>
+							<span className="sr-only">{t("table.columns.actions.open")}</span>
 							<DotsHorizontalIcon className="h-4 w-4" />
 						</Button>
 					</DialogTrigger>
 					<DialogContent>
 						<DialogHeader>
-							<DialogTitle>Information about "{place.name}"</DialogTitle>
+							<DialogTitle>
+								{t("table.columns.actions.title", { name: place.name })}
+							</DialogTitle>
 						</DialogHeader>
 						<PlaceDetails place={place} />
 						<DialogFooter>
@@ -80,12 +84,14 @@ const columns = [
 										className="flex items-center gap-1.5 w-full h-full"
 									>
 										<EnterFullScreenIcon />
-										Full screen mode
+										{t("table.columns.actions.close")}
 									</Link>
 								</DialogClose>
 							</Button>
 							<DeleteDialogValidation reload placeId={place._id}>
-								<Button variant="destructive">Delete</Button>
+								<Button variant="destructive">
+									{t("table.columns.actions.delete")}
+								</Button>
 							</DeleteDialogValidation>
 						</DialogFooter>
 					</DialogContent>
@@ -97,19 +103,34 @@ const columns = [
 
 export default function Home() {
 	const { data, isLoading, isError } = usePlaces()
+	const t = useTranslations("Home")
 
 	return (
 		<Loading isLoading={isLoading}>
 			<Error isError={isError || Boolean(data?.error)}>
 				<Head
-					title="List of places - chooseyourplace"
-					description="List of places page"
+					title={`${t("title")} - chooseyourplace`}
+					description={t("descriptionx")}
 				/>
 				<div className="container mx-auto py-10 flex flex-col gap-2">
-					<h1 className="text-6xl text-center">List of places</h1>
-					<DataTable filterInput="name" columns={columns} data={data} />
+					<h1 className="text-6xl text-center">{t("title")}</h1>
+					<DataTable filterInput="name" columns={columns(t)} data={data} />
 				</div>
 			</Error>
 		</Loading>
 	)
+}
+
+Home.messages = [
+	"Home",
+	...Loading.messages,
+	...Error.messages,
+	...MainLayout.messages,
+	...DataTable.messages,
+]
+
+export function getServerSideProps({ locale }) {
+	return {
+		props: serverTranslation(locale, Home),
+	}
 }

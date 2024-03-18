@@ -6,3 +6,5 @@ export const MainLayout = ({ children }) => (
 		<main className="flex flex-col items-center">{children}</main>
 	</div>
 )
+
+MainLayout.messages = [...Header.messages]

@@ -1,5 +1,6 @@
 import { Head } from "@/components/layouts"
 import { CreatePlacesForm } from "@/features/places/components/forms/create"
+import { serverTranslation } from "@/utils/functions"
 
 const CreatePlacePage = () => (
 	<>
@@ -11,4 +12,12 @@ const CreatePlacePage = () => (
 	</>
 )
 
+CreatePlacePage.messages = ["CreatePlacePage", ...CreatePlacesForm.messages]
+
 export default CreatePlacePage
+
+export function getStaticProps({ locale }) {
+	return {
+		props: serverTranslation(locale, CreatePlacePage),
+	}
+}
