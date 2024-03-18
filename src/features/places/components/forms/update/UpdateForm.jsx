@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button"
 import { Form, FormField } from "@/components/ui/form"
 import { FormFieldSelect } from "@/components/ui/forms"
 import { usePlace } from "@/features/places/hooks"
+import { updatePlaceSchema, updateSubSchemas } from "@/features/places/schemas"
 import { requestPutPlace } from "@/features/places/utils/api"
 import {
 	barFormFields,
@@ -10,7 +11,6 @@ import {
 	parkFormFields,
 	restaurantFormFields,
 } from "@/features/places/utils/fields"
-import { updatePlaceSchema, updateSubSchemas } from "@/schemas"
 import { listOfBuildings } from "@/utils/constants"
 import { useRouter } from "next/router"
 import { useMemo } from "react"

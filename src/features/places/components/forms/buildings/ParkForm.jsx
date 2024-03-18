@@ -1,8 +1,8 @@
 import { Form, FormField } from "@/components/ui/form"
 import { MenuForm } from "@/features/places/components/forms/create"
+import { parkSchema } from "@/features/places/schemas/Park"
 import { parkFormFields } from "@/features/places/utils/fields"
 import { useMultiStepsForm } from "@/hooks/forms"
-import { parkSchema } from "@/schemas/Park"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 

@@ -1,4 +1,4 @@
-import { placeSchema } from "@/schemas"
+import { placeSchema } from "@/features/places/schemas"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 
