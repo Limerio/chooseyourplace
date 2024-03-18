@@ -1,16 +1,18 @@
 import { requiredArgSchema } from "@/utils/functions"
 /* eslint-disable no-invalid-this */
+import { listOfBuildings } from "@/utils/constants.js"
 import { Schema } from "mongoose"
-import { BarSchema } from "./Bar.js"
-import { MuseumSchema } from "./Museum.js"
-import { ParkSchema } from "./Park.js"
-import { RestaurantSchema } from "./Restaurant.js"
+import { z } from "zod"
+import { BarSchema, updateBarSchema } from "./Bar.js"
+import { MuseumSchema, updateMuseumSchema } from "./Museum.js"
+import { ParkSchema, updateParkSchema } from "./Park.js"
+import { RestaurantSchema, updateRestaurantSchema } from "./Restaurant.js"
 
 export const PlaceSchema = new Schema(
 	{
 		building: {
 			type: String,
-			enum: ["bar", "museum", "restaurant", "park"],
+			enum: listOfBuildings,
 		},
 		name: {
 			...requiredArgSchema(String),
@@ -41,3 +43,39 @@ export const PlaceSchema = new Schema(
 		timestamps: true,
 	},
 )
+const baseSchema = {
+	building: z.enum(listOfBuildings),
+	city: z.string().min(3),
+	zipcode: z
+		.string()
+		.min(4)
+		.transform(arg => parseInt(arg, 10))
+		.or(z.number()),
+	country: z.string().min(3),
+}
+
+export const placeSchema = z.object({
+	building: baseSchema.building,
+	name: z.string().min(3),
+	city: baseSchema.city,
+	zipcode: baseSchema.zipcode,
+	country: baseSchema.country,
+})
+
+export const updatePlaceSchema = placeSchema.partial()
+
+export const updateSubSchemas = {
+	bar: updateBarSchema,
+	museum: updateMuseumSchema,
+	park: updateParkSchema,
+	restaurant: updateRestaurantSchema,
+}
+
+export const filterQueryPlace = z
+	.object({
+		building: baseSchema.building,
+		city: baseSchema.city,
+		zipcode: baseSchema.zipcode,
+		country: baseSchema.country,
+	})
+	.partial()
