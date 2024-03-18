@@ -5,13 +5,13 @@ import { FormFieldSelect } from "@/components/ui/forms"
 import { usePlace } from "@/features/places/hooks"
 import { updatePlaceSchema, updateSubSchemas } from "@/features/places/schemas"
 import { requestPutPlace } from "@/features/places/utils/api"
+import { listOfBuildings } from "@/features/places/utils/constants"
 import {
 	barFormFields,
 	museumFormFields,
 	parkFormFields,
 	restaurantFormFields,
 } from "@/features/places/utils/fields"
-import { listOfBuildings } from "@/utils/constants"
 import { useRouter } from "next/router"
 import { useMemo } from "react"
 import { useForm } from "react-hook-form"

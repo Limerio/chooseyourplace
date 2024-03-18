@@ -1,4 +1,4 @@
-import { freeOrPay, typesOfBuilding } from "@/utils/constants"
+import { freeOrPay, typesOfBuilding } from "@/features/places/utils/constants"
 import { enumSchema } from "@/utils/functions"
 import { Schema } from "mongoose"
 import { z } from "zod"

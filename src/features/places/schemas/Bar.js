@@ -1,4 +1,4 @@
-import { typesOfBuilding } from "@/utils/constants"
+import { typesOfBuilding } from "@/features/places/utils/constants"
 import { enumSchema, generateArray } from "@/utils/functions"
 import { Schema } from "mongoose"
 import { z } from "zod"

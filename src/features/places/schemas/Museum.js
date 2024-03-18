@@ -2,7 +2,7 @@ import {
 	artisticMovements,
 	freeOrPay,
 	typesOfBuilding,
-} from "@/utils/constants"
+} from "@/features/places/utils/constants"
 import { enumSchema } from "@/utils/functions"
 import { Schema } from "mongoose"
 import { z } from "zod"

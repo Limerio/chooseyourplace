@@ -8,7 +8,10 @@ import {
 import { FormFieldSelect } from "@/components/ui/forms"
 import { Slider } from "@/components/ui/slider"
 import { Switch } from "@/components/ui/switch"
-import { artisticMovements, typesOfBuilding } from "@/utils/constants"
+import {
+	artisticMovements,
+	typesOfBuilding,
+} from "@/features/places/utils/constants"
 
 export const barFormFields = sub => [
 	{
