@@ -6,8 +6,8 @@ import { generateFormFieldInput } from "@/components/functions"
 import { Button } from "@/components/ui/button"
 import { Form, FormField } from "@/components/ui/form"
 import { FormFieldSelect } from "@/components/ui/forms"
+import { listOfBuildings } from "@/features/places/utils/constants"
 import { useMultiStepsForm } from "@/hooks/forms"
-import { listOfBuildings } from "@/utils/constants"
 
 const defaultFormFields = [
 	{
