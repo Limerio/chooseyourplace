@@ -1,4 +1,5 @@
 import { ThemeProvider } from "@/components/providers/theme"
+import { Toaster } from '@/components/ui/toaster'
 import { MainLayout } from "@/layouts/Main"
 import "@/styles/globals.css"
 import {
@@ -23,6 +24,7 @@ export default function App({ Component, pageProps }) {
 					<MainLayout>
 						<Component {...pageProps} />
 					</MainLayout>
+					<Toaster />
 				</ThemeProvider>
 			</HydrationBoundary>
 		</QueryClientProvider>
