@@ -43,10 +43,8 @@ export const PlaceSchema = new Schema(
 		timestamps: true,
 	},
 )
-
-export const placeSchema = z.object({
+const baseSchema = {
 	building: z.enum(listOfBuildings),
-	name: z.string().min(3),
 	city: z.string().min(3),
 	zipcode: z
 		.string()
@@ -54,6 +52,14 @@ export const placeSchema = z.object({
 		.transform(arg => parseInt(arg, 10))
 		.or(z.number()),
 	country: z.string().min(3),
+}
+
+export const placeSchema = z.object({
+	building: baseSchema.building,
+	name: z.string().min(3),
+	city: baseSchema.city,
+	zipcode: baseSchema.zipcode,
+	country: baseSchema.country,
 })
 
 export const updatePlaceSchema = placeSchema.partial()
@@ -64,3 +70,12 @@ export const updateSubSchemas = {
 	park: updateParkSchema,
 	restaurant: updateRestaurantSchema,
 }
+
+export const filterQueryPlace = z
+	.object({
+		building: baseSchema.building,
+		city: baseSchema.city,
+		zipcode: baseSchema.zipcode,
+		country: baseSchema.country,
+	})
+	.partial()

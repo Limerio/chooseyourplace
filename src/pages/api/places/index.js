@@ -1,9 +1,28 @@
 import { PlaceModel } from "@/models"
+import { filterQueryPlace } from "@/schemas"
 import { handlerApi } from "@/utils/functions"
 
 const handler = handlerApi(async (req, res) => {
 	if (req.method === "GET") {
-		return res.json(await PlaceModel.find({}))
+		const { q, limit, page, ...query } = req.query
+		const places = q
+			? PlaceModel.find({
+					$text: {
+						$search: q,
+					},
+					...(await filterQueryPlace.parseAsync(query)),
+				})
+			: PlaceModel.find(await filterQueryPlace.parseAsync(query))
+
+		if (limit) {
+			return res.json(await places.limit(limit))
+		}
+
+		if (page) {
+			return res.json(await places.skip((limit - 1 || 9) * page))
+		}
+
+		return res.json(await places)
 	}
 
 	if (req.method === "POST") {
