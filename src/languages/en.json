@@ -1,4 +1,8 @@
 {
+	"Utils": {
+		"next": "Next",
+		"previous": "Previous"
+	},
 	"Header": {
 		"add_button": "Add",
 		"dialog": {
@@ -27,6 +31,10 @@
 			"title": "Pages",
 			"placeholder": "Define page size"
 		}
+	},
+	"CreatePlace": {
+		"title": "Create a place",
+		"description": "Creation page for places"
 	},
 	"Home": {
 		"title": "List of places",

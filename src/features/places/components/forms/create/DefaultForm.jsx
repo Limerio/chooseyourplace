@@ -8,6 +8,7 @@ import { Form, FormField } from "@/components/ui/form"
 import { FormFieldSelect } from "@/components/ui/forms"
 import { listOfBuildings } from "@/features/places/utils/constants"
 import { useMultiStepsForm } from "@/hooks/forms"
+import { useTranslations } from "next-intl"
 
 const defaultFormFields = [
 	{
@@ -44,6 +45,7 @@ const defaultFormFields = [
 ]
 
 export const DefaultForm = () => {
+	const t = useTranslations("Utils")
 	const { next, addDataForm } = useMultiStepsForm()
 	const form = useForm({
 		resolver: zodResolver(placeSchema),
@@ -73,8 +75,10 @@ export const DefaultForm = () => {
 						{...formField}
 					/>
 				))}
-				<Button type="submit">Next</Button>
+				<Button type="submit">{t("next")}</Button>
 			</form>
 		</Form>
 	)
 }
+
+DefaultForm.messages = ["Utils"]

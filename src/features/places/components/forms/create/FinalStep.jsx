@@ -3,12 +3,14 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { requestPostPlace } from "@/features/places/utils/api"
 import { useMultiStepsForm } from "@/hooks/forms"
 import { capitalize } from "@/utils/functions"
+import { useTranslations } from "next-intl"
 import { useRouter } from "next/router"
 
 const finalStepCards = ["Information about the building", "Details"]
 
 // eslint-disable-next-line max-lines-per-function
 export const FinalStep = () => {
+	const t = useTranslations("Utils")
 	const { formsData, back } = useMultiStepsForm()
 	const router = useRouter()
 	const finishStepClick = () => async () => {
@@ -52,7 +54,7 @@ export const FinalStep = () => {
 
 			<div className="flex items-center gap-2">
 				<Button className="w-full" onClick={() => back()}>
-					Previous
+					{t("previous")}
 				</Button>
 				<Button className="w-full" onClick={finishStepClick()}>
 					Finish
