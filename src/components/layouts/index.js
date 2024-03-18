@@ -1,3 +1,5 @@
+export * from "./Error"
 export * from "./Head"
+export * from "./Loading"
 export * from "./header"
 export * from "./providers"
