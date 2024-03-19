@@ -1,4 +1,5 @@
 import { Logo } from "@/components/layouts"
+import { LanguageSwitcher } from "@/components/layouts/LanguageSwitcher"
 import { MenuTheme } from "@/components/layouts/MenuTheme"
 import { Button } from "@/components/ui/button"
 import {
@@ -25,6 +26,7 @@ export const Header = () => {
 				<Logo />
 			</Link>
 			<div className="flex items-center gap-3">
+				<LanguageSwitcher />
 				<Dialog>
 					<DialogTrigger asChild>
 						<Button>{t("add_button")}</Button>

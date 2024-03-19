@@ -4,7 +4,8 @@
 		"previous": "Previous",
 		"update": "Update",
 		"delete": "Delete",
-		"fullScreenMode": "Full screen mode"
+		"fullScreenMode": "Full screen mode",
+		"languages": "Languages"
 	},
 	"Forms": {
 		"place": {

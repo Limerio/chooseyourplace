@@ -5,3 +5,8 @@ export const defaultOptionsDate = {
 	minute: "2-digit",
 	hour: "2-digit",
 }
+
+export const langs = {
+	en: "English",
+	fr: "Français",
+}
