@@ -43,8 +43,8 @@
 				"natural": "natural",
 				"aviation": "aviation",
 				"maritime": "maritime",
-				"modern_art": "modern_art",
-				"contemporary_art": "contemporary_art",
+				"modern_art": "modern art",
+				"contemporary_art": "contemporary art",
 				"technology": "technology",
 				"space": "space",
 				"archaeology": "archaeology",
@@ -84,10 +84,10 @@
 				"sushi": "sushi",
 				"steakhouse": "steakhouse",
 				"vegan": "vegan",
-				"fast_food": "fast_food",
+				"fast_food": "fast food",
 				"barbecue": "barbecue",
 				"cafe": "cafe",
-				"food_truck": "food_truck",
+				"food_truck": "food truck",
 				"pub": "pub",
 				"bistro": "bistro",
 				"buffet": "buffet",
@@ -135,11 +135,7 @@
 				"averageCost": "Average Cost",
 				"freeOrPay": {
 					"label": "Free or Pay ?",
-					"placeholder": "Choose between free or pay",
-					"list": {
-						"free": "free",
-						"pay": "pay"
-					}
+					"placeholder": "Choose between free or pay"
 				},
 				"price": {
 					"label": "Price",

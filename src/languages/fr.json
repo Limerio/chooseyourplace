@@ -6,6 +6,15 @@
 		"delete": "Supprimer",
 		"fullScreenMode": "Mode plein écran",
 		"languages": "Langues",
+		"place": {
+			"form": {
+				"building": "Bâtiment",
+				"name": "Nom",
+				"city": "Ville",
+				"zipcode": "Code postal",
+				"country": "Pays"
+			}
+		},
 		"buildings": {
 			"building": "bâtiment",
 			"restaurant": "restaurant",
@@ -28,30 +37,30 @@
 				"speakeasy": "speakeasy",
 				"cigar": "cigar",
 				"gastropub": "gastropub",
-				"theme": "theme",
-				"hotel": "hotel",
-				"juice": "juice",
-				"rooftop": "rooftop",
+				"theme": "thème",
+				"hotel": "hôtel",
+				"juice": "jus",
+				"rooftop": "toit",
 				"gay": "gay",
-				"microbrewery": "microbrewery",
+				"microbrewery": "microbrasserie",
 				"virtual": "virtuel"
 			},
 			"museum": {
 				"art": "art",
 				"history": "histoire",
 				"science": "science",
-				"natural": "natural",
+				"natural": "naturel",
 				"aviation": "aviation",
 				"maritime": "maritime",
-				"modern_art": "Art moderne",
-				"contemporary_art": "Art contemporain",
-				"technology": "Technologie",
-				"space": "Espace",
-				"archaeology": "archaeology",
-				"anthropology": "anthropology",
-				"cultural": "Culture",
-				"transportation": "transportation",
-				"botanical": "botanic",
+				"modern_art": "art moderne",
+				"contemporary_art": "art contemporain",
+				"technology": "technologie",
+				"space": "espace",
+				"archaeology": "archéologie",
+				"anthropology": "anthropologie",
+				"cultural": "culturel",
+				"transportation": "transport",
+				"botanical": "botanique",
 				"aquarium": "aquarium",
 				"zoo": "zoo",
 				"virtual": "virtuel"
@@ -59,34 +68,34 @@
 			"park": {
 				"national": "national",
 				"city": "ville",
-				"urban": "urban",
-				"wildlife": "wildlife",
-				"botanical": "botanical",
-				"recreational": "recreational",
-				"amusement": "amusement",
+				"urban": "urbain",
+				"wildlife": "faune",
+				"botanical": "botanique",
+				"recreational": "récréatif",
+				"amusement": "divertissement",
 				"skate": "skate",
 				"water": "eau",
 				"adventure": "aventure",
-				"theme": "theme",
+				"theme": "thème",
 				"state": "état",
-				"county": "county",
+				"county": "comté",
 				"historic": "historique",
-				"neighborhood": "voisin",
+				"neighborhood": "quartier",
 				"community": "communauté",
-				"linear": "linear",
+				"linear": "linéaire",
 				"sports": "sports",
 				"dog": "chien",
-				"play": "play"
+				"play": "jeu"
 			},
 			"restaurant": {
-				"italian": "italian",
-				"french": "french",
+				"italian": "italien",
+				"french": "français",
 				"sushi": "sushi",
 				"steakhouse": "steakhouse",
-				"vegan": "vegan",
+				"vegan": "végétalien",
 				"fast_food": "fast_food",
 				"barbecue": "barbecue",
-				"cafe": "cafe",
+				"cafe": "café",
 				"food_truck": "food_truck",
 				"pub": "pub",
 				"bistro": "bistro",
@@ -97,35 +106,35 @@
 				"pizzeria": "pizzeria",
 				"ramen": "ramen",
 				"foodcourt": "foodcourt",
-				"noodle": "noodle",
+				"noodle": "nouille",
 				"fusion": "fusion"
 			}
 		},
 		"artisticMovements": {
 			"renaissance": "renaissance",
 			"baroque": "baroque",
-			"romanticism": "romanticism",
-			"impressionism": "impressionism",
-			"expressionism": "expressionism",
-			"cubism": "cubism",
-			"surrealism": "surrealism",
-			"abstract expressionism": "abstract expressionism",
+			"romanticism": "romantisme",
+			"impressionism": "impressionnisme",
+			"expressionism": "expressionnisme",
+			"cubism": "cubisme",
+			"surrealism": "surréalisme",
+			"abstract expressionism": "expressionnisme abstrait",
 			"pop": "pop",
-			"minimalism": "minimalism",
-			"contemporary": "contemporary",
-			"abstract": "abstract",
-			"realism": "realism",
-			"post-impressionism": "post-impressionism",
-			"fauvism": "fauvism",
-			"dadaism": "dadaism",
-			"symbolism": "symbolism",
-			"neoclassicism": "neoclassicism",
-			"surrealist": "surrealist",
-			"cubist": "cubist"
+			"minimalism": "minimalisme",
+			"contemporary": "contemporain",
+			"abstract": "abstrait",
+			"realism": "réalisme",
+			"post-impressionism": "post-impressionnisme",
+			"fauvism": "fauvisme",
+			"dadaism": "dadaïsme",
+			"symbolism": "symbolisme",
+			"neoclassicism": "néoclassicisme",
+			"surrealist": "surréaliste",
+			"cubist": "cubiste"
 		},
 		"freeOrPay": {
-			"free": "free",
-			"pay": "pay"
+			"free": "gratuit",
+			"pay": "payant"
 		}
 	},
 	"Forms": {
@@ -135,11 +144,7 @@
 				"averageCost": "Coût moyen",
 				"freeOrPay": {
 					"label": "Gratuit ou payant ?",
-					"placeholder": "Choisissez entre gratuit ou payant",
-					"list": {
-						"free": "free",
-						"pay": "pay"
-					}
+					"placeholder": "Choisissez entre gratuit ou payant"
 				},
 				"price": {
 					"label": "Prix",
@@ -245,11 +250,6 @@
 		"description": "Page de la liste des lieux",
 		"table": {
 			"columns": {
-				"building": "Bâtiment",
-				"name": "Nom",
-				"city": "Ville",
-				"zipcode": "Code postal",
-				"country": "Pays",
 				"actions": {
 					"open": "Ouvrir le menu",
 					"title": "Information à propos de \"{name}\""
