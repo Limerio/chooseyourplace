@@ -20,12 +20,12 @@ export async function getServerSideProps({ locale, params: { placeId } }) {
 	return {
 		props: {
 			dehydratedState: dehydrate(queryClient),
-			...(await serverTranslation(locale, UpdatePlace)),
+			...(await serverTranslation(locale, UpdatePlacePage)),
 		},
 	}
 }
-const UpdatePlace = () => {
-	const t = useTranslations("UpdatePlace")
+const UpdatePlacePage = () => {
+	const t = useTranslations("UpdatePlacePage")
 	const router = useRouter()
 	const placeId = useMemo(() => router.query.placeId, [router.query.placeId])
 	const { data, isLoading, isError } = usePlace(placeId)
@@ -45,8 +45,8 @@ const UpdatePlace = () => {
 	)
 }
 
-UpdatePlace.messages = [
-	"UpdatePlace",
+UpdatePlacePage.messages = [
+	"UpdatePlacePage",
 	"Utils",
 	"Forms",
 	...MainLayout.messages,
@@ -54,4 +54,4 @@ UpdatePlace.messages = [
 	...Error.messages,
 ]
 
-export default UpdatePlace
+export default UpdatePlacePage

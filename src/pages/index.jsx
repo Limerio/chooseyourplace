@@ -52,10 +52,9 @@ const columns = t => [
 		),
 	},
 ]
-
-export default function Home() {
+const HomePage = () => {
 	const { data, isLoading, isError } = usePlaces()
-	const t = useTranslations("Home")
+	const t = useTranslations("HomePage")
 
 	return (
 		<Loading isLoading={isLoading}>
@@ -73,16 +72,16 @@ export default function Home() {
 	)
 }
 
-Home.messages = [
-	"Home",
+HomePage.messages = [
+	"HomePage",
 	...Loading.messages,
 	...Error.messages,
 	...MainLayout.messages,
 	...DataTable.messages,
 ]
 
-export async function getServerSideProps({ locale }) {
-	return {
-		props: await serverTranslation(locale, Home),
-	}
-}
+export default HomePage
+
+export const getServerSideProps = async ({ locale }) => ({
+	props: await serverTranslation(locale, HomePage),
+})

@@ -5,7 +5,7 @@ import { serverTranslation } from "@/utils/functions"
 import { useTranslations } from "next-intl"
 
 const CreatePlacePage = () => {
-	const t = useTranslations("CreatePlace")
+	const t = useTranslations("CreatePlacePage")
 
 	return (
 		<>
@@ -19,15 +19,13 @@ const CreatePlacePage = () => {
 }
 
 CreatePlacePage.messages = [
-	"CreatePlace",
+	"CreatePlacePage",
 	...MainLayout.messages,
 	...CreatePlacesForm.messages,
 ]
 
 export default CreatePlacePage
 
-export async function getStaticProps({ locale }) {
-	return {
-		props: await serverTranslation(locale, CreatePlacePage),
-	}
-}
+export const getStaticProps = async ({ locale }) => ({
+	props: await serverTranslation(locale, CreatePlacePage),
+})

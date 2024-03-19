@@ -1,71 +1,85 @@
+import { defaultOptionsDate } from "@/utils/constants"
 import {
 	addSpaceBetweenCapitalizeLetter,
 	capitalize,
 	cn,
 } from "@/utils/functions"
+import { useFormatter, useTranslations } from "next-intl"
+import { useMemo } from "react"
 
-export const PlaceDetails = ({ place }) => (
-	<div className="border-t border-white flex flex-col">
-		<dl className="divide-y divide-white">
-			<PlaceFieldDetails>
-				<PlaceTitleDetails>Type of building</PlaceTitleDetails>
-				<PlaceContentDetails>{capitalize(place.building)}</PlaceContentDetails>
-			</PlaceFieldDetails>
-			{Object.keys(place)
-				.filter(
-					placeKey =>
-						!["_id", "building", "__v", place.building].includes(placeKey),
-				)
-				.map(placeKey => (
-					<PlaceFieldDetails key={placeKey}>
-						<PlaceTitleDetails>
-							{addSpaceBetweenCapitalizeLetter(capitalize(placeKey))}
-						</PlaceTitleDetails>
-						<PlaceContentDetails>
-							{typeof value === "string"
-								? capitalize(place[placeKey]).replace("_", " ")
-								: place[placeKey]}
-						</PlaceContentDetails>
-					</PlaceFieldDetails>
-				))}
-			{Object.keys(place[place.building])
-				.filter(placeSubKey => placeSubKey !== "_id")
-				.map(placeSubKey => {
-					const value = place[place.building][placeSubKey]
+const ignoredKeys = ["_id", "building", "__v", "createdAt", "updatedAt"]
 
-					return (
-						<PlaceFieldDetails key={placeSubKey}>
-							<PlaceTitleDetails>
-								{addSpaceBetweenCapitalizeLetter(capitalize(placeSubKey))}
-							</PlaceTitleDetails>
+export const PlaceDetails = ({ place }) => {
+	const t = useTranslations("PlaceDetails")
+	const format = useFormatter()
+	const keysPlace = useMemo(() => Object.keys(place), [place])
+
+	return (
+		<div className="border-t border-white flex flex-col">
+			<dl className="divide-y divide-white">
+				<PlaceFieldDetails>
+					<PlaceTitleDetails>{t("typeOf")}</PlaceTitleDetails>
+					<PlaceContentDetails>{place.building}</PlaceContentDetails>
+				</PlaceFieldDetails>
+				{keysPlace
+					.filter(
+						placeKey => ![place.building, ...ignoredKeys].includes(placeKey),
+					)
+					.map(placeKey => (
+						<PlaceFieldDetails key={placeKey}>
+							<PlaceTitleDetails>{placeKey}</PlaceTitleDetails>
+							<PlaceContentDetails>{place[placeKey]}</PlaceContentDetails>
+						</PlaceFieldDetails>
+					))}
+
+				{keysPlace
+					.filter(placeKey => ["createdAt", "updatedAt"].includes(placeKey))
+					.map(placeKey => (
+						<PlaceFieldDetails key={placeKey}>
+							<PlaceTitleDetails>{placeKey}</PlaceTitleDetails>
 							<PlaceContentDetails>
-								{typeof value === "string"
-									? capitalize(value).replace("_", " ")
-									: value}
+								{format.dateTime(new Date(place[placeKey]), defaultOptionsDate)}
 							</PlaceContentDetails>
 						</PlaceFieldDetails>
-					)
-				})}
-		</dl>
-	</div>
-)
-const PlaceTitleDetails = ({ className, ...props }) => (
+					))}
+
+				{Object.keys(place[place.building])
+					.filter(placeSubKey => placeSubKey !== "_id")
+					.map(placeSubKey => (
+						<PlaceFieldDetails key={placeSubKey}>
+							<PlaceTitleDetails>{placeSubKey}</PlaceTitleDetails>
+							<PlaceContentDetails>
+								{place[place.building][placeSubKey]}
+							</PlaceContentDetails>
+						</PlaceFieldDetails>
+					))}
+			</dl>
+		</div>
+	)
+}
+const PlaceTitleDetails = ({ className, children, ...props }) => (
 	<dt
 		className={cn(
 			"text-sm font-medium leading-6 text-gray-900 dark:text-white",
 			className,
 		)}
 		{...props}
-	/>
+	>
+		{addSpaceBetweenCapitalizeLetter(capitalize(children))}
+	</dt>
 )
-const PlaceContentDetails = ({ className, ...props }) => (
+const PlaceContentDetails = ({ className, children, ...props }) => (
 	<dd
 		className={cn(
 			"mt-1 text-sm leading-6 text-gray-700 dark:text-white sm:col-span-2 sm:mt-0",
 			className,
 		)}
 		{...props}
-	/>
+	>
+		{typeof children === "string"
+			? capitalize(children).replace("_", " ")
+			: children}
+	</dd>
 )
 const PlaceFieldDetails = ({ className, ...props }) => (
 	<div

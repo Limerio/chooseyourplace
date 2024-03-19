@@ -15,7 +15,7 @@ import { DotsHorizontalIcon, EnterFullScreenIcon } from "@radix-ui/react-icons"
 import { useTranslations } from "next-intl"
 
 export const DialogActionColumn = ({ place }) => {
-	const t = useTranslations("Home")
+	const t = useTranslations("HomePage")
 	const tUtils = useTranslations("Utils")
 
 	return (

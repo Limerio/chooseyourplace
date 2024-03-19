@@ -13,7 +13,10 @@
 				"freeOrPay": {
 					"label": "Free or Pay ?",
 					"placeholder": "Choose between free or pay",
-					"list": ["free", "pay"]
+					"list": {
+						"free": "free",
+						"pay": "pay"
+					}
 				},
 				"price": {
 					"label": "Price",
@@ -97,22 +100,25 @@
 			"placeholder": "Define page size"
 		}
 	},
-	"UpdatePlace": {
+	"PlaceDetails": {
+		"typeOf": "Type of building"
+	},
+	"UpdatePlacePage": {
 		"title": "Update {name} place",
 		"description": "Update {name} place page"
 	},
-	"CreatePlace": {
+	"CreatePlacePage": {
 		"title": "Create a place",
 		"description": "Creation page for places"
 	},
-	"DetailsPlace": {
+	"PlaceDetailsPage": {
 		"title": "{name} place",
 		"description": "{name} details place",
 		"content": {
 			"title": "Information about <nameComponent>{name}</nameComponent>"
 		}
 	},
-	"Home": {
+	"HomePage": {
 		"title": "List of places",
 		"description": "List of places page",
 		"table": {

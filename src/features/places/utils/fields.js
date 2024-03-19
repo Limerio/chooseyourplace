@@ -73,8 +73,8 @@ export const museumFormFields = (t, sub) => [
 			<FormFieldSelect
 				field={field}
 				label={t("place.global.freeOrPay.label")}
-				placeholder={t("place.global.freeOrPay.placholder")}
-				list={t("place.global.freeOrPay.list")}
+				placeholder={t("place.global.freeOrPay.placeholder")}
+				list={["pay", "free"]}
 			/>
 		),
 	},
@@ -116,8 +116,8 @@ export const parkFormFields = (t, sub) => [
 			<FormFieldSelect
 				field={field}
 				label={t("place.global.freeOrPay.label")}
-				placeholder={t("place.global.freeOrPay.placholder")}
-				list={t("place.global.freeOrPay.list")}
+				placeholder={t("place.global.freeOrPay.placeholder")}
+				list={["pay", "free"]}
 			/>
 		),
 	},

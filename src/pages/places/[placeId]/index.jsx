@@ -15,7 +15,7 @@ import { useRouter } from "next/router"
 import { useMemo } from "react"
 
 const PlaceDetailsPage = () => {
-	const t = useTranslations("DetailsPlace")
+	const t = useTranslations("PlaceDetailsPage")
 	const tUtils = useTranslations("Utils")
 	const router = useRouter()
 	const placeId = useMemo(() => router.query.placeId, [router.query.placeId])
@@ -63,8 +63,9 @@ const PlaceDetailsPage = () => {
 }
 
 PlaceDetailsPage.messages = [
-	"DetailsPlace",
+	"PlaceDetailsPage",
 	"Utils",
+	"PlaceDetails",
 	...MainLayout.messages,
 	...Loading.messages,
 	...Error.messages,
