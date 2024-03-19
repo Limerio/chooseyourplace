@@ -1,7 +1,9 @@
 {
 	"Utils": {
 		"next": "Next",
-		"previous": "Previous"
+		"previous": "Previous",
+		"update": "Update",
+		"delete": "Delete"
 	},
 	"Forms": {
 		"place": {
@@ -99,6 +101,13 @@
 		"title": "Create a place",
 		"description": "Creation page for places"
 	},
+	"DetailsPlace": {
+		"title": "{name} place",
+		"description": "{name} details place",
+		"content": {
+			"title": "Information about <nameComponent>{name}</nameComponent>"
+		}
+	},
 	"Home": {
 		"title": "List of places",
 		"description": "List of places page",
@@ -112,8 +121,7 @@
 				"actions": {
 					"open": "Open menu",
 					"title": "Information about \"{name}\"",
-					"close": "Full screen mode",
-					"delete": "Delete"
+					"close": "Full screen mode"
 				}
 			}
 		}

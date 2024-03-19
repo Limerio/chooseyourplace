@@ -16,6 +16,7 @@ import { useTranslations } from "next-intl"
 
 export const DialogActionColumn = ({ place }) => {
 	const t = useTranslations("Home")
+	const tUtils = useTranslations("Utils")
 
 	return (
 		<Dialog>
@@ -45,9 +46,7 @@ export const DialogActionColumn = ({ place }) => {
 						</DialogClose>
 					</Button>
 					<DeleteDialogValidation reload placeId={place._id}>
-						<Button variant="destructive">
-							{t("table.columns.actions.delete")}
-						</Button>
+						<Button variant="destructive">{tUtils("delete")}</Button>
 					</DeleteDialogValidation>
 				</DialogFooter>
 			</DialogContent>
