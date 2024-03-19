@@ -10,6 +10,7 @@ import { Slider } from "@/components/ui/slider"
 import { Switch } from "@/components/ui/switch"
 import {
 	artisticMovements,
+	freeOrPay,
 	listOfBuildings,
 	typesOfBuilding,
 } from "@/features/places/utils/constants"
@@ -24,6 +25,7 @@ export const barFormFields = ({ t, tUtils }, sub) => [
 				placeholder={t("place.global.typeOf", {
 					building: tUtils("buildings.bar"),
 				})}
+				keyBase="typeOfs.bar"
 				list={typesOfBuilding.bar}
 			/>
 		),
@@ -56,6 +58,7 @@ export const museumFormFields = ({ t, tUtils }, sub) => [
 				placeholder={t("place.global.typeOf", {
 					building: tUtils("buildings.museum"),
 				})}
+				keyBase="typeOfs.museum"
 				list={typesOfBuilding.museum}
 			/>
 		),
@@ -67,6 +70,7 @@ export const museumFormFields = ({ t, tUtils }, sub) => [
 				field={field}
 				label={t("place.museum.artisticMovements.label")}
 				placeholder={t("place.museum.artisticMovements.placeholder")}
+				keyBase="artisticMovements"
 				list={artisticMovements}
 			/>
 		),
@@ -78,7 +82,8 @@ export const museumFormFields = ({ t, tUtils }, sub) => [
 				field={field}
 				label={t("place.global.freeOrPay.label")}
 				placeholder={t("place.global.freeOrPay.placeholder")}
-				list={["pay", "free"]}
+				keyBase="freeOrPay"
+				list={freeOrPay}
 			/>
 		),
 	},
@@ -102,6 +107,7 @@ export const parkFormFields = ({ t, tUtils }, sub) => [
 				placeholder={t("place.global.typeOf", {
 					building: tUtils("buildings.park"),
 				})}
+				keyBase="typeOfs.park"
 				list={typesOfBuilding.park}
 			/>
 		),
@@ -125,7 +131,8 @@ export const parkFormFields = ({ t, tUtils }, sub) => [
 				field={field}
 				label={t("place.global.freeOrPay.label")}
 				placeholder={t("place.global.freeOrPay.placeholder")}
-				list={["pay", "free"]}
+				keyBase="freeOrPay"
+				list={freeOrPay}
 			/>
 		),
 	},
@@ -149,6 +156,7 @@ export const restaurantFormFields = ({ t, tUtils }, sub) => [
 				placeholder={t("place.global.typeOf", {
 					building: tUtils("buildings.restaurant"),
 				})}
+				keyBase="typeOfs.restaurant"
 				list={typesOfBuilding.restaurant}
 			/>
 		),
@@ -198,6 +206,7 @@ export const defaultFormFields = (t, tUtils) => [
 				placeholder={t("place.global.typeOf", {
 					building: tUtils("buildings.building"),
 				})}
+				keyBase="buildings"
 				list={listOfBuildings}
 			/>
 		),
