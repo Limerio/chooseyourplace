@@ -54,4 +54,8 @@ export const Header = () => {
 	)
 }
 
-Header.messages = ["Header", ...MenuTheme.messages]
+Header.messages = [
+	"Header",
+	...MenuTheme.messages,
+	...CreatePlacesForm.messages,
+]

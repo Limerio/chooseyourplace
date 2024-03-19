@@ -10,17 +10,18 @@ import { Slider } from "@/components/ui/slider"
 import { Switch } from "@/components/ui/switch"
 import {
 	artisticMovements,
+	listOfBuildings,
 	typesOfBuilding,
 } from "@/features/places/utils/constants"
 
-export const barFormFields = sub => [
+export const barFormFields = (t, sub) => [
 	{
 		name: `${sub && "bar."}typeOf`,
 		render: ({ field }) => (
 			<FormFieldSelect
 				field={field}
-				label="Bar"
-				placeholder="Select a type of bar"
+				label={t("place.bar.typeOf.label")}
+				placeholder={t("place.global.typeOf", { building: "bar" })}
 				list={typesOfBuilding.bar}
 			/>
 		),
@@ -29,7 +30,7 @@ export const barFormFields = sub => [
 		name: `${sub && "bar."}averageCost`,
 		render: ({ field }) => (
 			<FormItem>
-				<FormLabel>Average Cost</FormLabel>
+				<FormLabel>{t("place.global.averageCost")}</FormLabel>
 				<FormControl>
 					<Slider
 						onValueChange={field.onChange}
@@ -43,14 +44,14 @@ export const barFormFields = sub => [
 	},
 ]
 
-export const museumFormFields = sub => [
+export const museumFormFields = (t, sub) => [
 	{
 		name: `${sub && "museum."}typeOf`,
 		render: ({ field }) => (
 			<FormFieldSelect
 				field={field}
-				label="Museum"
-				placeholder="Select a type of museum"
+				label={t("place.museum.typeOf.label")}
+				placeholder={t("place.global.typeOf", { building: "museum" })}
 				list={typesOfBuilding.museum}
 			/>
 		),
@@ -60,8 +61,8 @@ export const museumFormFields = sub => [
 		render: ({ field }) => (
 			<FormFieldSelect
 				field={field}
-				label="Artistic movements"
-				placeholder="Select an artistic movement"
+				label={t("place.museum.artisticMovements.label")}
+				placeholder={t("place.museum.artisticMovements.placeholder")}
 				list={artisticMovements}
 			/>
 		),
@@ -71,28 +72,28 @@ export const museumFormFields = sub => [
 		render: ({ field }) => (
 			<FormFieldSelect
 				field={field}
-				label="Free or Pay ?"
-				placeholder="Choose between free or pay"
-				list={["free", "pay"]}
+				label={t("place.global.freeOrPay.label")}
+				placeholder={t("place.global.freeOrPay.placholder")}
+				list={t("place.global.freeOrPay.list")}
 			/>
 		),
 	},
 	generateFormFieldInput({
 		name: `${sub && "museum."}price`,
-		label: "Price",
-		placeholder: "Give the price of the museum",
+		label: t("place.global.price.label"),
+		placeholder: t("place.global.price.placeholder", { building: "museum" }),
 		type: "number",
 	}),
 ]
 
-export const parkFormFields = sub => [
+export const parkFormFields = (t, sub) => [
 	{
 		name: `${sub && "park."}typeOf`,
 		render: ({ field }) => (
 			<FormFieldSelect
 				field={field}
 				label="Park"
-				placeholder="Select a type of park"
+				placeholder={t("place.global.typeOf", { building: "park" })}
 				list={typesOfBuilding.park}
 			/>
 		),
@@ -101,7 +102,7 @@ export const parkFormFields = sub => [
 		name: `${sub && "park."}public`,
 		render: ({ field }) => (
 			<FormItem>
-				<FormLabel>Public ?</FormLabel>
+				<FormLabel>{t("place.park.public.label")}</FormLabel>
 				<FormControl>
 					<Switch onChangeValue={field.onChange} />
 				</FormControl>
@@ -114,28 +115,28 @@ export const parkFormFields = sub => [
 		render: ({ field }) => (
 			<FormFieldSelect
 				field={field}
-				label="Free or Pay ?"
-				placeholder="Choose between free or pay"
-				list={["free", "pay"]}
+				label={t("place.global.freeOrPay.label")}
+				placeholder={t("place.global.freeOrPay.placholder")}
+				list={t("place.global.freeOrPay.list")}
 			/>
 		),
 	},
 	generateFormFieldInput({
 		name: `${sub && "park."}price`,
-		label: "Price",
-		placeholder: "Give the price of the museum",
+		label: t("place.global.price.label"),
+		placeholder: t("place.global.price.placeholder", { building: "park" }),
 		type: "number",
 	}),
 ]
 
-export const restaurantFormFields = sub => [
+export const restaurantFormFields = (t, sub) => [
 	{
 		name: `${sub && "restaurant."}typeOf`,
 		render: ({ field }) => (
 			<FormFieldSelect
 				field={field}
 				label="Restaurant"
-				placeholder="Select a type of restaurant"
+				placeholder={t("place.global.typeOf", { building: "restaurant" })}
 				list={typesOfBuilding.restaurant}
 			/>
 		),
@@ -144,7 +145,7 @@ export const restaurantFormFields = sub => [
 		name: `${sub && "restaurant."}stars`,
 		render: ({ field }) => (
 			<FormItem>
-				<FormLabel>Stars</FormLabel>
+				<FormLabel>{t("place.restaurant.stars.label")}</FormLabel>
 				<FormControl>
 					<Slider
 						onValueChange={field.onChange}
@@ -161,7 +162,7 @@ export const restaurantFormFields = sub => [
 		name: `${sub && "restaurant."}averageCost`,
 		render: ({ field }) => (
 			<FormItem>
-				<FormLabel>Average Cost</FormLabel>
+				<FormLabel>{t("place.global.averageCost")}</FormLabel>
 				<FormControl>
 					<Slider
 						onValueChange={field.onChange}
@@ -173,4 +174,38 @@ export const restaurantFormFields = sub => [
 			</FormItem>
 		),
 	},
+]
+
+export const defaultFormFields = t => [
+	{
+		name: "building",
+		render: ({ field }) => (
+			<FormFieldSelect
+				field={field}
+				label={t("place.defaultForm.building.label")}
+				placeholder={t("place.global.typeOf", { building: "building" })}
+				list={listOfBuildings}
+			/>
+		),
+	},
+	generateFormFieldInput({
+		name: "name",
+		placeholder: t("place.defaultForm.name.placeholder"),
+		label: t("place.defaultForm.name.label"),
+	}),
+	generateFormFieldInput({
+		name: "city",
+		placeholder: t("place.defaultForm.city.placeholder"),
+		label: t("place.defaultForm.city.label"),
+	}),
+	generateFormFieldInput({
+		name: "zipcode",
+		placeholder: t("place.defaultForm.zipcode.placeholder"),
+		label: t("place.defaultForm.zipcode.label"),
+	}),
+	generateFormFieldInput({
+		name: "country",
+		placeholder: t("place.defaultForm.country.placeholder"),
+		label: t("place.defaultForm.country.label"),
+	}),
 ]

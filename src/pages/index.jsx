@@ -81,8 +81,8 @@ Home.messages = [
 	...DataTable.messages,
 ]
 
-export function getServerSideProps({ locale }) {
+export async function getServerSideProps({ locale }) {
 	return {
-		props: serverTranslation(locale, Home),
+		props: await serverTranslation(locale, Home),
 	}
 }

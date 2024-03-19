@@ -110,7 +110,7 @@ export const pick = (object, keys) =>
 		return obj
 	}, {})
 
-export const serverTranslation = async ({ locale, page }) => ({
+export const serverTranslation = async (locale, page) => ({
 	messages: pick(
 		(await import(`@/languages/${locale}.json`)).default,
 		page.messages,

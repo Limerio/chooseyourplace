@@ -1,5 +1,6 @@
 import { Head } from "@/components/layouts"
 import { CreatePlacesForm } from "@/features/places/components/forms/create"
+import { MainLayout } from "@/layouts/Main"
 import { serverTranslation } from "@/utils/functions"
 import { useTranslations } from "next-intl"
 
@@ -17,12 +18,16 @@ const CreatePlacePage = () => {
 	)
 }
 
-CreatePlacePage.messages = ["CreatePlacePage", ...CreatePlacesForm.messages]
+CreatePlacePage.messages = [
+	"CreatePlace",
+	...MainLayout.messages,
+	...CreatePlacesForm.messages,
+]
 
 export default CreatePlacePage
 
-export function getStaticProps({ locale }) {
+export async function getStaticProps({ locale }) {
 	return {
-		props: serverTranslation(locale, CreatePlacePage),
+		props: await serverTranslation(locale, CreatePlacePage),
 	}
 }

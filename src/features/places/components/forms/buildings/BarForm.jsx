@@ -5,6 +5,7 @@ import { barFormFields } from "@/features/places/utils/fields"
 import { useMultiStepsForm } from "@/hooks/forms"
 
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useTranslations } from "next-intl"
 import { useForm } from "react-hook-form"
 
 const defaultValues = {
@@ -13,6 +14,7 @@ const defaultValues = {
 }
 
 export const BarForm = ({ data }) => {
+	const tForms = useTranslations("Forms")
 	const { next, addDataForm } = useMultiStepsForm()
 	const form = useForm({
 		resolver: zodResolver(barSchema),
@@ -29,7 +31,7 @@ export const BarForm = ({ data }) => {
 				onSubmit={form.handleSubmit(onSubmit)}
 				className="flex flex-col gap-4"
 			>
-				{barFormFields().map(formField => (
+				{barFormFields(tForms).map(formField => (
 					<FormField
 						key={formField.name}
 						control={form.control}

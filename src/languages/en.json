@@ -3,6 +3,69 @@
 		"next": "Next",
 		"previous": "Previous"
 	},
+	"Forms": {
+		"place": {
+			"global": {
+				"typeOf": "Select a type of {building}",
+				"averageCost": "Average Cost",
+				"freeOrPay": {
+					"label": "Free or Pay ?",
+					"placeholder": "Choose between free or pay",
+					"list": ["free", "pay"]
+				},
+				"price": {
+					"label": "Price",
+					"placeholder": "Give the price of the {building}"
+				}
+			},
+			"defaultForm": {
+				"building": {
+					"label": "Building"
+				},
+				"name": {
+					"label": "Name",
+					"placeholder": "Name of the building...."
+				},
+				"city": {
+					"placeholder": "Which city are the building ?",
+					"label": "City"
+				},
+				"zipcode": {
+					"placeholder": "What is the zipcode ?",
+					"label": "Zipcode"
+				},
+				"country": {
+					"placeholder": "Which country are the building ?",
+					"label": "Country"
+				}
+			},
+			"bar": {
+				"typeOf": {
+					"label": "Bar",
+					"placeholder": "Select a type of bar"
+				}
+			},
+			"museum": {
+				"typeOf": {
+					"label": "Museum"
+				},
+				"artisticMovements": {
+					"label": "Artistic movements",
+					"placeholder": "Select an artistic movement"
+				}
+			},
+			"park": {
+				"public": {
+					"label": "Public ?"
+				}
+			},
+			"restaurant": {
+				"stars": {
+					"label": "Stars"
+				}
+			}
+		}
+	},
 	"Header": {
 		"add_button": "Add",
 		"dialog": {

@@ -24,4 +24,4 @@ export const CreatePlacesForm = () => (
 	</MultiStepProvider>
 )
 
-CreatePlacesForm.messages = [...DefaultForm.messages]
+CreatePlacesForm.messages = ["Forms", "Utils"]
