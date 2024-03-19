@@ -97,6 +97,10 @@
 			"placeholder": "Define page size"
 		}
 	},
+	"UpdatePlace": {
+		"title": "Update {name} place",
+		"description": "Update {name} place page"
+	},
 	"CreatePlace": {
 		"title": "Create a place",
 		"description": "Creation page for places"

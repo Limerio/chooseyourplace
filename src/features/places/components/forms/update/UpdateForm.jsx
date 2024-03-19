@@ -23,6 +23,7 @@ const subForms = {
 }
 
 export const UpdateForm = () => {
+	const tForms = useTranslations("Forms")
 	const tUtils = useTranslations("Utils")
 	const router = useRouter()
 	const placeId = useMemo(() => router.query.placeId, [router.query.placeId])
@@ -57,21 +58,21 @@ export const UpdateForm = () => {
 				onSubmit={form.handleSubmit(onSubmit)}
 				className="flex flex-col gap-4"
 			>
-				{defaultFormFields(tUtils).map(formField => (
+				{defaultFormFields(tForms).map(formField => (
 					<FormField
 						key={formField.name}
 						control={form.control}
 						{...formField}
 					/>
 				))}
-				{subForms[form.watch("building")](tUtils, true).map(formField => (
+				{subForms[form.watch("building")](tForms, true).map(formField => (
 					<FormField
 						key={formField.name}
 						control={form.control}
 						{...formField}
 					/>
 				))}
-				<Button type="submit">Update</Button>
+				<Button type="submit">{tUtils("update")}</Button>
 			</form>
 		</Form>
 	)
