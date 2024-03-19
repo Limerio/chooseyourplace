@@ -31,6 +31,7 @@ import { useState } from "react"
 // eslint-disable-next-line max-lines-per-function
 export const DataTable = ({ columns, data, filterInput }) => {
 	const t = useTranslations("DataTable")
+	const tUtils = useTranslations("Utils")
 	const [sorting, setSorting] = useState([])
 	const [columnFilters, setColumnFilters] = useState([])
 	const table = useReactTable({
@@ -112,7 +113,7 @@ export const DataTable = ({ columns, data, filterInput }) => {
 					onClick={() => table.previousPage()}
 					disabled={!table.getCanPreviousPage()}
 				>
-					{t("previous")}
+					{tUtils("previous")}
 				</Button>
 				<Button
 					variant="outline"
@@ -120,7 +121,7 @@ export const DataTable = ({ columns, data, filterInput }) => {
 					onClick={() => table.nextPage()}
 					disabled={!table.getCanNextPage()}
 				>
-					{t("next")}
+					{tUtils("next")}
 				</Button>
 				<Select onValueChange={value => table.setPageSize(value)}>
 					<SelectTrigger className="w-[180px]">

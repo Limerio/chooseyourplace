@@ -17,6 +17,7 @@ import { useTranslations } from "next-intl"
 
 export const Header = () => {
 	const t = useTranslations("Header")
+	const tUtils = useTranslations("Utils")
 
 	return (
 		<header className="w-full p-4 flex items-center justify-evenly">
@@ -41,7 +42,7 @@ export const Header = () => {
 										className="flex items-center gap-1.5"
 									>
 										<EnterFullScreenIcon />
-										{t("dialog.close")}
+										{tUtils("fullScreenMode")}
 									</Link>
 								</DialogClose>
 							</Button>

@@ -41,7 +41,7 @@ export const DialogActionColumn = ({ place }) => {
 								className="flex items-center gap-1.5 w-full h-full"
 							>
 								<EnterFullScreenIcon />
-								{t("table.columns.actions.close")}
+								{tUtils("fullScreenMode")}
 							</Link>
 						</DialogClose>
 					</Button>
