@@ -5,7 +5,14 @@
 		"update": "Update",
 		"delete": "Delete",
 		"fullScreenMode": "Full screen mode",
-		"languages": "Languages"
+		"languages": "Languages",
+		"buildings": {
+			"building": "building",
+			"restaurant": "restaurant",
+			"park": "park",
+			"museum": "museum",
+			"bar": "bar"
+		}
 	},
 	"Forms": {
 		"place": {
@@ -48,8 +55,7 @@
 			},
 			"bar": {
 				"typeOf": {
-					"label": "Bar",
-					"placeholder": "Select a type of bar"
+					"label": "Bar"
 				}
 			},
 			"museum": {
@@ -94,6 +100,9 @@
 	"DataTable": {
 		"no_results": "No results.",
 		"search": "Search by {filterInput}...",
+		"filterInput": {
+			"name": "name"
+		},
 		"pages": {
 			"title": "Pages",
 			"placeholder": "Define page size"

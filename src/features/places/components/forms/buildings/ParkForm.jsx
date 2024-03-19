@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form"
 
 export const ParkForm = () => {
 	const tForms = useTranslations("Forms")
+	const tUtils = useTranslations("Utils")
 	const { next, addDataForm } = useMultiStepsForm()
 	const form = useForm({
 		resolver: zodResolver(parkSchema),
@@ -30,7 +31,7 @@ export const ParkForm = () => {
 				onSubmit={form.handleSubmit(onSubmit)}
 				className="flex flex-col gap-4"
 			>
-				{parkFormFields(tForms).map(formField => (
+				{parkFormFields({ t: tForms, tUtils }).map(formField => (
 					<FormField
 						key={formField.name}
 						control={form.control}

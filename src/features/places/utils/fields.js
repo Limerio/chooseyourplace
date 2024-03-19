@@ -14,14 +14,16 @@ import {
 	typesOfBuilding,
 } from "@/features/places/utils/constants"
 
-export const barFormFields = (t, sub) => [
+export const barFormFields = ({ t, tUtils }, sub) => [
 	{
 		name: `${sub && "bar."}typeOf`,
 		render: ({ field }) => (
 			<FormFieldSelect
 				field={field}
 				label={t("place.bar.typeOf.label")}
-				placeholder={t("place.global.typeOf", { building: "bar" })}
+				placeholder={t("place.global.typeOf", {
+					building: tUtils("buildings.bar"),
+				})}
 				list={typesOfBuilding.bar}
 			/>
 		),
@@ -44,14 +46,16 @@ export const barFormFields = (t, sub) => [
 	},
 ]
 
-export const museumFormFields = (t, sub) => [
+export const museumFormFields = ({ t, tUtils }, sub) => [
 	{
 		name: `${sub && "museum."}typeOf`,
 		render: ({ field }) => (
 			<FormFieldSelect
 				field={field}
 				label={t("place.museum.typeOf.label")}
-				placeholder={t("place.global.typeOf", { building: "museum" })}
+				placeholder={t("place.global.typeOf", {
+					building: tUtils("buildings.museum"),
+				})}
 				list={typesOfBuilding.museum}
 			/>
 		),
@@ -81,19 +85,23 @@ export const museumFormFields = (t, sub) => [
 	generateFormFieldInput({
 		name: `${sub && "museum."}price`,
 		label: t("place.global.price.label"),
-		placeholder: t("place.global.price.placeholder", { building: "museum" }),
+		placeholder: t("place.global.price.placeholder", {
+			building: tUtils("buildings.museum"),
+		}),
 		type: "number",
 	}),
 ]
 
-export const parkFormFields = (t, sub) => [
+export const parkFormFields = ({ t, tUtils }, sub) => [
 	{
 		name: `${sub && "park."}typeOf`,
 		render: ({ field }) => (
 			<FormFieldSelect
 				field={field}
 				label="Park"
-				placeholder={t("place.global.typeOf", { building: "park" })}
+				placeholder={t("place.global.typeOf", {
+					building: tUtils("buildings.park"),
+				})}
 				list={typesOfBuilding.park}
 			/>
 		),
@@ -124,19 +132,23 @@ export const parkFormFields = (t, sub) => [
 	generateFormFieldInput({
 		name: `${sub && "park."}price`,
 		label: t("place.global.price.label"),
-		placeholder: t("place.global.price.placeholder", { building: "park" }),
+		placeholder: t("place.global.price.placeholder", {
+			building: tUtils("buildings.park"),
+		}),
 		type: "number",
 	}),
 ]
 
-export const restaurantFormFields = (t, sub) => [
+export const restaurantFormFields = ({ t, tUtils }, sub) => [
 	{
 		name: `${sub && "restaurant."}typeOf`,
 		render: ({ field }) => (
 			<FormFieldSelect
 				field={field}
 				label="Restaurant"
-				placeholder={t("place.global.typeOf", { building: "restaurant" })}
+				placeholder={t("place.global.typeOf", {
+					building: tUtils("buildings.restaurant"),
+				})}
 				list={typesOfBuilding.restaurant}
 			/>
 		),
@@ -176,14 +188,16 @@ export const restaurantFormFields = (t, sub) => [
 	},
 ]
 
-export const defaultFormFields = t => [
+export const defaultFormFields = (t, tUtils) => [
 	{
 		name: "building",
 		render: ({ field }) => (
 			<FormFieldSelect
 				field={field}
 				label={t("place.defaultForm.building.label")}
-				placeholder={t("place.global.typeOf", { building: "building" })}
+				placeholder={t("place.global.typeOf", {
+					building: tUtils("buildings.building"),
+				})}
 				list={listOfBuildings}
 			/>
 		),

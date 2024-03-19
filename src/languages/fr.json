@@ -1,1 +1,146 @@
-{}
+{
+	"Utils": {
+		"next": "Suivant",
+		"previous": "Prédecent",
+		"update": "Mettre à jour",
+		"delete": "Supprimer",
+		"fullScreenMode": "Mode plein écran",
+		"languages": "Langues",
+		"buildings": {
+			"building": "bâtiment",
+			"restaurant": "restaurant",
+			"park": "parc",
+			"museum": "musée",
+			"bar": "bar"
+		}
+	},
+	"Forms": {
+		"place": {
+			"global": {
+				"typeOf": "Sélectionnez un type de {building}",
+				"averageCost": "Coût moyen",
+				"freeOrPay": {
+					"label": "Gratuit ou payant ?",
+					"placeholder": "Choisissez entre gratuit ou payant",
+					"list": {
+						"free": "free",
+						"pay": "pay"
+					}
+				},
+				"price": {
+					"label": "Prix",
+					"placeholder": "Donner un prix pour {building}"
+				}
+			},
+			"defaultForm": {
+				"building": {
+					"label": "Bâtiment"
+				},
+				"name": {
+					"label": "Nom",
+					"placeholder": "Nom du bâtiment...."
+				},
+				"city": {
+					"placeholder": "Dans quelle ville est ce bâtiment ?",
+					"label": "Ville"
+				},
+				"zipcode": {
+					"placeholder": "Quel est le code postal ?",
+					"label": "Code postal"
+				},
+				"country": {
+					"placeholder": "Dans quelle pays est ce bâtiment ?",
+					"label": "Pays"
+				}
+			},
+			"bar": {
+				"typeOf": {
+					"label": "Bar"
+				}
+			},
+			"museum": {
+				"typeOf": {
+					"label": "Musée"
+				},
+				"artisticMovements": {
+					"label": "Mouvements artistiques",
+					"placeholder": "Sélectionnez un mouvement artistique"
+				}
+			},
+			"park": {
+				"public": {
+					"label": "Public ?"
+				}
+			},
+			"restaurant": {
+				"stars": {
+					"label": "Étoiles"
+				}
+			}
+		}
+	},
+	"Header": {
+		"add_button": "Ajouter",
+		"dialog": {
+			"title": "Créer un lieu"
+		}
+	},
+	"Loader": {
+		"text": "Chargement..."
+	},
+	"Error": {
+		"text": "Erreur du serveur"
+	},
+	"MenuTheme": {
+		"title": "Changement de thème",
+		"light": "Clair",
+		"dark": "Sombre",
+		"system": "Système"
+	},
+	"DataTable": {
+		"no_results": "Aucun résultats.",
+		"search": "Recherche par {filterInput}...",
+		"filterInput": {
+			"name": "nom"
+		},
+		"pages": {
+			"title": "Pages",
+			"placeholder": "Définissez une taille de page"
+		}
+	},
+	"PlaceDetails": {
+		"typeOf": "Type de bâtiment"
+	},
+	"UpdatePlacePage": {
+		"title": "Modification du lieu {name} ",
+		"description": "Page de modification du lieu {name}"
+	},
+	"CreatePlacePage": {
+		"title": "Créer un lieu",
+		"description": "Page de création d'un lieu"
+	},
+	"PlaceDetailsPage": {
+		"title": "Lieu {name}",
+		"description": "Détails du lieu {name}",
+		"content": {
+			"title": "Information à propos de <nameComponent>{name}</nameComponent>"
+		}
+	},
+	"HomePage": {
+		"title": "Liste des lieux",
+		"description": "Page de la liste des lieux",
+		"table": {
+			"columns": {
+				"building": "Bâtiment",
+				"name": "Nom",
+				"city": "Ville",
+				"zipcode": "Code postal",
+				"country": "Pays",
+				"actions": {
+					"open": "Ouvrir le menu",
+					"title": "Information à propos de \"{name}\""
+				}
+			}
+		}
+	}
+}

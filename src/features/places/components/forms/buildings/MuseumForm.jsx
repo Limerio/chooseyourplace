@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form"
 
 export const MuseumForm = () => {
 	const tForms = useTranslations("Forms")
+	const tUtils = useTranslations("Utils")
 	const { next, addDataForm } = useMultiStepsForm()
 	const form = useForm({
 		resolver: zodResolver(museumSchema),
@@ -30,7 +31,7 @@ export const MuseumForm = () => {
 				onSubmit={form.handleSubmit(onSubmit)}
 				className="flex flex-col gap-4"
 			>
-				{museumFormFields(tForms).map(formField => (
+				{museumFormFields({ t: tForms, tUtils }).map(formField => (
 					<FormField
 						key={formField.name}
 						control={form.control}

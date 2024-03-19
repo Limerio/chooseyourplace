@@ -33,7 +33,7 @@ export const DefaultForm = () => {
 				onSubmit={form.handleSubmit(onSubmit)}
 				className="flex flex-col gap-4"
 			>
-				{defaultFormFields(tForms).map(formField => (
+				{defaultFormFields(tForms, tUtils).map(formField => (
 					<FormField
 						key={formField.name}
 						control={form.control}

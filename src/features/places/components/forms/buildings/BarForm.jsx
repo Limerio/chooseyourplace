@@ -15,6 +15,7 @@ const defaultValues = {
 
 export const BarForm = ({ data }) => {
 	const tForms = useTranslations("Forms")
+	const tUtils = useTranslations("Utils")
 	const { next, addDataForm } = useMultiStepsForm()
 	const form = useForm({
 		resolver: zodResolver(barSchema),
@@ -31,7 +32,7 @@ export const BarForm = ({ data }) => {
 				onSubmit={form.handleSubmit(onSubmit)}
 				className="flex flex-col gap-4"
 			>
-				{barFormFields(tForms).map(formField => (
+				{barFormFields({ t: tForms, tUtils }).map(formField => (
 					<FormField
 						key={formField.name}
 						control={form.control}

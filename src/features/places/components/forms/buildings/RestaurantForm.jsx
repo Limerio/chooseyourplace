@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form"
 
 export const RestaurantForm = () => {
 	const tForms = useTranslations("Forms")
+	const tUtils = useTranslations("Utils")
 	const { next, addDataForm } = useMultiStepsForm()
 	const form = useForm({
 		resolver: zodResolver(restaurantSchema),
@@ -29,7 +30,7 @@ export const RestaurantForm = () => {
 				onSubmit={form.handleSubmit(onSubmit)}
 				className="flex flex-col gap-4"
 			>
-				{restaurantFormFields(tForms).map(formField => (
+				{restaurantFormFields({ t: tForms, tUtils }).map(formField => (
 					<FormField
 						key={formField.name}
 						control={form.control}

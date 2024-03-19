@@ -53,7 +53,7 @@ export const DataTable = ({ columns, data, filterInput }) => {
 		<>
 			<div className="flex items-center py-4">
 				<Input
-					placeholder={t("search", { filterInput })}
+					placeholder={t("search", { filterInput: t("filterInput.name") })}
 					value={table.getColumn(filterInput)?.getFilterValue() ?? ""}
 					onChange={event =>
 						table.getColumn(filterInput)?.setFilterValue(event.target.value)
