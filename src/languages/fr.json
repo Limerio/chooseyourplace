@@ -1,9 +1,10 @@
 {
 	"Utils": {
 		"next": "Suivant",
-		"previous": "Prédecent",
+		"previous": "Précedent",
 		"update": "Mettre à jour",
 		"delete": "Supprimer",
+		"finish": "Terminer",
 		"fullScreenMode": "Mode plein écran",
 		"languages": "Langues",
 		"place": {
@@ -223,6 +224,12 @@
 		"light": "Clair",
 		"dark": "Sombre",
 		"system": "Système"
+	},
+	"CreatePlace": {
+		"finalStepCards": {
+			"info": "Information à propos du bâtiment",
+			"details": "Détails"
+		}
 	},
 	"DataTable": {
 		"no_results": "Aucun résultats.",

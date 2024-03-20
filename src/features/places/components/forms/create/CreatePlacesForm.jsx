@@ -8,9 +8,9 @@ import {
 export const CreatePlacesForm = () => (
 	<MultiStepProvider
 		steps={[
-			<DefaultForm key="default-form" />,
-			<BuildingInfoForm key="buildinginfoform" />,
-			<FinalStep key="final-step" />,
+			<DefaultForm key="defaultForm" />,
+			<BuildingInfoForm key="buildingInfoForm" />,
+			<FinalStep key="finalStep" />,
 		]}
 	>
 		{(pageNumber, steps, actualStep) => (
@@ -24,4 +24,4 @@ export const CreatePlacesForm = () => (
 	</MultiStepProvider>
 )
 
-CreatePlacesForm.messages = ["Forms", "Utils"]
+CreatePlacesForm.messages = ["CreatePlace", "Forms", "Utils"]

@@ -4,6 +4,7 @@
 		"previous": "Previous",
 		"update": "Update",
 		"delete": "Delete",
+		"finish": "Finish",
 		"fullScreenMode": "Full screen mode",
 		"languages": "Languages",
 		"place": {
@@ -223,6 +224,12 @@
 		"light": "Light",
 		"dark": "Dark",
 		"system": "System"
+	},
+	"CreatePlace": {
+		"finalStepCards": {
+			"info": "Information about the building",
+			"details": "Details"
+		}
 	},
 	"DataTable": {
 		"no_results": "No results.",
