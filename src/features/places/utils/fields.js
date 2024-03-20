@@ -17,7 +17,7 @@ import {
 
 export const barFormFields = ({ t, tUtils }, sub) => [
 	{
-		name: `${sub && "bar."}typeOf`,
+		name: `${sub ? "bar." : ""}typeOf`,
 		render: ({ field }) => (
 			<FormFieldSelect
 				field={field}
@@ -31,7 +31,7 @@ export const barFormFields = ({ t, tUtils }, sub) => [
 		),
 	},
 	{
-		name: `${sub && "bar."}averageCost`,
+		name: `${sub ? "bar." : ""}averageCost`,
 		render: ({ field }) => (
 			<FormItem>
 				<FormLabel>{tUtils("place.form.averageCost")}</FormLabel>
@@ -50,7 +50,7 @@ export const barFormFields = ({ t, tUtils }, sub) => [
 
 export const museumFormFields = ({ t, tUtils }, sub) => [
 	{
-		name: `${sub && "museum."}typeOf`,
+		name: `${sub ? "museum." : ""}typeOf`,
 		render: ({ field }) => (
 			<FormFieldSelect
 				field={field}
@@ -64,7 +64,7 @@ export const museumFormFields = ({ t, tUtils }, sub) => [
 		),
 	},
 	{
-		name: `${sub && "museum."}artisticMovements`,
+		name: `${sub ? "museum." : ""}artisticMovements`,
 		render: ({ field }) => (
 			<FormFieldSelect
 				field={field}
@@ -76,7 +76,7 @@ export const museumFormFields = ({ t, tUtils }, sub) => [
 		),
 	},
 	{
-		name: `${sub && "museum."}freeOrPay`,
+		name: `${sub ? "museum." : ""}freeOrPay`,
 		render: ({ field }) => (
 			<FormFieldSelect
 				field={field}
@@ -88,7 +88,7 @@ export const museumFormFields = ({ t, tUtils }, sub) => [
 		),
 	},
 	generateFormFieldInput({
-		name: `${sub && "museum."}price`,
+		name: `${sub ? "museum." : ""}price`,
 		label: t("place.global.price.label"),
 		placeholder: t("place.global.price.placeholder", {
 			building: tUtils("buildings.museum"),
@@ -99,7 +99,7 @@ export const museumFormFields = ({ t, tUtils }, sub) => [
 
 export const parkFormFields = ({ t, tUtils }, sub) => [
 	{
-		name: `${sub && "park."}typeOf`,
+		name: `${sub ? "park." : ""}typeOf`,
 		render: ({ field }) => (
 			<FormFieldSelect
 				field={field}
@@ -113,7 +113,7 @@ export const parkFormFields = ({ t, tUtils }, sub) => [
 		),
 	},
 	{
-		name: `${sub && "park."}public`,
+		name: `${sub ? "park." : ""}public`,
 		render: ({ field }) => (
 			<FormItem>
 				<FormLabel>{t("place.park.public.label")}</FormLabel>
@@ -125,7 +125,7 @@ export const parkFormFields = ({ t, tUtils }, sub) => [
 		),
 	},
 	{
-		name: `${sub && "park."}freeOrPay`,
+		name: `${sub ? "park." : ""}freeOrPay`,
 		render: ({ field }) => (
 			<FormFieldSelect
 				field={field}
@@ -137,7 +137,7 @@ export const parkFormFields = ({ t, tUtils }, sub) => [
 		),
 	},
 	generateFormFieldInput({
-		name: `${sub && "park."}price`,
+		name: `${sub ? "park." : ""}price`,
 		label: t("place.global.price.label"),
 		placeholder: t("place.global.price.placeholder", {
 			building: tUtils("buildings.park"),
@@ -148,7 +148,7 @@ export const parkFormFields = ({ t, tUtils }, sub) => [
 
 export const restaurantFormFields = ({ t, tUtils }, sub) => [
 	{
-		name: `${sub && "restaurant."}typeOf`,
+		name: `${sub ? "restaurant." : ""}typeOf`,
 		render: ({ field }) => (
 			<FormFieldSelect
 				field={field}
@@ -162,7 +162,7 @@ export const restaurantFormFields = ({ t, tUtils }, sub) => [
 		),
 	},
 	{
-		name: `${sub && "restaurant."}stars`,
+		name: `${sub ? "restaurant." : ""}stars`,
 		render: ({ field }) => (
 			<FormItem>
 				<FormLabel>{t("place.restaurant.stars.label")}</FormLabel>
@@ -179,7 +179,7 @@ export const restaurantFormFields = ({ t, tUtils }, sub) => [
 		// eslint-disable-next-line max-lines
 	},
 	{
-		name: `${sub && "restaurant."}averageCost`,
+		name: `${sub ? "restaurant." : ""}averageCost`,
 		render: ({ field }) => (
 			<FormItem>
 				<FormLabel>{tUtils("place.form.averageCost")}</FormLabel>

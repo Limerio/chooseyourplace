@@ -1,3 +1,4 @@
+/* eslint-disable prefer-destructuring */
 import { Button } from "@/components/ui/button"
 import { Form, FormField } from "@/components/ui/form"
 import { usePlace } from "@/features/places/hooks"
@@ -22,6 +23,7 @@ const subForms = {
 	park: parkFormFields,
 }
 
+// eslint-disable-next-line max-lines-per-function
 export const UpdateForm = () => {
 	const tForms = useTranslations("Forms")
 	const tUtils = useTranslations("Utils")
@@ -58,20 +60,22 @@ export const UpdateForm = () => {
 				onSubmit={form.handleSubmit(onSubmit)}
 				className="flex flex-col gap-4"
 			>
-				{defaultFormFields(tForms).map(formField => (
+				{defaultFormFields(tForms, tUtils).map(formField => (
 					<FormField
 						key={formField.name}
 						control={form.control}
 						{...formField}
 					/>
 				))}
-				{subForms[form.watch("building")](tForms, true).map(formField => (
-					<FormField
-						key={formField.name}
-						control={form.control}
-						{...formField}
-					/>
-				))}
+				{subForms[form.watch("building")]({ t: tForms, tUtils }, true).map(
+					formField => (
+						<FormField
+							key={formField.name}
+							control={form.control}
+							{...formField}
+						/>
+					),
+				)}
 				<Button type="submit">{tUtils("update")}</Button>
 			</form>
 		</Form>

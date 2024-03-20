@@ -19,7 +19,7 @@ export const BarForm = ({ data }) => {
 	const { next, addDataForm } = useMultiStepsForm()
 	const form = useForm({
 		resolver: zodResolver(barSchema),
-		defaultValues: data ?? defaultValues,
+		defaultValues: data || defaultValues,
 	})
 	const onSubmit = values => {
 		addDataForm(values)

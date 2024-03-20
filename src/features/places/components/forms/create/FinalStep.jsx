@@ -82,7 +82,7 @@ const DetailsForm = ({ title, value, building }) => {
 
 				break
 
-			case "artisticMovement":
+			case "artisticMovements":
 				setTranslateValue(tUtils(`artisticMovements.${value}`))
 
 				break
