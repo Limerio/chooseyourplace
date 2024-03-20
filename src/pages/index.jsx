@@ -13,8 +13,8 @@ import { useTranslations } from "next-intl"
 const columns = t => [
 	{
 		accessorKey: "building",
-		header: t("table.columns.building"),
-		cell: ({ row }) => capitalize(row.original.building),
+		header: t("place.form.building"),
+		cell: ({ row }) => capitalize(t(`buildings.${row.original.building}`)),
 	},
 	{
 		accessorKey: "name",
@@ -24,7 +24,7 @@ const columns = t => [
 				variant="ghost"
 				onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
 			>
-				{t("table.columns.name")}
+				{t("place.form.name")}
 				<ArrowUpDown className="ml-2 h-4 w-4" />
 			</Button>
 		),
@@ -32,16 +32,16 @@ const columns = t => [
 	},
 	{
 		accessorKey: "city",
-		header: t("table.columns.city"),
+		header: t("place.form.city"),
 		cell: ({ row }) => capitalize(row.original.city),
 	},
 	{
 		accessorKey: "zipcode",
-		header: t("table.columns.zipcode"),
+		header: t("place.form.zipcode"),
 	},
 	{
 		accessorKey: "country",
-		header: t("table.columns.country"),
+		header: t("place.form.country"),
 		cell: ({ row }) => capitalize(row.original.country),
 	},
 	{
@@ -55,6 +55,7 @@ const columns = t => [
 const HomePage = () => {
 	const { data, isLoading, isError } = usePlaces()
 	const t = useTranslations("HomePage")
+	const tUtils = useTranslations("Utils")
 
 	return (
 		<Loading isLoading={isLoading}>
@@ -65,7 +66,7 @@ const HomePage = () => {
 				/>
 				<div className="container mx-auto py-10 flex flex-col gap-2">
 					<h1 className="text-6xl text-center">{t("title")}</h1>
-					<DataTable filterInput="name" columns={columns(t)} data={data} />
+					<DataTable filterInput="name" columns={columns(tUtils)} data={data} />
 				</div>
 			</Error>
 		</Loading>

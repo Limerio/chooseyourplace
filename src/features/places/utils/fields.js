@@ -34,7 +34,7 @@ export const barFormFields = ({ t, tUtils }, sub) => [
 		name: `${sub && "bar."}averageCost`,
 		render: ({ field }) => (
 			<FormItem>
-				<FormLabel>{t("place.global.averageCost")}</FormLabel>
+				<FormLabel>{tUtils("place.form.averageCost")}</FormLabel>
 				<FormControl>
 					<Slider
 						onValueChange={field.onChange}
@@ -182,7 +182,7 @@ export const restaurantFormFields = ({ t, tUtils }, sub) => [
 		name: `${sub && "restaurant."}averageCost`,
 		render: ({ field }) => (
 			<FormItem>
-				<FormLabel>{t("place.global.averageCost")}</FormLabel>
+				<FormLabel>{tUtils("place.form.averageCost")}</FormLabel>
 				<FormControl>
 					<Slider
 						onValueChange={field.onChange}

@@ -12,7 +12,16 @@
 				"name": "Nom",
 				"city": "Ville",
 				"zipcode": "Code postal",
-				"country": "Pays"
+				"country": "Pays",
+				"createdAt": "Créer à",
+				"updatedAt": "Modifier à",
+				"typeOf": "Type de",
+				"averageCost": "Coût moyen",
+				"stars": "Étoiles",
+				"freeOrPay": "Gratuit ou payant",
+				"price": "Prix",
+				"artisticMovement": "Mouvement artistique",
+				"public": "Public ?"
 			}
 		},
 		"buildings": {
@@ -141,7 +150,6 @@
 		"place": {
 			"global": {
 				"typeOf": "Sélectionnez un type de {building}",
-				"averageCost": "Coût moyen",
 				"freeOrPay": {
 					"label": "Gratuit ou payant ?",
 					"placeholder": "Choisissez entre gratuit ou payant"

@@ -6,6 +6,24 @@
 		"delete": "Delete",
 		"fullScreenMode": "Full screen mode",
 		"languages": "Languages",
+		"place": {
+			"form": {
+				"building": "Building",
+				"name": "Name",
+				"city": "City",
+				"zipcode": "Zip Code",
+				"country": "Country",
+				"createdAt": "Created at",
+				"updatedAt": "Updated at",
+				"typeOf": "Type of",
+				"averageCost": "Average Cost",
+				"stars": "Stars",
+				"freeOrPay": "Free or pay",
+				"price": "Price",
+				"artisticMovement": "Artistic Movement",
+				"public": "Public ?"
+			}
+		},
 		"buildings": {
 			"building": "building",
 			"restaurant": "restaurant",
@@ -132,7 +150,6 @@
 		"place": {
 			"global": {
 				"typeOf": "Select a type of {building}",
-				"averageCost": "Average Cost",
 				"freeOrPay": {
 					"label": "Free or Pay ?",
 					"placeholder": "Choose between free or pay"
@@ -218,9 +235,6 @@
 			"placeholder": "Define page size"
 		}
 	},
-	"PlaceDetails": {
-		"typeOf": "Type of building"
-	},
 	"UpdatePlacePage": {
 		"title": "Update {name} place",
 		"description": "Update {name} place page"
@@ -241,11 +255,6 @@
 		"description": "List of places page",
 		"table": {
 			"columns": {
-				"building": "Building",
-				"name": "Name",
-				"city": "City",
-				"zipcode": "Zip Code",
-				"country": "Country",
 				"actions": {
 					"open": "Open menu",
 					"title": "Information about \"{name}\""

@@ -1,16 +1,14 @@
 import { defaultOptionsDate } from "@/utils/constants"
-import {
-	addSpaceBetweenCapitalizeLetter,
-	capitalize,
-	cn,
-} from "@/utils/functions"
+import { capitalize, cn } from "@/utils/functions"
 import { useFormatter, useTranslations } from "next-intl"
 import { useMemo } from "react"
 
-const ignoredKeys = ["_id", "building", "__v", "createdAt", "updatedAt"]
+const ignoredKeysPlace = ["_id", "__v", "building", "createdAt", "updatedAt"]
+const ignoredKeysSubPlace = ["_id", "artisticMovement", "freeOrPay", "typeOf"]
 
+// eslint-disable-next-line max-lines-per-function
 export const PlaceDetails = ({ place }) => {
-	const t = useTranslations("PlaceDetails")
+	const tUtils = useTranslations("Utils")
 	const format = useFormatter()
 	const keysPlace = useMemo(() => Object.keys(place), [place])
 
@@ -18,16 +16,21 @@ export const PlaceDetails = ({ place }) => {
 		<div className="border-t border-white flex flex-col">
 			<dl className="divide-y divide-white">
 				<PlaceFieldDetails>
-					<PlaceTitleDetails>{t("typeOf")}</PlaceTitleDetails>
-					<PlaceContentDetails>{place.building}</PlaceContentDetails>
+					<PlaceTitleDetails>{tUtils("place.form.building")}</PlaceTitleDetails>
+					<PlaceContentDetails>
+						{tUtils(`buildings.${place.building}`)}
+					</PlaceContentDetails>
 				</PlaceFieldDetails>
 				{keysPlace
 					.filter(
-						placeKey => ![place.building, ...ignoredKeys].includes(placeKey),
+						placeKey =>
+							![place.building, ...ignoredKeysPlace].includes(placeKey),
 					)
 					.map(placeKey => (
 						<PlaceFieldDetails key={placeKey}>
-							<PlaceTitleDetails>{placeKey}</PlaceTitleDetails>
+							<PlaceTitleDetails>
+								{tUtils(`place.form.${placeKey}`)}
+							</PlaceTitleDetails>
 							<PlaceContentDetails>{place[placeKey]}</PlaceContentDetails>
 						</PlaceFieldDetails>
 					))}
@@ -36,18 +39,47 @@ export const PlaceDetails = ({ place }) => {
 					.filter(placeKey => ["createdAt", "updatedAt"].includes(placeKey))
 					.map(placeKey => (
 						<PlaceFieldDetails key={placeKey}>
-							<PlaceTitleDetails>{placeKey}</PlaceTitleDetails>
+							<PlaceTitleDetails>
+								{tUtils(`place.form.${placeKey}`)}
+							</PlaceTitleDetails>
 							<PlaceContentDetails>
 								{format.dateTime(new Date(place[placeKey]), defaultOptionsDate)}
 							</PlaceContentDetails>
 						</PlaceFieldDetails>
 					))}
 
+				<PlaceFieldDetails>
+					<PlaceTitleDetails>
+						{tUtils("place.form.typeOf")}{" "}
+						{tUtils(`buildings.${place.building}`)}
+					</PlaceTitleDetails>
+					<PlaceContentDetails>
+						{tUtils(
+							`typeOfs.${place.building}.${place[place.building].typeOf}`,
+						)}
+					</PlaceContentDetails>
+				</PlaceFieldDetails>
+
+				{place.building === "museum" && (
+					<PlaceFieldDetails>
+						<PlaceTitleDetails>
+							{tUtils("place.form.artisticMovement")}
+						</PlaceTitleDetails>
+						<PlaceContentDetails>
+							{tUtils(
+								`artisticMovements.${place[place.building]?.artisticMovement}`,
+							)}
+						</PlaceContentDetails>
+					</PlaceFieldDetails>
+				)}
+
 				{Object.keys(place[place.building])
-					.filter(placeSubKey => placeSubKey !== "_id")
+					.filter(placeSubKey => !ignoredKeysSubPlace.includes(placeSubKey))
 					.map(placeSubKey => (
 						<PlaceFieldDetails key={placeSubKey}>
-							<PlaceTitleDetails>{placeSubKey}</PlaceTitleDetails>
+							<PlaceTitleDetails>
+								{tUtils(`place.form.${placeSubKey}`)}
+							</PlaceTitleDetails>
 							<PlaceContentDetails>
 								{place[place.building][placeSubKey]}
 							</PlaceContentDetails>
@@ -57,16 +89,14 @@ export const PlaceDetails = ({ place }) => {
 		</div>
 	)
 }
-const PlaceTitleDetails = ({ className, children, ...props }) => (
+const PlaceTitleDetails = ({ className, ...props }) => (
 	<dt
 		className={cn(
 			"text-sm font-medium leading-6 text-gray-900 dark:text-white",
 			className,
 		)}
 		{...props}
-	>
-		{addSpaceBetweenCapitalizeLetter(capitalize(children))}
-	</dt>
+	/>
 )
 const PlaceContentDetails = ({ className, children, ...props }) => (
 	<dd
