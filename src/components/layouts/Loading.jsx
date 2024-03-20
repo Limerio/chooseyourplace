@@ -7,3 +7,5 @@ export const Loading = ({ isLoading, children }) => {
 
 	return children
 }
+
+Loading.messages = [Loader.messages]

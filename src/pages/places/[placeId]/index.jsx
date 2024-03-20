@@ -7,26 +7,16 @@ import { DeleteDialogValidation } from "@/features/places/components/delete"
 import { PlaceDetails } from "@/features/places/components/info"
 import { usePlace } from "@/features/places/hooks"
 import { requestServerGetPlace } from "@/features/places/utils/api"
+import { MainLayout } from "@/layouts/Main"
+import { serverTranslation } from "@/utils/functions"
 import { QueryClient, dehydrate } from "@tanstack/react-query"
+import { useTranslations } from "next-intl"
 import { useRouter } from "next/router"
 import { useMemo } from "react"
 
-export async function getServerSideProps({ params }) {
-	const { placeId } = params
-	const queryClient = new QueryClient()
-
-	await queryClient.prefetchQuery({
-		queryKey: ["places", placeId],
-		queryFn: () => requestServerGetPlace(placeId),
-	})
-
-	return {
-		props: {
-			dehydratedState: dehydrate(queryClient),
-		},
-	}
-}
 const PlaceDetailsPage = () => {
+	const t = useTranslations("PlaceDetailsPage")
+	const tUtils = useTranslations("Utils")
 	const router = useRouter()
 	const placeId = useMemo(() => router.query.placeId, [router.query.placeId])
 	const { data, isLoading, isError } = usePlace(placeId)
@@ -35,16 +25,20 @@ const PlaceDetailsPage = () => {
 		<Loading isLoading={isLoading}>
 			<Error isError={isError || Boolean(data?.error)}>
 				<Head
-					title={`${data.name} place - chooseyourplace`}
-					description={`${data.name} place`}
+					title={`${t("title", { name: data.name })} - chooseyourplace`}
+					description={t("description", { name: data.name })}
 				/>
 				<div className="container flex flex-col gap-8 py-2">
 					<Card>
 						<CardHeader>
 							<CardTitle>
 								<span className="text-3xl text-center">
-									Information about{" "}
-									<span className="font-bold">{data.name}</span>
+									{t.rich("content.title", {
+										name: data.name,
+										nameComponent: chunks => (
+											<span className="font-bold">{chunks}</span>
+										),
+									})}
 								</span>
 							</CardTitle>
 						</CardHeader>
@@ -56,11 +50,11 @@ const PlaceDetailsPage = () => {
 					</Card>
 					<Button>
 						<Link className="w-full h-full" href={`/places/${placeId}/update`}>
-							Update
+							{tUtils("update")}
 						</Link>
 					</Button>
 					<DeleteDialogValidation placeId={placeId}>
-						<Button variant="destructive">Delete</Button>
+						<Button variant="destructive">{tUtils("delete")}</Button>
 					</DeleteDialogValidation>
 				</div>
 			</Error>
@@ -68,4 +62,29 @@ const PlaceDetailsPage = () => {
 	)
 }
 
+PlaceDetailsPage.messages = [
+	"PlaceDetailsPage",
+	"Utils",
+	"PlaceDetails",
+	...MainLayout.messages,
+	...Loading.messages,
+	...Error.messages,
+]
+
 export default PlaceDetailsPage
+
+export async function getServerSideProps({ locale, params: { placeId } }) {
+	const queryClient = new QueryClient()
+
+	await queryClient.prefetchQuery({
+		queryKey: ["places", placeId],
+		queryFn: () => requestServerGetPlace(placeId),
+	})
+
+	return {
+		props: {
+			dehydratedState: dehydrate(queryClient),
+			...(await serverTranslation(locale, PlaceDetailsPage)),
+		},
+	}
+}
