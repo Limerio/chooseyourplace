@@ -35,7 +35,7 @@ export const FormFieldSelect = ({
 				<SelectContent>
 					{list.map(item => (
 						<SelectItem value={item} key={item}>
-							{capitalize(tUtils(`${keyBase}.${item}`)).replace("_", " ")}
+							{capitalize(tUtils(`${keyBase}.${item}`))}
 						</SelectItem>
 					))}
 				</SelectContent>

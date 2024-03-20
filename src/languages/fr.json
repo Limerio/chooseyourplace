@@ -103,7 +103,7 @@
 				"sushi": "sushi",
 				"steakhouse": "steakhouse",
 				"vegan": "végétalien",
-				"fast_food": "fast_food",
+				"fast_food": "fast food",
 				"barbecue": "barbecue",
 				"cafe": "café",
 				"food_truck": "food_truck",
@@ -115,7 +115,7 @@
 				"diner": "diner",
 				"pizzeria": "pizzeria",
 				"ramen": "ramen",
-				"foodcourt": "foodcourt",
+				"foodcourt": "food court",
 				"noodle": "nouille",
 				"fusion": "fusion"
 			}
