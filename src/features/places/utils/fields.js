@@ -6,7 +6,13 @@ import {
 	FormMessage,
 } from "@/components/ui/form"
 import { FormFieldSelect } from "@/components/ui/forms"
-import { Slider } from "@/components/ui/slider"
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from "@/components/ui/select"
 import { Switch } from "@/components/ui/switch"
 import {
 	artisticMovements,
@@ -14,6 +20,7 @@ import {
 	listOfBuildings,
 	typesOfBuilding,
 } from "@/features/places/utils/constants"
+import { generateArray } from "@/utils/functions"
 
 export const barFormFields = ({ t, tUtils }, sub) => [
 	{
@@ -35,14 +42,21 @@ export const barFormFields = ({ t, tUtils }, sub) => [
 		render: ({ field }) => (
 			<FormItem>
 				<FormLabel>{tUtils("place.form.averageCost")}</FormLabel>
-				<FormControl>
-					<Slider
-						onValueChange={field.onChange}
-						defaultValue={[0]}
-						max={5}
-						step={1}
-					/>
-				</FormControl>
+				<Select onValueChange={field.onChange} defaultValue={field.value}>
+					<FormControl>
+						<SelectTrigger>
+							<SelectValue placeholder={tUtils("place.form.averageCost")} />
+						</SelectTrigger>
+					</FormControl>
+					<SelectContent>
+						{generateArray(5).map(item => (
+							<SelectItem value={item} key={item}>
+								{item}
+							</SelectItem>
+						))}
+					</SelectContent>
+				</Select>
+				<FormMessage />
 			</FormItem>
 		),
 	},
@@ -137,6 +151,7 @@ export const parkFormFields = ({ t, tUtils }, sub) => [
 		),
 	},
 	generateFormFieldInput({
+		// eslint-disable-next-line max-lines
 		name: `${sub ? "park." : ""}price`,
 		label: t("place.global.price.label"),
 		placeholder: t("place.global.price.placeholder", {
@@ -146,6 +161,7 @@ export const parkFormFields = ({ t, tUtils }, sub) => [
 	}),
 ]
 
+// eslint-disable-next-line max-lines-per-function
 export const restaurantFormFields = ({ t, tUtils }, sub) => [
 	{
 		name: `${sub ? "restaurant." : ""}typeOf`,
@@ -165,32 +181,45 @@ export const restaurantFormFields = ({ t, tUtils }, sub) => [
 		name: `${sub ? "restaurant." : ""}stars`,
 		render: ({ field }) => (
 			<FormItem>
-				<FormLabel>{t("place.restaurant.stars.label")}</FormLabel>
-				<FormControl>
-					<Slider
-						onValueChange={field.onChange}
-						defaultValue={[0]}
-						max={3}
-						step={1}
-					/>
-				</FormControl>
+				<FormLabel>{tUtils("place.form.stars")}</FormLabel>
+				<Select onValueChange={field.onChange} defaultValue={field.value}>
+					<FormControl>
+						<SelectTrigger>
+							<SelectValue placeholder={tUtils("place.form.stars")} />
+						</SelectTrigger>
+					</FormControl>
+					<SelectContent>
+						{generateArray(3).map(item => (
+							<SelectItem value={item} key={item}>
+								{item}
+							</SelectItem>
+						))}
+					</SelectContent>
+				</Select>
+				<FormMessage />
 			</FormItem>
 		),
-		// eslint-disable-next-line max-lines
 	},
 	{
 		name: `${sub ? "restaurant." : ""}averageCost`,
 		render: ({ field }) => (
 			<FormItem>
 				<FormLabel>{tUtils("place.form.averageCost")}</FormLabel>
-				<FormControl>
-					<Slider
-						onValueChange={field.onChange}
-						defaultValue={[0]}
-						max={5}
-						step={1}
-					/>
-				</FormControl>
+				<Select onValueChange={field.onChange} defaultValue={field.value}>
+					<FormControl>
+						<SelectTrigger>
+							<SelectValue placeholder={tUtils("place.form.averageCost")} />
+						</SelectTrigger>
+					</FormControl>
+					<SelectContent>
+						{generateArray(5).map(item => (
+							<SelectItem value={item} key={item}>
+								{item}
+							</SelectItem>
+						))}
+					</SelectContent>
+				</Select>
+				<FormMessage />
 			</FormItem>
 		),
 	},
