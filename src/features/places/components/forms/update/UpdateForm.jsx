@@ -1,4 +1,3 @@
-/* eslint-disable prefer-destructuring */
 import { Button } from "@/components/ui/button"
 import { Form, FormField } from "@/components/ui/form"
 import { usePlace } from "@/features/places/hooks"
@@ -23,7 +22,6 @@ const subForms = {
 	park: parkFormFields,
 }
 
-// eslint-disable-next-line max-lines-per-function
 export const UpdateForm = () => {
 	const tForms = useTranslations("Forms")
 	const tUtils = useTranslations("Utils")
@@ -34,19 +32,6 @@ export const UpdateForm = () => {
 		defaultValues: data,
 	})
 	const onSubmit = async values => {
-		switch (values.building) {
-			case "bar":
-				values.bar.averageCost = values.bar.averageCost[0]
-
-				break
-
-			case "restaurant":
-				values.restaurant.averageCost = values.restaurant.averageCost[0]
-				values.restaurant.stars = values.restaurant.stars[0]
-
-				break
-		}
-
 		await updatePlaceSchema
 			.merge(updateSubSchemas[values.building])
 			.parseAsync(values)

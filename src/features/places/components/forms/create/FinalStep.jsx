@@ -27,7 +27,7 @@ export const FinalStep = () => {
 
 	return (
 		<>
-			<div className="flex gap-2">
+			<div className="flex flex-wrap gap-2">
 				{finalStepCards.map((title, i) => (
 					<Card className="w-full" key={title}>
 						<CardHeader>
@@ -36,7 +36,7 @@ export const FinalStep = () => {
 							</CardTitle>
 						</CardHeader>
 						<CardContent>
-							<div className="flex flex-wrap gap-20">
+							<div className="flex flex-wrap gap-5">
 								{Object.keys(formsData[i].data).map(formDataKey => {
 									const value = formsData[i].data[formDataKey]
 
