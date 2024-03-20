@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { ScrollArea } from "@/components/ui/scroll-area"
 import { requestPostPlace } from "@/features/places/utils/api"
 import { useMultiStepsForm } from "@/hooks/forms"
 import { capitalize } from "@/utils/functions"
@@ -28,31 +29,33 @@ export const FinalStep = () => {
 	return (
 		<>
 			<div className="flex flex-wrap gap-2">
-				{finalStepCards.map((title, i) => (
-					<Card className="w-full" key={title}>
-						<CardHeader>
-							<CardTitle className="text-2xl">
-								{t(`finalStepCards.${title}`)}
-							</CardTitle>
-						</CardHeader>
-						<CardContent>
-							<div className="flex flex-wrap gap-5">
-								{Object.keys(formsData[i].data).map(formDataKey => {
-									const value = formsData[i].data[formDataKey]
+				<ScrollArea className="max-h-[600px] w-full p-5">
+					{finalStepCards.map((title, i) => (
+						<Card className="w-full" key={title}>
+							<CardHeader>
+								<CardTitle className="text-2xl">
+									{t(`finalStepCards.${title}`)}
+								</CardTitle>
+							</CardHeader>
+							<CardContent>
+								<div className="flex flex-wrap gap-5">
+									{Object.keys(formsData[i].data).map(formDataKey => {
+										const value = formsData[i].data[formDataKey]
 
-									return (
-										<DetailsForm
-											title={formDataKey}
-											building={formsData[0].data.building}
-											key={formDataKey}
-											value={value}
-										/>
-									)
-								})}
-							</div>
-						</CardContent>
-					</Card>
-				))}
+										return (
+											<DetailsForm
+												title={formDataKey}
+												building={formsData[0].data.building}
+												key={formDataKey}
+												value={value}
+											/>
+										)
+									})}
+								</div>
+							</CardContent>
+						</Card>
+					))}
+				</ScrollArea>
 			</div>
 
 			<div className="flex items-center gap-2">

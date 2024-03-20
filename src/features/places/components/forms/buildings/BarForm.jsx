@@ -10,7 +10,7 @@ import { useForm } from "react-hook-form"
 
 const defaultValues = {
 	typeOf: "",
-	averageCost: 0,
+	averageCost: "",
 }
 
 export const BarForm = ({ data }) => {
@@ -32,12 +32,8 @@ export const BarForm = ({ data }) => {
 				onSubmit={form.handleSubmit(onSubmit)}
 				className="flex flex-col gap-4"
 			>
-				{barFormFields({ t: tForms, tUtils }).map(formField => (
-					<FormField
-						key={formField.name}
-						control={form.control}
-						{...formField}
-					/>
+				{barFormFields({ t: tForms, tUtils }).map(field => (
+					<FormField key={field.name} control={form.control} {...field} />
 				))}
 				<MenuForm />
 			</form>

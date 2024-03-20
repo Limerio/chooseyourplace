@@ -63,7 +63,7 @@ export const PlaceDetails = ({ place }) => {
 				{place.building === "museum" && (
 					<PlaceFieldDetails>
 						<PlaceTitleDetails>
-							{tUtils("place.form.artisticMovement")}
+							{tUtils("place.form.artisticMovements")}
 						</PlaceTitleDetails>
 						<PlaceContentDetails>
 							{tUtils(

@@ -15,8 +15,8 @@ export const RestaurantForm = () => {
 		resolver: zodResolver(restaurantSchema),
 		defaultValues: {
 			typeOf: "",
-			stars: 0,
-			averageCost: 0,
+			stars: "",
+			averageCost: "",
 		},
 	})
 	const onSubmit = values => {
