@@ -1,21 +1,22 @@
-import { expect, expectTypeOf, test } from "vitest"
+import { expect, expectTypeOf, it } from "vitest"
 import {
 	addSpaceBetweenCapitalizeLetter,
 	capitalize,
 	enumSchema,
+	formatTitle,
 	generateArray,
 	requiredArgSchema,
 } from "./functions"
 
-test("Required String schema", async () => {
+it("Required String schema", () => {
 	const requiredStringSchema = requiredArgSchema(String)
 
-	await expectTypeOf(requiredStringSchema).toBeObject()
-	await expect(requiredStringSchema.required).toBeTruthy()
-	await expect(requiredStringSchema.type).toBe(String)
+	expectTypeOf(requiredStringSchema).toBeObject()
+	expect(requiredStringSchema.required).toBeTruthy()
+	expect(requiredStringSchema.type).toBe(String)
 })
 
-test("Enum Schema", async () => {
+it("Enum Schema", () => {
 	const firstValue = Math.random()
 	const enumSchemaNumber = enumSchema(Number, [
 		firstValue,
@@ -23,31 +24,38 @@ test("Enum Schema", async () => {
 		Math.random(),
 	])
 
-	await expectTypeOf(enumSchemaNumber).toBeObject()
-	await expect(enumSchemaNumber.type).toBe(Number)
-	await expect(enumSchemaNumber.enum[0]).toBe(firstValue)
+	expectTypeOf(enumSchemaNumber).toBeObject()
+	expect(enumSchemaNumber.type).toBe(Number)
+	expect(enumSchemaNumber.enum[0]).toBe(firstValue)
 })
 
-test("Generate array", async () => {
+it("Generate array", () => {
 	const generatedArray = generateArray(5)
 
-	await expectTypeOf(generatedArray).toBeArray()
-	await expect(generatedArray.length).toBe(5)
-	await expect(generatedArray[0]).toBe(1)
+	expectTypeOf(generatedArray).toBeArray()
+	expect(generatedArray.length).toBe(5)
+	expect(generatedArray[0]).toBe(1)
 })
 
-test("Capitalize", async () => {
+it("Capitalize", () => {
 	const capitalizeText = capitalize("capitalize")
 
 	expectTypeOf(capitalizeText).toBeString()
-	await expect(capitalizeText).toBe("Capitalize")
+	expect(capitalizeText).toBe("Capitalize")
 })
 
-test("Add space between capitalize letter", async () => {
+it("Add space between capitalize letter", () => {
 	const spaceBetweenCapitalize = addSpaceBetweenCapitalizeLetter(
 		"spaceBetweenCapitalize",
 	)
 
 	expectTypeOf(spaceBetweenCapitalize).toBeString()
-	await expect(spaceBetweenCapitalize).toBe("space Between Capitalize")
+	expect(spaceBetweenCapitalize).toBe("space Between Capitalize")
+})
+
+it("format title", () => {
+	const formatedTitle = formatTitle("List of places - chooseyourplace")
+
+	expectTypeOf(formatedTitle).toBeString()
+	expect(formatedTitle).toBe("List of places")
 })
