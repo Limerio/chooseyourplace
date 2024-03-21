@@ -124,3 +124,5 @@ export const serverTranslation = async (locale, page) => ({
 	),
 	now: new Date().getTime(),
 })
+
+export const formatTitle = title => title.split("-")[0].trim()
