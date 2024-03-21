@@ -81,7 +81,7 @@ export const typesOfBuilding = {
 		"diner",
 		"pizzeria",
 		"ramen",
-		"food court",
+		"foodcourt",
 		"noodle",
 		"fusion",
 	],

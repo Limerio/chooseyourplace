@@ -1,4 +1,9 @@
-import { FormControl, FormItem, FormLabel } from "@/components/ui/form"
+import {
+	FormControl,
+	FormItem,
+	FormLabel,
+	FormMessage,
+} from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 
 export const FormFieldInput = ({ placeholder, field, label }) => (
@@ -7,5 +12,6 @@ export const FormFieldInput = ({ placeholder, field, label }) => (
 		<FormControl>
 			<Input placeholder={placeholder} {...field} />
 		</FormControl>
+		<FormMessage />
 	</FormItem>
 )

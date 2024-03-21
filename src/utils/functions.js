@@ -20,9 +20,16 @@ export const handlerApi = handle => async (req, res) => {
 	try {
 		await mongoose.connect(process.env.DATABASE_URL)
 
-		handle(req, res)
+		await handle(req, res)
 	} catch (error) {
-		res.status(500).json({ error: "Database connection failed" })
+		if (
+			error.message.includes("ECONNREFUSED") &&
+			error.message.includes("27017")
+		) {
+			res.status(500).json({ error: "Database connection failed" })
+		}
+
+		res.status(500).json({ error: "Unknown server error" })
 	}
 }
 
@@ -97,18 +104,25 @@ export const addSpaceBetweenCapitalizeLetter = text =>
 
 /**
  *
- * @param {Date} date
- * @returns {string}
+ * @param {object} object
+ * @param {string[]} keys
+ * @returns
  */
-export const formatDate = date => {
-	const dateIntl = new Intl.DateTimeFormat("en-GB", {
-		day: "2-digit",
-		month: "long",
-		weekday: "long",
-		year: "numeric",
-		hour: "2-digit",
-		minute: "2-digit",
-	})
+export const pick = (object, keys) =>
+	keys.reduce((obj, key) => {
+		if (object && Object.hasOwn(object, key)) {
+			obj[key] = object[key]
+		}
 
-	return dateIntl.format(date)
-}
+		return obj
+	}, {})
+
+export const serverTranslation = async (locale, page) => ({
+	messages: pick(
+		(await import(`@/languages/${locale}.json`)).default,
+		page.messages,
+	),
+	now: new Date().getTime(),
+})
+
+export const formatTitle = title => title.split("-")[0].trim()

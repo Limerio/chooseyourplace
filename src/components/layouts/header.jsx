@@ -1,4 +1,5 @@
 import { Logo } from "@/components/layouts"
+import { LanguageSwitcher } from "@/components/layouts/LanguageSwitcher"
 import { MenuTheme } from "@/components/layouts/MenuTheme"
 import { Button } from "@/components/ui/button"
 import {
@@ -13,38 +14,51 @@ import {
 import { Link } from "@/components/ui/link"
 import { CreatePlacesForm } from "@/features/places/components/forms/create"
 import { EnterFullScreenIcon } from "@radix-ui/react-icons"
+import { useTranslations } from "next-intl"
 
-export const Header = () => (
-	<header className="w-full p-4 flex items-center justify-evenly">
-		<Link href="/">
-			<Logo />
-		</Link>
-		<div className="flex items-center gap-3">
-			<Dialog>
-				<DialogTrigger asChild>
-					<Button>Add</Button>
-				</DialogTrigger>
-				<DialogContent className="sm:max-w-[425px]">
-					<DialogHeader>
-						<DialogTitle>Create a place</DialogTitle>
-					</DialogHeader>
-					<CreatePlacesForm />
-					<DialogFooter>
-						<Button variant="destructive">
-							<DialogClose asChild>
-								<Link
-									href="/places/create"
-									className="flex items-center gap-1.5"
-								>
-									<EnterFullScreenIcon />
-									Full screen mode
-								</Link>
-							</DialogClose>
-						</Button>
-					</DialogFooter>
-				</DialogContent>
-			</Dialog>
-			<MenuTheme />
-		</div>
-	</header>
-)
+export const Header = () => {
+	const t = useTranslations("Header")
+	const tUtils = useTranslations("Utils")
+
+	return (
+		<header className="w-full p-4 flex items-center justify-evenly">
+			<Link href="/">
+				<Logo />
+			</Link>
+			<div className="flex items-center gap-3">
+				<LanguageSwitcher />
+				<Dialog>
+					<DialogTrigger asChild>
+						<Button>{t("add_button")}</Button>
+					</DialogTrigger>
+					<DialogContent className="sm:max-w-[425px]">
+						<DialogHeader>
+							<DialogTitle>{t("dialog.title")}</DialogTitle>
+						</DialogHeader>
+						<CreatePlacesForm />
+						<DialogFooter>
+							<Button variant="destructive">
+								<DialogClose asChild>
+									<Link
+										href="/places/create"
+										className="flex items-center gap-1.5"
+									>
+										<EnterFullScreenIcon />
+										{tUtils("fullScreenMode")}
+									</Link>
+								</DialogClose>
+							</Button>
+						</DialogFooter>
+					</DialogContent>
+				</Dialog>
+				<MenuTheme />
+			</div>
+		</header>
+	)
+}
+
+Header.messages = [
+	"Header",
+	...MenuTheme.messages,
+	...CreatePlacesForm.messages,
+]
