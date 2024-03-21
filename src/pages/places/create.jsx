@@ -9,10 +9,7 @@ const CreatePlacePage = () => {
 
 	return (
 		<>
-			<Head
-				title={`${t("title")} - chooseyourplace`}
-				description={t("description")}
-			/>
+			<Head title={t("title")} description={t("description")} />
 			<CreatePlacesForm />
 		</>
 	)

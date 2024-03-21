@@ -6,7 +6,7 @@ import { DialogActionColumn } from "@/features/places/components/info"
 
 import { usePlaces } from "@/features/places/hooks"
 import { MainLayout } from "@/layouts/Main"
-import { capitalize, serverTranslation } from "@/utils/functions"
+import { capitalize, formatTitle, serverTranslation } from "@/utils/functions"
 import { ArrowUpDown } from "lucide-react"
 import { useTranslations } from "next-intl"
 
@@ -60,12 +60,9 @@ const HomePage = () => {
 	return (
 		<Loading isLoading={isLoading}>
 			<Error isError={isError || Boolean(data?.error)}>
-				<Head
-					title={`${t("title")} - chooseyourplace`}
-					description={t("description")}
-				/>
+				<Head title={t("title")} description={t("description")} />
 				<div className="container mx-auto py-10 flex flex-col gap-2">
-					<h1 className="text-6xl text-center">{t("title")}</h1>
+					<h1 className="text-6xl text-center">{formatTitle(t("title"))}</h1>
 					<DataTable filterInput="name" columns={columns(tUtils)} data={data} />
 				</div>
 			</Error>

@@ -243,22 +243,22 @@
 		}
 	},
 	"UpdatePlacePage": {
-		"title": "Update {name} place",
+		"title": "Update {name} place - chooseyourplace",
 		"description": "Update {name} place page"
 	},
 	"CreatePlacePage": {
-		"title": "Create a place",
+		"title": "Create a place - chooseyourplace",
 		"description": "Creation page for places"
 	},
 	"PlaceDetailsPage": {
-		"title": "{name} place",
+		"title": "{name} place - chooseyourplace",
 		"description": "{name} details place",
 		"content": {
 			"title": "Information about <nameComponent>{name}</nameComponent>"
 		}
 	},
 	"HomePage": {
-		"title": "List of places",
+		"title": "List of places - chooseyourplace",
 		"description": "List of places page",
 		"table": {
 			"columns": {

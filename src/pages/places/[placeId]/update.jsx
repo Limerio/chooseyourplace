@@ -34,7 +34,7 @@ const UpdatePlacePage = () => {
 		<Loading isLoading={isLoading}>
 			<Error isError={isError || Boolean(data?.error)}>
 				<Head
-					title={`${t("title", { name: data.name })} - chooseyourplace`}
+					title={t("title", { name: data.name })}
 					description={t("description", { name: data.name })}
 				/>
 				<div className="container">
