@@ -1,0 +1,275 @@
+{
+	"Utils": {
+		"next": "Suivant",
+		"previous": "Précedent",
+		"update": "Mettre à jour",
+		"delete": "Supprimer",
+		"finish": "Terminer",
+		"fullScreenMode": "Mode plein écran",
+		"languages": "Langues",
+		"place": {
+			"form": {
+				"building": "Bâtiment",
+				"name": "Nom",
+				"city": "Ville",
+				"zipcode": "Code postal",
+				"country": "Pays",
+				"createdAt": "Créer à",
+				"updatedAt": "Modifier à",
+				"typeOf": "Type de",
+				"averageCost": "Coût moyen",
+				"stars": "Étoiles",
+				"freeOrPay": "Gratuit ou payant",
+				"price": "Prix",
+				"artisticMovements": "Mouvement artistique",
+				"public": "Public ?"
+			}
+		},
+		"buildings": {
+			"building": "bâtiment",
+			"restaurant": "restaurant",
+			"park": "parc",
+			"museum": "musée",
+			"bar": "bar"
+		},
+		"typeOfs": {
+			"bar": {
+				"cocktail": "cocktail",
+				"pub": "pub",
+				"wine": "vin",
+				"beer": "bière",
+				"sports": "sports",
+				"tiki": "tiki",
+				"dive": "dive",
+				"piano": "piano",
+				"brewpub": "brewpub",
+				"karaoke": "karaoke",
+				"speakeasy": "speakeasy",
+				"cigar": "cigar",
+				"gastropub": "gastropub",
+				"theme": "thème",
+				"hotel": "hôtel",
+				"juice": "jus",
+				"rooftop": "toit",
+				"gay": "gay",
+				"microbrewery": "microbrasserie",
+				"virtual": "virtuel"
+			},
+			"museum": {
+				"art": "art",
+				"history": "histoire",
+				"science": "science",
+				"natural": "naturel",
+				"aviation": "aviation",
+				"maritime": "maritime",
+				"modern_art": "art moderne",
+				"contemporary_art": "art contemporain",
+				"technology": "technologie",
+				"space": "espace",
+				"archaeology": "archéologie",
+				"anthropology": "anthropologie",
+				"cultural": "culturel",
+				"transportation": "transport",
+				"botanical": "botanique",
+				"aquarium": "aquarium",
+				"zoo": "zoo",
+				"virtual": "virtuel"
+			},
+			"park": {
+				"national": "national",
+				"city": "ville",
+				"urban": "urbain",
+				"wildlife": "faune",
+				"botanical": "botanique",
+				"recreational": "récréatif",
+				"amusement": "divertissement",
+				"skate": "skate",
+				"water": "eau",
+				"adventure": "aventure",
+				"theme": "thème",
+				"state": "état",
+				"county": "comté",
+				"historic": "historique",
+				"neighborhood": "quartier",
+				"community": "communauté",
+				"linear": "linéaire",
+				"sports": "sports",
+				"dog": "chien",
+				"play": "jeu"
+			},
+			"restaurant": {
+				"italian": "italien",
+				"french": "français",
+				"sushi": "sushi",
+				"steakhouse": "steakhouse",
+				"vegan": "végétalien",
+				"fast_food": "fast food",
+				"barbecue": "barbecue",
+				"cafe": "café",
+				"food_truck": "food_truck",
+				"pub": "pub",
+				"bistro": "bistro",
+				"buffet": "buffet",
+				"tapas": "tapas",
+				"brasserie": "brasserie",
+				"diner": "diner",
+				"pizzeria": "pizzeria",
+				"ramen": "ramen",
+				"foodcourt": "food court",
+				"noodle": "nouille",
+				"fusion": "fusion"
+			}
+		},
+		"artisticMovements": {
+			"renaissance": "renaissance",
+			"baroque": "baroque",
+			"romanticism": "romantisme",
+			"impressionism": "impressionnisme",
+			"expressionism": "expressionnisme",
+			"cubism": "cubisme",
+			"surrealism": "surréalisme",
+			"abstract expressionism": "expressionnisme abstrait",
+			"pop": "pop",
+			"minimalism": "minimalisme",
+			"contemporary": "contemporain",
+			"abstract": "abstrait",
+			"realism": "réalisme",
+			"post-impressionism": "post-impressionnisme",
+			"fauvism": "fauvisme",
+			"dadaism": "dadaïsme",
+			"symbolism": "symbolisme",
+			"neoclassicism": "néoclassicisme",
+			"surrealist": "surréaliste",
+			"cubist": "cubiste"
+		},
+		"freeOrPay": {
+			"free": "gratuit",
+			"pay": "payant"
+		}
+	},
+	"Forms": {
+		"place": {
+			"global": {
+				"typeOf": "Sélectionnez un type de {building}",
+				"freeOrPay": {
+					"label": "Gratuit ou payant ?",
+					"placeholder": "Choisissez entre gratuit ou payant"
+				},
+				"price": {
+					"label": "Prix",
+					"placeholder": "Donner un prix pour {building}"
+				}
+			},
+			"defaultForm": {
+				"building": {
+					"label": "Bâtiment"
+				},
+				"name": {
+					"label": "Nom",
+					"placeholder": "Nom du bâtiment...."
+				},
+				"city": {
+					"placeholder": "Dans quelle ville est ce bâtiment ?",
+					"label": "Ville"
+				},
+				"zipcode": {
+					"placeholder": "Quel est le code postal ?",
+					"label": "Code postal"
+				},
+				"country": {
+					"placeholder": "Dans quelle pays est ce bâtiment ?",
+					"label": "Pays"
+				}
+			},
+			"bar": {
+				"typeOf": {
+					"label": "Bar"
+				}
+			},
+			"museum": {
+				"typeOf": {
+					"label": "Musée"
+				},
+				"artisticMovements": {
+					"label": "Mouvements artistiques",
+					"placeholder": "Sélectionnez un mouvement artistique"
+				}
+			},
+			"park": {
+				"public": {
+					"label": "Public ?"
+				}
+			},
+			"restaurant": {
+				"stars": {
+					"label": "Étoiles"
+				}
+			}
+		}
+	},
+	"Header": {
+		"add_button": "Ajouter",
+		"dialog": {
+			"title": "Créer un lieu"
+		}
+	},
+	"Loader": {
+		"text": "Chargement..."
+	},
+	"Error": {
+		"text": "Erreur du serveur"
+	},
+	"MenuTheme": {
+		"title": "Changement de thème",
+		"light": "Clair",
+		"dark": "Sombre",
+		"system": "Système"
+	},
+	"CreatePlace": {
+		"finalStepCards": {
+			"info": "Information à propos du bâtiment",
+			"details": "Détails"
+		}
+	},
+	"DataTable": {
+		"no_results": "Aucun résultats.",
+		"search": "Recherche par {filterInput}...",
+		"filterInput": {
+			"name": "nom"
+		},
+		"pages": {
+			"title": "Pages",
+			"placeholder": "Définissez une taille de page"
+		}
+	},
+	"PlaceDetails": {
+		"typeOf": "Type de bâtiment"
+	},
+	"UpdatePlacePage": {
+		"title": "Modification du lieu {name} ",
+		"description": "Page de modification du lieu {name}"
+	},
+	"CreatePlacePage": {
+		"title": "Créer un lieu",
+		"description": "Page de création d'un lieu"
+	},
+	"PlaceDetailsPage": {
+		"title": "Lieu {name}",
+		"description": "Détails du lieu {name}",
+		"content": {
+			"title": "Information à propos de <nameComponent>{name}</nameComponent>"
+		}
+	},
+	"HomePage": {
+		"title": "Liste des lieux",
+		"description": "Page de la liste des lieux",
+		"table": {
+			"columns": {
+				"actions": {
+					"open": "Ouvrir le menu",
+					"title": "Information à propos de \"{name}\""
+				}
+			}
+		}
+	}
+}
