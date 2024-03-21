@@ -8,4 +8,4 @@ export const Loading = ({ isLoading, children }) => {
 	return children
 }
 
-Loading.messages = [Loader.messages]
+Loading.messages = [...Loader.messages]
