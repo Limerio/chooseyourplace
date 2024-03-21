@@ -1,0 +1,272 @@
+{
+	"Utils": {
+		"next": "Next",
+		"previous": "Previous",
+		"update": "Update",
+		"delete": "Delete",
+		"finish": "Finish",
+		"fullScreenMode": "Full screen mode",
+		"languages": "Languages",
+		"place": {
+			"form": {
+				"building": "Building",
+				"name": "Name",
+				"city": "City",
+				"zipcode": "Zip Code",
+				"country": "Country",
+				"createdAt": "Created at",
+				"updatedAt": "Updated at",
+				"typeOf": "Type of",
+				"averageCost": "Average Cost",
+				"stars": "Stars",
+				"freeOrPay": "Free or pay",
+				"price": "Price",
+				"artisticMovements": "Artistic Movement",
+				"public": "Public ?"
+			}
+		},
+		"buildings": {
+			"building": "building",
+			"restaurant": "restaurant",
+			"park": "park",
+			"museum": "museum",
+			"bar": "bar"
+		},
+		"typeOfs": {
+			"bar": {
+				"cocktail": "cocktail",
+				"pub": "pub",
+				"wine": "wine",
+				"beer": "beer",
+				"sports": "sports",
+				"tiki": "tiki",
+				"dive": "dive",
+				"piano": "piano",
+				"brewpub": "brewpub",
+				"karaoke": "karaoke",
+				"speakeasy": "speakeasy",
+				"cigar": "cigar",
+				"gastropub": "gastropub",
+				"theme": "theme",
+				"hotel": "hotel",
+				"juice": "juice",
+				"rooftop": "rooftop",
+				"gay": "gay",
+				"microbrewery": "microbrewery",
+				"virtual": "virtual"
+			},
+			"museum": {
+				"art": "art",
+				"history": "history",
+				"science": "science",
+				"natural": "natural",
+				"aviation": "aviation",
+				"maritime": "maritime",
+				"modern_art": "modern art",
+				"contemporary_art": "contemporary art",
+				"technology": "technology",
+				"space": "space",
+				"archaeology": "archaeology",
+				"anthropology": "anthropology",
+				"cultural": "cultural",
+				"transportation": "transportation",
+				"botanical": "botanical",
+				"aquarium": "aquarium",
+				"zoo": "zoo",
+				"virtual": "virtual"
+			},
+			"park": {
+				"national": "national",
+				"city": "city",
+				"urban": "urban",
+				"wildlife": "wildlife",
+				"botanical": "botanical",
+				"recreational": "recreational",
+				"amusement": "amusement",
+				"skate": "skate",
+				"water": "water",
+				"adventure": "adventure",
+				"theme": "theme",
+				"state": "state",
+				"county": "county",
+				"historic": "historic",
+				"neighborhood": "neighborhood",
+				"community": "community",
+				"linear": "linear",
+				"sports": "sports",
+				"dog": "dog",
+				"play": "play"
+			},
+			"restaurant": {
+				"italian": "italian",
+				"french": "french",
+				"sushi": "sushi",
+				"steakhouse": "steakhouse",
+				"vegan": "vegan",
+				"fast_food": "fast food",
+				"barbecue": "barbecue",
+				"cafe": "cafe",
+				"food_truck": "food truck",
+				"pub": "pub",
+				"bistro": "bistro",
+				"buffet": "buffet",
+				"tapas": "tapas",
+				"brasserie": "brasserie",
+				"diner": "diner",
+				"pizzeria": "pizzeria",
+				"ramen": "ramen",
+				"foodcourt": "food court",
+				"noodle": "noodle",
+				"fusion": "fusion"
+			}
+		},
+		"artisticMovements": {
+			"renaissance": "renaissance",
+			"baroque": "baroque",
+			"romanticism": "romanticism",
+			"impressionism": "impressionism",
+			"expressionism": "expressionism",
+			"cubism": "cubism",
+			"surrealism": "surrealism",
+			"abstract expressionism": "abstract expressionism",
+			"pop": "pop",
+			"minimalism": "minimalism",
+			"contemporary": "contemporary",
+			"abstract": "abstract",
+			"realism": "realism",
+			"post-impressionism": "post-impressionism",
+			"fauvism": "fauvism",
+			"dadaism": "dadaism",
+			"symbolism": "symbolism",
+			"neoclassicism": "neoclassicism",
+			"surrealist": "surrealist",
+			"cubist": "cubist"
+		},
+		"freeOrPay": {
+			"free": "free",
+			"pay": "pay"
+		}
+	},
+	"Forms": {
+		"place": {
+			"global": {
+				"typeOf": "Select a type of {building}",
+				"freeOrPay": {
+					"label": "Free or Pay ?",
+					"placeholder": "Choose between free or pay"
+				},
+				"price": {
+					"label": "Price",
+					"placeholder": "Give the price of the {building}"
+				}
+			},
+			"defaultForm": {
+				"building": {
+					"label": "Building"
+				},
+				"name": {
+					"label": "Name",
+					"placeholder": "Name of the building...."
+				},
+				"city": {
+					"placeholder": "Which city are the building ?",
+					"label": "City"
+				},
+				"zipcode": {
+					"placeholder": "What is the zipcode ?",
+					"label": "Zipcode"
+				},
+				"country": {
+					"placeholder": "Which country are the building ?",
+					"label": "Country"
+				}
+			},
+			"bar": {
+				"typeOf": {
+					"label": "Bar"
+				}
+			},
+			"museum": {
+				"typeOf": {
+					"label": "Museum"
+				},
+				"artisticMovements": {
+					"label": "Artistic movements",
+					"placeholder": "Select an artistic movement"
+				}
+			},
+			"park": {
+				"public": {
+					"label": "Public ?"
+				}
+			},
+			"restaurant": {
+				"stars": {
+					"label": "Stars"
+				}
+			}
+		}
+	},
+	"Header": {
+		"add_button": "Add",
+		"dialog": {
+			"title": "Create a place"
+		}
+	},
+	"Loader": {
+		"text": "Loading..."
+	},
+	"Error": {
+		"text": "Internal Server Error"
+	},
+	"MenuTheme": {
+		"title": "Toggle theme",
+		"light": "Light",
+		"dark": "Dark",
+		"system": "System"
+	},
+	"CreatePlace": {
+		"finalStepCards": {
+			"info": "Information about the building",
+			"details": "Details"
+		}
+	},
+	"DataTable": {
+		"no_results": "No results.",
+		"search": "Search by {filterInput}...",
+		"filterInput": {
+			"name": "name"
+		},
+		"pages": {
+			"title": "Pages",
+			"placeholder": "Define page size"
+		}
+	},
+	"UpdatePlacePage": {
+		"title": "Update {name} place - chooseyourplace",
+		"description": "Update {name} place page"
+	},
+	"CreatePlacePage": {
+		"title": "Create a place - chooseyourplace",
+		"description": "Creation page for places"
+	},
+	"PlaceDetailsPage": {
+		"title": "{name} place - chooseyourplace",
+		"description": "{name} details place",
+		"content": {
+			"title": "Information about <nameComponent>{name}</nameComponent>"
+		}
+	},
+	"HomePage": {
+		"title": "List of places - chooseyourplace",
+		"description": "List of places page",
+		"table": {
+			"columns": {
+				"actions": {
+					"open": "Open menu",
+					"title": "Information about \"{name}\""
+				}
+			}
+		}
+	}
+}

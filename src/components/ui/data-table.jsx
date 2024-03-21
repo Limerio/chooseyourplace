@@ -25,10 +25,13 @@ import {
 	getSortedRowModel,
 	useReactTable,
 } from "@tanstack/react-table"
+import { useTranslations } from "next-intl"
 import { useState } from "react"
 
 // eslint-disable-next-line max-lines-per-function
 export const DataTable = ({ columns, data, filterInput }) => {
+	const t = useTranslations("DataTable")
+	const tUtils = useTranslations("Utils")
 	const [sorting, setSorting] = useState([])
 	const [columnFilters, setColumnFilters] = useState([])
 	const table = useReactTable({
@@ -50,7 +53,7 @@ export const DataTable = ({ columns, data, filterInput }) => {
 		<>
 			<div className="flex items-center py-4">
 				<Input
-					placeholder={`Search by ${filterInput}...`}
+					placeholder={t("search", { filterInput: t("filterInput.name") })}
 					value={table.getColumn(filterInput)?.getFilterValue() ?? ""}
 					onChange={event =>
 						table.getColumn(filterInput)?.setFilterValue(event.target.value)
@@ -96,7 +99,7 @@ export const DataTable = ({ columns, data, filterInput }) => {
 									colSpan={columns.length}
 									className="h-24 text-center"
 								>
-									No results.
+									{t("no_results")}
 								</TableCell>
 							</TableRow>
 						)}
@@ -110,7 +113,7 @@ export const DataTable = ({ columns, data, filterInput }) => {
 					onClick={() => table.previousPage()}
 					disabled={!table.getCanPreviousPage()}
 				>
-					Previous
+					{tUtils("previous")}
 				</Button>
 				<Button
 					variant="outline"
@@ -118,15 +121,15 @@ export const DataTable = ({ columns, data, filterInput }) => {
 					onClick={() => table.nextPage()}
 					disabled={!table.getCanNextPage()}
 				>
-					Next
+					{tUtils("next")}
 				</Button>
 				<Select onValueChange={value => table.setPageSize(value)}>
 					<SelectTrigger className="w-[180px]">
-						<SelectValue placeholder="Define page size" />
+						<SelectValue placeholder={t("pages.placeholder")} />
 					</SelectTrigger>
 					<SelectContent>
 						<SelectGroup>
-							<SelectLabel>Pages</SelectLabel>
+							<SelectLabel>{t("pages.title")}</SelectLabel>
 							{[10, 20, 30, 40, 50].map(pageSize => (
 								<SelectItem key={pageSize} value={pageSize}>
 									{pageSize}
@@ -139,3 +142,5 @@ export const DataTable = ({ columns, data, filterInput }) => {
 		</>
 	)
 }
+
+DataTable.messages = ["DataTable"]

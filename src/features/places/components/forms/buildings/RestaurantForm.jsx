@@ -4,16 +4,19 @@ import { restaurantSchema } from "@/features/places/schemas/Restaurant"
 import { restaurantFormFields } from "@/features/places/utils/fields"
 import { useMultiStepsForm } from "@/hooks/forms"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useTranslations } from "next-intl"
 import { useForm } from "react-hook-form"
 
 export const RestaurantForm = () => {
+	const tForms = useTranslations("Forms")
+	const tUtils = useTranslations("Utils")
 	const { next, addDataForm } = useMultiStepsForm()
 	const form = useForm({
 		resolver: zodResolver(restaurantSchema),
 		defaultValues: {
 			typeOf: "",
-			stars: 0,
-			averageCost: 0,
+			stars: "",
+			averageCost: "",
 		},
 	})
 	const onSubmit = values => {
@@ -27,7 +30,7 @@ export const RestaurantForm = () => {
 				onSubmit={form.handleSubmit(onSubmit)}
 				className="flex flex-col gap-4"
 			>
-				{restaurantFormFields().map(formField => (
+				{restaurantFormFields({ t: tForms, tUtils }).map(formField => (
 					<FormField
 						key={formField.name}
 						control={form.control}

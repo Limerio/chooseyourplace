@@ -2,28 +2,19 @@
 import { Error, Head, Loading } from "@/components/layouts"
 import { Button } from "@/components/ui/button"
 import { DataTable } from "@/components/ui/data-table"
-import {
-	Dialog,
-	DialogClose,
-	DialogContent,
-	DialogFooter,
-	DialogHeader,
-	DialogTitle,
-} from "@/components/ui/dialog"
-import { Link } from "@/components/ui/link"
-import { DeleteDialogValidation } from "@/features/places/components/delete/dialogValidation"
-import { PlaceDetails } from "@/features/places/components/info"
-import { usePlaces } from "@/features/places/hooks"
-import { capitalize } from "@/utils/functions"
-import { DialogTrigger } from "@radix-ui/react-dialog"
-import { DotsHorizontalIcon, EnterFullScreenIcon } from "@radix-ui/react-icons"
-import { ArrowUpDown } from "lucide-react"
+import { DialogActionColumn } from "@/features/places/components/info"
 
-const columns = [
+import { usePlaces } from "@/features/places/hooks"
+import { MainLayout } from "@/layouts/Main"
+import { capitalize, formatTitle, serverTranslation } from "@/utils/functions"
+import { ArrowUpDown } from "lucide-react"
+import { useTranslations } from "next-intl"
+
+const columns = t => [
 	{
 		accessorKey: "building",
-		header: "Building",
-		cell: ({ row }) => capitalize(row.original.building),
+		header: t("place.form.building"),
+		cell: ({ row }) => capitalize(t(`buildings.${row.original.building}`)),
 	},
 	{
 		accessorKey: "name",
@@ -33,7 +24,7 @@ const columns = [
 				variant="ghost"
 				onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
 			>
-				Name
+				{t("place.form.name")}
 				<ArrowUpDown className="ml-2 h-4 w-4" />
 			</Button>
 		),
@@ -41,75 +32,54 @@ const columns = [
 	},
 	{
 		accessorKey: "city",
-		header: "City",
+		header: t("place.form.city"),
 		cell: ({ row }) => capitalize(row.original.city),
 	},
 	{
 		accessorKey: "zipcode",
-		header: "Zip Code",
+		header: t("place.form.zipcode"),
 	},
 	{
 		accessorKey: "country",
-		header: "Country",
+		header: t("place.form.country"),
 		cell: ({ row }) => capitalize(row.original.country),
 	},
 	{
 		id: "actions",
 		enableHiding: false,
-		cell: ({ row }) => {
-			const place = row.original
-
-			return (
-				<Dialog>
-					<DialogTrigger asChild>
-						<Button variant="ghost" className="h-8 w-8 p-0">
-							<span className="sr-only">Open menu</span>
-							<DotsHorizontalIcon className="h-4 w-4" />
-						</Button>
-					</DialogTrigger>
-					<DialogContent>
-						<DialogHeader>
-							<DialogTitle>Information about "{place.name}"</DialogTitle>
-						</DialogHeader>
-						<PlaceDetails place={place} />
-						<DialogFooter>
-							<Button>
-								<DialogClose asChild>
-									<Link
-										href={`/places/${place._id}`}
-										className="flex items-center gap-1.5 w-full h-full"
-									>
-										<EnterFullScreenIcon />
-										Full screen mode
-									</Link>
-								</DialogClose>
-							</Button>
-							<DeleteDialogValidation reload placeId={place._id}>
-								<Button variant="destructive">Delete</Button>
-							</DeleteDialogValidation>
-						</DialogFooter>
-					</DialogContent>
-				</Dialog>
-			)
-		},
+		cell: ({ row: { original: place } }) => (
+			<DialogActionColumn place={place} />
+		),
 	},
 ]
-
-export default function Home() {
+const HomePage = () => {
 	const { data, isLoading, isError } = usePlaces()
+	const t = useTranslations("HomePage")
+	const tUtils = useTranslations("Utils")
 
 	return (
 		<Loading isLoading={isLoading}>
 			<Error isError={isError || Boolean(data?.error)}>
-				<Head
-					title="List of places - chooseyourplace"
-					description="List of places page"
-				/>
+				<Head title={t("title")} description={t("description")} />
 				<div className="container mx-auto py-10 flex flex-col gap-2">
-					<h1 className="text-6xl text-center">List of places</h1>
-					<DataTable filterInput="name" columns={columns} data={data} />
+					<h1 className="text-6xl text-center">{formatTitle(t("title"))}</h1>
+					<DataTable filterInput="name" columns={columns(tUtils)} data={data} />
 				</div>
 			</Error>
 		</Loading>
 	)
 }
+
+HomePage.messages = [
+	"HomePage",
+	...Loading.messages,
+	...Error.messages,
+	...MainLayout.messages,
+	...DataTable.messages,
+]
+
+export default HomePage
+
+export const getServerSideProps = async ({ locale }) => ({
+	props: await serverTranslation(locale, HomePage),
+})

@@ -26,7 +26,11 @@ export const MultiStepProvider = ({ steps, children }) => {
 	}
 	const back = () => {
 		setCurrentStepIndex(i => {
-			setFormsData([...formsData.filter(formData => formData.page !== i - 1)])
+			if (i === 1) {
+				setFormsData(prevFormsData => [
+					...prevFormsData.filter(formData => formData.page !== i - 1),
+				])
+			}
 
 			if (i <= 0) {
 				return i
