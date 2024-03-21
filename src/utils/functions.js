@@ -20,9 +20,16 @@ export const handlerApi = handle => async (req, res) => {
 	try {
 		await mongoose.connect(process.env.DATABASE_URL)
 
-		handle(req, res)
+		await handle(req, res)
 	} catch (error) {
-		res.status(500).json({ error: "Database connection failed" })
+		if (
+			error.message.includes("ECONNREFUSED") &&
+			error.message.includes("27017")
+		) {
+			res.status(500).json({ error: "Database connection failed" })
+		}
+
+		res.status(500).json({ error: "Unknown server error" })
 	}
 }
 
