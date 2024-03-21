@@ -246,22 +246,22 @@
 		"typeOf": "Type de bâtiment"
 	},
 	"UpdatePlacePage": {
-		"title": "Modification du lieu {name} ",
+		"title": "Modification du lieu {name} - chooseyourplace",
 		"description": "Page de modification du lieu {name}"
 	},
 	"CreatePlacePage": {
-		"title": "Créer un lieu",
+		"title": "Créer un lieu - chooseyourplace",
 		"description": "Page de création d'un lieu"
 	},
 	"PlaceDetailsPage": {
-		"title": "Lieu {name}",
+		"title": "Lieu {name} - chooseyourplace",
 		"description": "Détails du lieu {name}",
 		"content": {
 			"title": "Information à propos de <nameComponent>{name}</nameComponent>"
 		}
 	},
 	"HomePage": {
-		"title": "Liste des lieux",
+		"title": "Liste des lieux - chooseyourplace",
 		"description": "Page de la liste des lieux",
 		"table": {
 			"columns": {

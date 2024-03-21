@@ -60,10 +60,7 @@ const HomePage = () => {
 	return (
 		<Loading isLoading={isLoading}>
 			<Error isError={isError || Boolean(data?.error)}>
-				<Head
-					title={`${t("title")} - chooseyourplace`}
-					description={t("description")}
-				/>
+				<Head title={t("title")} description={t("description")} />
 				<div className="container mx-auto py-10 flex flex-col gap-2">
 					<h1 className="text-6xl text-center">{t("title")}</h1>
 					<DataTable filterInput="name" columns={columns(tUtils)} data={data} />
