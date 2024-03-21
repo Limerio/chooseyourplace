@@ -4,10 +4,7 @@ import { MainLayout } from "@/layouts/Main"
 import "@/styles/globals.css"
 
 const App = ({ Component, pageProps }) => (
-	<Providers
-		dehydratedState={pageProps.dehydratedState}
-		messages={pageProps.messages}
-	>
+	<Providers {...pageProps}>
 		<MainLayout>
 			<Component {...pageProps} />
 		</MainLayout>
