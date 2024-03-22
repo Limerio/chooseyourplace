@@ -1,45 +1,19 @@
-import { pick } from "@/utils/functions"
-import { cleanup, render, screen } from "@testing-library/react"
-import { NextIntlClientProvider } from "next-intl"
-import { afterEach, describe, expect, it } from "vitest"
+import { render } from "@/utils/test"
+import { describe, expect, it } from "vitest"
 import { Error } from "./Error"
 
 describe("Error component", () => {
-	afterEach(() => {
-		cleanup()
-	})
-
 	it("Error english version", async () => {
-		const lang = "en"
-		render(
-			<NextIntlClientProvider
-				locale={lang}
-				messages={pick((await import(`@/languages/${lang}.json`)).default, [
-					"Error",
-				])}
-			>
-				<Error isError={true} />
-			</NextIntlClientProvider>,
-		)
-
-		const message = screen.queryByText(/Internal server error/u)
-		expect(message).toBeDefined()
+		const { findByText } = await render(<Error isError={true}>Hello</Error>)
+		const textError = await findByText("Internal Server Error")
+		expect(textError).toBeDefined()
 	})
 
 	it("Error french version", async () => {
-		const lang = "fr"
-		render(
-			<NextIntlClientProvider
-				locale={lang}
-				messages={pick((await import(`@/languages/${lang}.json`)).default, [
-					"Error",
-				])}
-			>
-				<Error isError={true} />
-			</NextIntlClientProvider>,
-		)
-
-		const message = screen.queryByText("Erreur du serveur")
-		expect(message).toBeDefined()
+		const { findByText } = await render(<Error isError={true}>Bonjour</Error>, {
+			lang: "fr",
+		})
+		const textError = await findByText("Erreur du serveur")
+		expect(textError).toBeDefined()
 	})
 })
