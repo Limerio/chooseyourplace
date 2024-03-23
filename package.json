@@ -63,8 +63,6 @@
 		"tailwindcss-animate": "^1.0.7"
 	},
 	"msw": {
-		"workerDirectory": [
-			"public"
-		]
+		"workerDirectory": "public"
 	}
 }
