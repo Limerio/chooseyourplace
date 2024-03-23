@@ -4,6 +4,12 @@ test.beforeEach(async ({ page }) => {
 	await page.goto("/")
 })
 
+test("Logo", async ({ page }) => {
+	expect(
+		await page.getByRole("link", { name: "Chooseyourplace" }).selectText(),
+	).toBeFalsy()
+})
+
 test("Theme", async ({ page }) => {
 	await page.getByRole("button", { name: "Toggle theme" }).click()
 	await page.getByRole("menuitem", { name: "Light" }).click()
@@ -35,13 +41,28 @@ test("Create place with dialog", async ({ page }) => {
 	await page.getByLabel("Bar").click()
 	await page.getByLabel("Cocktail").getByText("Cocktail").click()
 
+	await page.getByRole("button", { name: "Next" }).click()
+	await page.getByLabel("Create a place").getByText("Bar").click()
 	await page.getByRole("button", { name: "Finish" }).click()
-
-	await page.getByRole("row", { name: "" }).getByRole("button").click()
 })
 
-test("Search by name", async ({ page }) => {
-	await page.getByPlaceholder("Search by name...").click()
+test("Languages", async ({ page }) => {
+	await page.getByLabel("EnglishEnglish").click()
+	await page.getByLabel("Français").click()
+	expect(page.getByLabel("FrançaisFrançais")).toBeVisible()
+	expect(page.getByLabel("EnglishEnglish")).not.toBeVisible()
+
+	expect(page.getByRole("heading", { name: "Liste des lieux" })).toBeVisible()
+	expect(
+		page.getByRole("heading", { name: "List of places" }),
+	).not.toBeVisible()
+
+	await page.getByLabel("FrançaisFrançais").click()
+	await page.getByText("English").click()
+	expect(
+		page.getByRole("heading", { name: "Liste des lieux" }),
+	).not.toBeVisible()
+	expect(page.getByRole("heading", { name: "List of places" })).toBeVisible()
 })
 
 test("Pagination", async ({ page }) => {

@@ -1,7 +1,7 @@
 import { test } from "@playwright/test"
 
 test.beforeEach(async ({ page }) => {
-	await page.goto("http://localhost:3000/places/create")
+	await page.goto("/places/create")
 })
 
 test("Create a bar place", async ({ page }) => {
@@ -23,17 +23,10 @@ test("Create a bar place", async ({ page }) => {
 	await page.getByLabel("Average Cost").click()
 	await page.getByLabel("1").click()
 	await page.getByRole("button", { name: "Next" }).click()
-	await page.getByText("Random bar").click()
-	await page.getByText("Bar").click()
-	await page.getByText("Random City").click()
-	await page.getByText("12345").click()
-	await page.getByText("Random Country").click()
-	await page.getByText("Cocktail").click()
-	await page.getByText("1", { exact: true }).click()
 	await page.getByRole("button", { name: "Finish" }).click()
 	await page.getByPlaceholder("Search by name...").click()
-	await page.getByPlaceholder("Search by name...").fill("Random name")
-	await page.getByRole("cell", { name: "Random name" }).click()
+	await page.getByPlaceholder("Search by name...").fill("Random bar")
+	await page.getByRole("cell", { name: "Random bar" }).click()
 })
 
 test("Create a museum place", async ({ page }) => {
