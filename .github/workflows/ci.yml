@@ -1,4 +1,4 @@
-name: CDN CI
+name: CI
 
 on:
   push:
