@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import { generateFormFieldInput } from "@/components/functions"
 import {
 	FormControl,
@@ -151,7 +152,6 @@ export const parkFormFields = ({ t, tUtils }, sub) => [
 		),
 	},
 	generateFormFieldInput({
-		// eslint-disable-next-line max-lines
 		name: `${sub ? "park." : ""}price`,
 		label: t("place.global.price.label"),
 		placeholder: t("place.global.price.placeholder", {

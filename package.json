@@ -9,6 +9,7 @@
 		"start": "next start",
 		"lint": "next lint",
 		"format": "prettier -w .",
+		"check": "prettier -c . && npm run lint",
 		"seed": "node --env-file .env scripts/seed.js",
 		"test:e2e": "playwright test -c ./playwright.config.cjs",
 		"test:e2e:ui": "playwright test -c ./playwright.config.cjs --ui"
