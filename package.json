@@ -9,7 +9,9 @@
 		"start": "next start",
 		"lint": "next lint",
 		"format": "prettier -w .",
-		"seed": "node --env-file .env scripts/seed.js"
+		"seed": "node --env-file .env scripts/seed.js",
+		"test:e2e": "playwright test -c ./playwright.config.cjs",
+		"test:e2e:ui": "playwright test -c ./playwright.config.cjs --ui"
 	},
 	"dependencies": {
 		"@hookform/resolvers": "^3.3.4",
@@ -43,6 +45,8 @@
 	},
 	"devDependencies": {
 		"@faker-js/faker": "^8.4.1",
+		"@playwright/test": "^1.42.1",
+		"@types/node": "^20.11.30",
 		"autoprefixer": "^10.0.1",
 		"eslint": "^8.57.0",
 		"eslint-config-next": "^14.1.3",
