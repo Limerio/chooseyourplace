@@ -5,11 +5,8 @@ import * as React from "react"
 import { cn } from "@/utils/functions"
 
 const Select = SelectPrimitive.Root
-
 const SelectGroup = SelectPrimitive.Group
-
 const SelectValue = SelectPrimitive.Value
-
 const SelectTrigger = React.forwardRef(
 	({ className, children, ...props }, ref) => (
 		<SelectPrimitive.Trigger

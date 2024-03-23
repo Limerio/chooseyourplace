@@ -1,27 +1,21 @@
-import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
+import * as React from "react"
 import { Controller, FormProvider, useFormContext } from "react-hook-form"
 
-import { cn } from "@/utils/functions"
 import { Label } from "@/components/ui/label"
+import { cn } from "@/utils/functions"
 
 const Form = FormProvider
-
 const FormFieldContext = React.createContext({})
-
-const FormField = ({ ...props }) => {
-	return (
-		<FormFieldContext.Provider value={{ name: props.name }}>
-			<Controller {...props} />
-		</FormFieldContext.Provider>
-	)
-}
-
+const FormField = ({ ...props }) => (
+	<FormFieldContext.Provider value={{ name: props.name }}>
+		<Controller {...props} />
+	</FormFieldContext.Provider>
+)
 const useFormField = () => {
 	const fieldContext = React.useContext(FormFieldContext)
 	const itemContext = React.useContext(FormItemContext)
 	const { getFieldState, formState } = useFormContext()
-
 	const fieldState = getFieldState(fieldContext.name, formState)
 
 	if (!fieldContext) {
@@ -39,9 +33,7 @@ const useFormField = () => {
 		...fieldState,
 	}
 }
-
 const FormItemContext = React.createContext({})
-
 const FormItem = React.forwardRef(({ className, ...props }, ref) => {
 	const id = React.useId()
 
@@ -79,7 +71,7 @@ const FormControl = React.forwardRef(({ ...props }, ref) => {
 					? `${formDescriptionId}`
 					: `${formDescriptionId} ${formMessageId}`
 			}
-			aria-invalid={!!error}
+			aria-invalid={Boolean(error)}
 			{...props}
 		/>
 	)
@@ -124,12 +116,12 @@ const FormMessage = React.forwardRef(
 FormMessage.displayName = "FormMessage"
 
 export {
-	useFormField,
 	Form,
-	FormItem,
-	FormLabel,
 	FormControl,
 	FormDescription,
-	FormMessage,
 	FormField,
+	FormItem,
+	FormLabel,
+	FormMessage,
+	useFormField,
 }
