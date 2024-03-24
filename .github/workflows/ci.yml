@@ -18,8 +18,11 @@ jobs:
           node-version: 20
           cache: "npm"
 
-      - name: Run install
+      - name: Run clean install
         run: npm ci
 
-      - name: Run ci script
+      - name: Run check script
         run: npm run check
+
+      - name: Run test script
+        run: npm test

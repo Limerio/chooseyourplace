@@ -216,7 +216,7 @@
 	"Loader": {
 		"text": "Chargement..."
 	},
-	"Error": {
+	"ErrorHandler": {
 		"text": "Erreur du serveur"
 	},
 	"MenuTheme": {
