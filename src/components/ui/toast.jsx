@@ -1,12 +1,11 @@
-import * as React from "react"
 import * as ToastPrimitives from "@radix-ui/react-toast"
 import { cva } from "class-variance-authority"
 import { X } from "lucide-react"
+import * as React from "react"
 
 import { cn } from "@/utils/functions"
 
 const ToastProvider = ToastPrimitives.Provider
-
 const ToastViewport = React.forwardRef(({ className, ...props }, ref) => (
 	<ToastPrimitives.Viewport
 		ref={ref}
@@ -34,16 +33,13 @@ const toastVariants = cva(
 		},
 	},
 )
-
-const Toast = React.forwardRef(({ className, variant, ...props }, ref) => {
-	return (
-		<ToastPrimitives.Root
-			ref={ref}
-			className={cn(toastVariants({ variant }), className)}
-			{...props}
-		/>
-	)
-})
+const Toast = React.forwardRef(({ className, variant, ...props }, ref) => (
+	<ToastPrimitives.Root
+		ref={ref}
+		className={cn(toastVariants({ variant }), className)}
+		{...props}
+	/>
+))
 Toast.displayName = ToastPrimitives.Root.displayName
 
 const ToastAction = React.forwardRef(({ className, ...props }, ref) => (
@@ -92,11 +88,11 @@ const ToastDescription = React.forwardRef(({ className, ...props }, ref) => (
 ToastDescription.displayName = ToastPrimitives.Description.displayName
 
 export {
-	ToastProvider,
-	ToastViewport,
 	Toast,
-	ToastTitle,
-	ToastDescription,
-	ToastClose,
 	ToastAction,
+	ToastClose,
+	ToastDescription,
+	ToastProvider,
+	ToastTitle,
+	ToastViewport,
 }

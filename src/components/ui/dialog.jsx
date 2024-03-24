@@ -5,13 +5,9 @@ import * as React from "react"
 import { cn } from "@/utils/functions"
 
 const Dialog = DialogPrimitive.Root
-
 const DialogTrigger = DialogPrimitive.Trigger
-
 const DialogPortal = DialogPrimitive.Portal
-
 const DialogClose = DialogPrimitive.Close
-
 const DialogOverlay = React.forwardRef(({ className, ...props }, ref) => (
 	<DialogPrimitive.Overlay
 		ref={ref}
