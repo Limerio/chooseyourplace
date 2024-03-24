@@ -35,6 +35,7 @@ const addToRemoveQueue = toastId => {
 	toastTimeouts.set(toastId, timeout)
 }
 
+// eslint-disable-next-line consistent-return
 export const reducer = (state, action) => {
 	switch (action.type) {
 		case actionTypes.ADD_TOAST:
@@ -59,15 +60,15 @@ export const reducer = (state, action) => {
 			if (toastId) {
 				addToRemoveQueue(toastId)
 			} else {
-				state.toasts.forEach(toast => {
-					addToRemoveQueue(toast.id)
+				state.toasts.forEach(stateToast => {
+					addToRemoveQueue(stateToast.id)
 				})
 			}
 
 			return {
 				...state,
 				toasts: state.toasts.map(t =>
-					t.id === toastId || toastId === undefined
+					t.id === toastId || !toastId
 						? {
 								...t,
 								open: false,
@@ -78,7 +79,7 @@ export const reducer = (state, action) => {
 		}
 
 		case actionTypes.REMOVE_TOAST:
-			if (action.toastId === undefined) {
+			if (!action.toastId) {
 				return {
 					...state,
 					toasts: [],
@@ -104,10 +105,10 @@ function dispatch(action) {
 
 function toast({ ...props }) {
 	const id = genId()
-	const update = props =>
+	const update = data =>
 		dispatch({
 			type: actionTypes.UPDATE_TOAST,
-			toast: { ...props, id },
+			toast: { ...data, id },
 		})
 	const dismiss = () =>
 		dispatch({ type: actionTypes.DISMISS_TOAST, toastId: id })

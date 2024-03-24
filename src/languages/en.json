@@ -216,7 +216,7 @@
 	"Loader": {
 		"text": "Loading..."
 	},
-	"Error": {
+	"ErrorHandler": {
 		"text": "Internal Server Error"
 	},
 	"MenuTheme": {

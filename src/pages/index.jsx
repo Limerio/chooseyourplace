@@ -1,5 +1,5 @@
 /* eslint-disable max-lines */
-import { Error, Head, Loading } from "@/components/layouts"
+import { ErrorHandler, Head, Loading } from "@/components/layouts"
 import { Button } from "@/components/ui/button"
 import { DataTable } from "@/components/ui/data-table"
 import { DialogActionColumn } from "@/features/places/components/info"
@@ -59,13 +59,13 @@ const HomePage = () => {
 
 	return (
 		<Loading isLoading={isLoading}>
-			<Error isError={isError || Boolean(data?.error)}>
+			<ErrorHandler isError={isError || Boolean(data?.error)}>
 				<Head title={t("title")} description={t("description")} />
 				<div className="container mx-auto py-10 flex flex-col gap-2">
 					<h1 className="text-6xl text-center">{formatTitle(t("title"))}</h1>
 					<DataTable filterInput="name" columns={columns(tUtils)} data={data} />
 				</div>
-			</Error>
+			</ErrorHandler>
 		</Loading>
 	)
 }
@@ -73,7 +73,7 @@ const HomePage = () => {
 HomePage.messages = [
 	"HomePage",
 	...Loading.messages,
-	...Error.messages,
+	...ErrorHandler.messages,
 	...MainLayout.messages,
 	...DataTable.messages,
 ]

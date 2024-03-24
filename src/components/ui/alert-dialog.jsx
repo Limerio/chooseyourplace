@@ -5,11 +5,8 @@ import { buttonVariants } from "@/components/ui/button"
 import { cn } from "@/utils/functions"
 
 const AlertDialog = AlertDialogPrimitive.Root
-
 const AlertDialogTrigger = AlertDialogPrimitive.Trigger
-
 const AlertDialogPortal = AlertDialogPrimitive.Portal
-
 const AlertDialogOverlay = React.forwardRef(({ className, ...props }, ref) => (
 	<AlertDialogPrimitive.Overlay
 		className={cn(
