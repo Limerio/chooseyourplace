@@ -1,4 +1,4 @@
-import { Error, Head, Loading } from "@/components/layouts"
+import { ErrorHandler, Head, Loading } from "@/components/layouts"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Link } from "@/components/ui/link"
@@ -23,7 +23,7 @@ const PlaceDetailsPage = () => {
 
 	return (
 		<Loading isLoading={isLoading}>
-			<Error isError={isError || Boolean(data?.error)}>
+			<ErrorHandler isError={isError || Boolean(data?.error)}>
 				<Head
 					title={t("title", { name: data.name })}
 					description={t("description", { name: data.name })}
@@ -57,7 +57,7 @@ const PlaceDetailsPage = () => {
 						<Button variant="destructive">{tUtils("delete")}</Button>
 					</DeleteDialogValidation>
 				</div>
-			</Error>
+			</ErrorHandler>
 		</Loading>
 	)
 }
@@ -68,7 +68,7 @@ PlaceDetailsPage.messages = [
 	"PlaceDetails",
 	...MainLayout.messages,
 	...Loading.messages,
-	...Error.messages,
+	...ErrorHandler.messages,
 ]
 
 export default PlaceDetailsPage
