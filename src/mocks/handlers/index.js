@@ -1,3 +1,8 @@
 import { handlerPlaces } from "./places"
 
-export const handlers = [...handlerPlaces]
+/**
+ *
+ * @param {boolean} server
+ * @returns
+ */
+export const handlers = server => [...handlerPlaces(server)]
