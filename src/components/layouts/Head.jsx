@@ -8,6 +8,9 @@ export const Head = ({ title, description }) => {
 		<HeadNext>
 			<title>{title}</title>
 			<meta name="description" content={description} />
+			<link rel="manifest" href="/manifest.json" />
+			<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+			<meta name="theme-color" content="#4b90e2" />
 
 			{/* Opengrah */}
 			<meta property="og:locale" content={router.locale} />
