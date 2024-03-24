@@ -1,7 +1,8 @@
 import { expect, test } from "@playwright/test"
 
 test.beforeEach(async ({ page }) => {
-	await page.goto("/")
+	await page.goto("/", { waitUntil: "networkidle" })
+	await page.waitForRequest("/api/places")
 })
 
 test("Logo", async ({ page }) => {

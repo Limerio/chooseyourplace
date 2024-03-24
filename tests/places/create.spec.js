@@ -1,7 +1,7 @@
 import { test } from "@playwright/test"
 
 test.beforeEach(async ({ page }) => {
-	await page.goto("/places/create")
+	await page.goto("/places/create", { waitUntil: "networkidle" })
 })
 
 test("Create a bar place", async ({ page }) => {
