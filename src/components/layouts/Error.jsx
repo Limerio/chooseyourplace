@@ -1,6 +1,6 @@
 import { useTranslations } from "next-intl"
 
-export const Error = ({ isError, children }) => {
+export const ErrorHandler = ({ isError, children }) => {
 	const t = useTranslations("Error")
 
 	if (isError) {
@@ -10,4 +10,4 @@ export const Error = ({ isError, children }) => {
 	return children
 }
 
-Error.messages = ["Error"]
+ErrorHandler.messages = ["Error"]

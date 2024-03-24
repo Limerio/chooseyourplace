@@ -1,4 +1,4 @@
-import { Error, Head, Loading } from "@/components/layouts"
+import { ErrorHandler, Head, Loading } from "@/components/layouts"
 import { UpdateForm } from "@/features/places/components/forms/update"
 import { usePlace } from "@/features/places/hooks"
 import { requestServerGetPlace } from "@/features/places/utils/api"
@@ -32,7 +32,7 @@ const UpdatePlacePage = () => {
 
 	return (
 		<Loading isLoading={isLoading}>
-			<Error isError={isError || Boolean(data?.error)}>
+			<ErrorHandler isError={isError || Boolean(data?.error)}>
 				<Head
 					title={t("title", { name: data.name })}
 					description={t("description", { name: data.name })}
@@ -40,7 +40,7 @@ const UpdatePlacePage = () => {
 				<div className="container">
 					<UpdateForm />
 				</div>
-			</Error>
+			</ErrorHandler>
 		</Loading>
 	)
 }
@@ -51,7 +51,7 @@ UpdatePlacePage.messages = [
 	"Forms",
 	...MainLayout.messages,
 	...Loading.messages,
-	...Error.messages,
+	...ErrorHandler.messages,
 ]
 
 export default UpdatePlacePage
