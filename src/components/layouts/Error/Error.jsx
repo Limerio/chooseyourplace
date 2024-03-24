@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl"
 
 export const ErrorHandler = ({ isError, children }) => {
-	const t = useTranslations("Error")
+	const t = useTranslations("ErrorHandler")
 
 	if (isError) {
 		return <div className="bg-red-600 rounded p-4">{t("text")}</div>
@@ -10,4 +10,4 @@ export const ErrorHandler = ({ isError, children }) => {
 	return children
 }
 
-ErrorHandler.messages = ["Error"]
+ErrorHandler.messages = ["ErrorHandler"]
