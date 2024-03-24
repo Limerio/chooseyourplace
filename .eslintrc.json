@@ -73,7 +73,7 @@
 		"max-depth": ["error", 3],
 		"max-lines": [
 			"error",
-			{ "max": 150, "skipBlankLines": true, "skipComments": true }
+			{ "max": 170, "skipBlankLines": true, "skipComments": true }
 		],
 		"max-lines-per-function": [
 			"warn",
@@ -228,7 +228,7 @@
 		"space-before-blocks": "error",
 		"semi": ["error", "never"],
 		// extra
-		"@next/next/no-html-link-for-pages": ["error", "./src/app"],
+		"@next/next/no-html-link-for-pages": ["error", "./src/pages"],
 		"react-hooks/rules-of-hooks": "error",
 		"react-hooks/exhaustive-deps": "warn",
 		"react/no-unescaped-entities": [

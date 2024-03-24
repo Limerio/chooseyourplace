@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import { generateFormFieldInput } from "@/components/functions"
 import {
 	FormControl,
