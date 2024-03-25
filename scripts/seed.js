@@ -1,6 +1,9 @@
 import { faker } from "@faker-js/faker"
 import { MongoClient } from "mongodb"
-import { artisticMovements, typesOfBuilding } from "../src/utils/constants.js"
+import {
+	artisticMovements,
+	typesOfBuilding,
+} from "../src/features/places/utils/constants.js"
 import { generateArray } from "../src/utils/functions.js"
 
 const uri = process.env.DATABASE_URL
