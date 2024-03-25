@@ -4,9 +4,12 @@
 		"eslint:recommended",
 		"prettier",
 		"next/core-web-vitals",
-		"plugin:react/recommended"
+		"plugin:react/recommended",
+		"plugin:@typescript-eslint/eslint-recommended",
+		"plugin:@typescript-eslint/recommended"
 	],
-	"plugins": ["react", "react-hooks"],
+	"parser": "@typescript-eslint/parser",
+	"plugins": ["react", "react-hooks", "@typescript-eslint"],
 	"env": {
 		"browser": true,
 		"node": true,
