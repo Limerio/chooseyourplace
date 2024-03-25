@@ -24,6 +24,6 @@ jobs:
       - name: Test database deployment
         run: docker-compose up -d
       - name: Seeding
-        run: cross-env DATABASE_URL=mongodb://localhost:27017/chooseyourplace scripts/seed.js
+        run: cross-env DATABASE_URL=mongodb://localhost:27017/chooseyourplace node scripts/seed.js
       - name: Run Playwright tests
         run: cross-env DATABASE_URL=mongodb://localhost:27017/chooseyourplace npm run test:e2e
