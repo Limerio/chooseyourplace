@@ -58,6 +58,12 @@ export class PlaceController {
 			)
 
 			await place.replaceOne(newPlace)
+
+			if (await redisClient.get(`places:${placeId}`)) {
+				await redisClient.del(`places:${placeId}`)
+			}
+
+			await redisClient.set(`places:${placeId}`, JSON.stringify(newPlace))
 		} catch (error) {
 			return res.json({ error })
 		}
