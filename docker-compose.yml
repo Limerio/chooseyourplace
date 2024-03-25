@@ -4,8 +4,6 @@ services:
   mongodb:
     image: mongo:5.0.25-focal
     container_name: database
-    env_file:
-      - .env
     ports:
       - 27017:27017
   redis:
