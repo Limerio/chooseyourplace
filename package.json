@@ -36,7 +36,7 @@
 		"class-variance-authority": "^0.7.0",
 		"clsx": "^2.1.0",
 		"ioredis": "^5.3.2",
-		"lucide-react": "^0.350.0",
+		"lucide-react": "^0.363.0",
 		"mongodb": "^6.4.0",
 		"mongoose": "^8.2.1",
 		"next": "14.1.3",
