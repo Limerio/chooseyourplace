@@ -13,8 +13,8 @@
 		"seed": "node --env-file .env scripts/seed.js",
 		"test": "vitest run",
 		"test:watch": "vitest",
-		"test:e2e": "cross-env NEXT_PUBLIC_API_MOCKING=enabled playwright test -c ./playwright.config.cjs",
-		"test:e2e:ui": "cross-env NEXT_PUBLIC_API_MOCKING=enabled playwright test -c ./playwright.config.cjs --ui"
+		"test:e2e": "playwright test -c ./playwright.config.cjs",
+		"test:e2e:ui": "playwright test -c ./playwright.config.cjs --ui"
 	},
 	"dependencies": {
 		"@hookform/resolvers": "^3.3.4",
