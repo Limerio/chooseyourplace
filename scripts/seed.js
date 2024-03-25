@@ -18,7 +18,7 @@ async function main() {
 		const places = database.collection("places")
 		const data = []
 
-		for (let i = 0; i < 10; i += 1) {
+		for (let i = 0; i < 50; i += 1) {
 			const randomTypesOfBuilding = faker.helpers.arrayElement([
 				"bar",
 				"museum",
