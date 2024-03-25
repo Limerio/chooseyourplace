@@ -1,5 +1,4 @@
 import { clsx } from "clsx"
-import mongoose from "mongoose"
 import { twMerge } from "tailwind-merge"
 
 /**
@@ -9,29 +8,6 @@ import { twMerge } from "tailwind-merge"
  */
 
 export const cn = (...inputs) => twMerge(clsx(inputs))
-
-/**
- *
- * @param {Function | Promise<Function>} handle
- * @returns {Function}
- */
-
-export const handlerApi = handle => async (req, res) => {
-	try {
-		await mongoose.connect(process.env.DATABASE_URL)
-
-		await handle(req, res)
-	} catch (error) {
-		if (
-			error.message.includes("ECONNREFUSED") &&
-			error.message.includes("27017")
-		) {
-			res.status(500).json({ error: "Database connection failed" })
-		}
-
-		res.status(500).json({ error: "Unknown server error" })
-	}
-}
 
 /**
  *
@@ -116,13 +92,5 @@ export const pick = (object, keys) =>
 
 		return obj
 	}, {})
-
-export const serverTranslation = async (locale, page) => ({
-	messages: pick(
-		(await import(`@/languages/${locale}.json`)).default,
-		page.messages,
-	),
-	now: new Date().getTime(),
-})
 
 export const formatTitle = title => title.split("-")[0].trim()

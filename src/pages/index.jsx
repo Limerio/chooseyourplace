@@ -6,7 +6,8 @@ import { DialogActionColumn } from "@/features/places/components/info"
 
 import { usePlaces } from "@/features/places/hooks"
 import { MainLayout } from "@/layouts/Main"
-import { capitalize, formatTitle, serverTranslation } from "@/utils/functions"
+import { capitalize, formatTitle } from "@/utils/functions"
+import { serverTranslation } from "@/utils/functions.server"
 import { ArrowUpDown } from "lucide-react"
 import { useTranslations } from "next-intl"
 

@@ -1,7 +1,7 @@
 import { Head } from "@/components/layouts"
 import { CreatePlacesForm } from "@/features/places/components/forms/create"
 import { MainLayout } from "@/layouts/Main"
-import { serverTranslation } from "@/utils/functions"
+import { serverTranslation } from "@/utils/functions.server"
 import { useTranslations } from "next-intl"
 
 const CreatePlacePage = () => {

@@ -1,6 +1,9 @@
 import { faker } from "@faker-js/faker"
 import { MongoClient } from "mongodb"
-import { artisticMovements, typesOfBuilding } from "../src/utils/constants.js"
+import {
+	artisticMovements,
+	typesOfBuilding,
+} from "../src/features/places/utils/constants.js"
 import { generateArray } from "../src/utils/functions.js"
 
 const uri = process.env.DATABASE_URL
@@ -15,7 +18,7 @@ async function main() {
 		const places = database.collection("places")
 		const data = []
 
-		for (let i = 0; i < 10; i += 1) {
+		for (let i = 0; i < 50; i += 1) {
 			const randomTypesOfBuilding = faker.helpers.arrayElement([
 				"bar",
 				"museum",
