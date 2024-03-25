@@ -20,14 +20,14 @@ export class PlaceController {
 	}
 
 	static async GET(req, res, redisClient) {
-		const { placeid: placeId } = req.query
+		const { placeId } = req.query
 		const place = await PlaceController.checkId(placeId, res, redisClient)
 
 		return res.json(place)
 	}
 
 	static async PUT(req, res, redisClient) {
-		const { placeid: placeId } = req.query
+		const { placeId } = req.query
 		const place = await PlaceController.checkId(placeId, res, redisClient)
 		const { name, building, city, zipcode, country, ...buildings } = req.body
 		const newPlace = {}
@@ -72,7 +72,7 @@ export class PlaceController {
 	}
 
 	static async DELETE(req, res, redisClient) {
-		const { placeid: placeId } = req.query
+		const { placeId } = req.query
 		const place = await PlaceModel.findById(placeId)
 
 		if (!place) {
