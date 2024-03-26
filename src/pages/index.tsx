@@ -5,17 +5,26 @@ import { DataTable } from "@/components/ui/data-table"
 import { DialogActionColumn } from "@/features/places/components/info"
 
 import { usePlaces } from "@/features/places/hooks"
+import { placeSchema } from "@/features/places/schemas"
 import { MainLayout } from "@/layouts/Main"
 import { capitalize, formatTitle } from "@/utils/functions"
 import { serverTranslation } from "@/utils/functions.server"
+import { Buildings, LangsType } from "@/utils/types"
+import { ColumnDef } from "@tanstack/react-table"
 import { ArrowUpDown } from "lucide-react"
+import { GetServerSideProps } from "next"
 import { useTranslations } from "next-intl"
+import { z } from "zod"
 
-const columns = t => [
+type ColumnsDataTable = (
+	t: ReturnType<typeof useTranslations>,
+) => ColumnDef<z.infer<typeof placeSchema>>[]
+
+const columns: ColumnsDataTable = t => [
 	{
 		accessorKey: "building",
 		header: t("place.form.building"),
-		cell: ({ row }) => capitalize(t(`buildings.${row.original.building}`)),
+		cell: ({ row }) => capitalize(t(`buildings.${row.original.building as Buildings}`)),
 	},
 	{
 		accessorKey: "name",
@@ -81,6 +90,6 @@ HomePage.messages = [
 
 export default HomePage
 
-export const getServerSideProps = async ({ locale }) => ({
-	props: await serverTranslation(locale, HomePage),
-})
+export const getServerSideProps = (async ({ locale }) => ({
+	props: await serverTranslation(locale as LangsType, HomePage),
+})) satisfies GetServerSideProps

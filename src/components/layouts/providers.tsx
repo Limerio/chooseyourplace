@@ -15,7 +15,11 @@ type ProvidersProps = {
 	dehydratedState: DehydratedState
 }
 
-export const Providers: FC<ReactChildren<ProvidersProps>> = ({ children, dehydratedState, messages }) => {
+export const Providers: FC<ReactChildren<ProvidersProps>> = ({
+	children,
+	dehydratedState,
+	messages,
+}) => {
 	const [queryClient] = useState(() => new QueryClient())
 	const router = useRouter()
 

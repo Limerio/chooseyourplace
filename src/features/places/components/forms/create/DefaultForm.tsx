@@ -14,7 +14,7 @@ export const DefaultForm: FC = () => {
 	const tForms = useTranslations("Forms")
 	const tUtils = useTranslations("Utils")
 	const { next, addDataForm } = useMultiStepsForm()
-	const form = useForm({
+	const form = useForm<z.infer<typeof placeSchema>>({
 		resolver: zodResolver(placeSchema),
 		defaultValues: {
 			building: "",

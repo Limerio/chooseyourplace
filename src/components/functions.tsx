@@ -6,7 +6,10 @@ type GenerateFormFieldInputOptions = InputProps & {
 	label: string
 }
 
-export const generateFormFieldInput = ({ name, ...fieldInputProps }: GenerateFormFieldInputOptions) => ({
+export const generateFormFieldInput = ({
+	name,
+	...fieldInputProps
+}: GenerateFormFieldInputOptions) => ({
 	name,
 	render: ({ field }) => <FormFieldInput field={field} {...fieldInputProps} />,
 })

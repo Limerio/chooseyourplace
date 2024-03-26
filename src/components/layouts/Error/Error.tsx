@@ -6,9 +6,10 @@ type ErrorHandlerProps = {
 	isError: boolean
 }
 
-export const ErrorHandler: FC<
-	ReactChildren<ErrorHandlerProps>
-> = ({ isError, children }) => {
+export const ErrorHandler: FC<ReactChildren<ErrorHandlerProps>> = ({
+	isError,
+	children,
+}) => {
 	const t = useTranslations("ErrorHandler")
 
 	if (isError) {

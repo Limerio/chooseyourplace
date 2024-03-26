@@ -1,16 +1,25 @@
+import { placeSchema, updateSubSchemas } from "@/features/places/schemas"
 import { defaultOptionsDate } from "@/utils/constants"
 import { capitalize, cn } from "@/utils/functions"
+import { Buildings, ReactChildren } from "@/utils/types"
 import { useFormatter, useTranslations } from "next-intl"
-import { useMemo } from "react"
+import { FC, HTMLAttributes, useMemo } from "react"
+import { z } from "zod"
 
 const ignoredKeysPlace = ["_id", "__v", "building", "createdAt", "updatedAt"]
 const ignoredKeysSubPlace = ["_id", "artisticMovement", "freeOrPay", "typeOf"]
+const schema = placeSchema.merge(z.object(updateSubSchemas))
+type PlaceDetailsProps = {
+	place: z.infer<typeof schema>
+}
+
+type KeyPlaces = keyof z.infer<typeof schema>
 
 // eslint-disable-next-line max-lines-per-function
-export const PlaceDetails = ({ place }) => {
+export const PlaceDetails: FC<PlaceDetailsProps> = ({ place }) => {
 	const tUtils = useTranslations("Utils")
 	const format = useFormatter()
-	const keysPlace = useMemo(() => Object.keys(place), [place])
+	const keysPlace = useMemo<KeyPlaces[]>(() => Object.keys(place) as KeyPlaces[], [place])
 
 	return (
 		<div className="border-t border-white flex flex-col">
@@ -18,7 +27,7 @@ export const PlaceDetails = ({ place }) => {
 				<PlaceFieldDetails>
 					<PlaceTitleDetails>{tUtils("place.form.building")}</PlaceTitleDetails>
 					<PlaceContentDetails>
-						{tUtils(`buildings.${place.building}`)}
+						{tUtils(`buildings.${place.building as Buildings}`)}
 					</PlaceContentDetails>
 				</PlaceFieldDetails>
 				{keysPlace
@@ -51,11 +60,11 @@ export const PlaceDetails = ({ place }) => {
 				<PlaceFieldDetails>
 					<PlaceTitleDetails>
 						{tUtils("place.form.typeOf")}{" "}
-						{tUtils(`buildings.${place.building}`)}
+						{tUtils(`buildings.${place.building as Buildings}`)}
 					</PlaceTitleDetails>
 					<PlaceContentDetails>
 						{tUtils(
-							`typeOfs.${place.building}.${place[place.building].typeOf}`,
+							`typeOfs.${place.building as Buildings}.${place[place.building].typeOf}`,
 						)}
 					</PlaceContentDetails>
 				</PlaceFieldDetails>
@@ -89,7 +98,7 @@ export const PlaceDetails = ({ place }) => {
 		</div>
 	)
 }
-const PlaceTitleDetails = ({ className, ...props }) => (
+const PlaceTitleDetails: FC<HTMLAttributes<HTMLDivElement>> = ({ className, ...props }) => (
 	<dt
 		className={cn(
 			"text-sm font-medium leading-6 text-gray-900 dark:text-white",
@@ -98,7 +107,7 @@ const PlaceTitleDetails = ({ className, ...props }) => (
 		{...props}
 	/>
 )
-const PlaceContentDetails = ({ className, children, ...props }) => (
+const PlaceContentDetails: FC<ReactChildren<HTMLAttributes<HTMLDivElement>>> = ({ className, children, ...props }) => (
 	<dd
 		className={cn(
 			"mt-1 text-sm leading-6 text-gray-700 dark:text-white sm:col-span-2 sm:mt-0",
@@ -111,7 +120,7 @@ const PlaceContentDetails = ({ className, children, ...props }) => (
 			: children}
 	</dd>
 )
-const PlaceFieldDetails = ({ className, ...props }) => (
+const PlaceFieldDetails: FC<HTMLAttributes<HTMLDivElement>> = ({ className, ...props }) => (
 	<div
 		className={cn(
 			"px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0",

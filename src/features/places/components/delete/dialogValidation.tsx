@@ -12,8 +12,15 @@ import {
 import { Button } from "@/components/ui/button"
 import { requestDeletePlace } from "@/features/places/utils/api"
 import { useRouter } from "next/router"
+import type { FC, ReactNode } from "react"
 
-export const DeleteDialogValidation = ({
+type DeleteDialogValidationProps = {
+	placeId: string
+	reload: boolean
+	children: ReactNode
+}
+
+export const DeleteDialogValidation: FC<DeleteDialogValidationProps> = ({
 	placeId,
 	reload = false,
 	children,

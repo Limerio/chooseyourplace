@@ -8,7 +8,7 @@ import { useTranslations } from "next-intl"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 
-const finalStepCards = ["info", "details"]
+const finalStepCards = ["info", "details"] as const
 
 // eslint-disable-next-line max-lines-per-function
 export const FinalStep = () => {

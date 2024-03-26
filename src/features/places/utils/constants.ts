@@ -22,7 +22,7 @@ export const typesOfBuilding: Record<Buildings, ReadonlyStringArray> = {
 		"gay",
 		"microbrewery",
 		"virtual",
-	],
+	] as const,
 	museum: [
 		"art",
 		"history",
@@ -42,7 +42,7 @@ export const typesOfBuilding: Record<Buildings, ReadonlyStringArray> = {
 		"aquarium",
 		"zoo",
 		"virtual",
-	],
+	] as const,
 	park: [
 		"national",
 		"city",
@@ -64,7 +64,7 @@ export const typesOfBuilding: Record<Buildings, ReadonlyStringArray> = {
 		"sports",
 		"dog",
 		"play",
-	],
+	] as const,
 	restaurant: [
 		"italian",
 		"french",
@@ -86,7 +86,7 @@ export const typesOfBuilding: Record<Buildings, ReadonlyStringArray> = {
 		"foodcourt",
 		"noodle",
 		"fusion",
-	],
+	] as const,
 }
 
 export const artisticMovements: ReadonlyStringArray = [

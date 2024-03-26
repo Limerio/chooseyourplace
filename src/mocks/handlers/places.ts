@@ -1,4 +1,5 @@
 import { updatePlaceSchema, updateSubSchemas } from "@/features/places/schemas"
+import { Buildings } from "@/utils/types"
 import { http, HttpResponse } from "msw"
 
 if (typeof window !== "undefined" && !localStorage.getItem("places")) {
@@ -83,12 +84,14 @@ export const handlerPlaces = (server: boolean) => [
 				)
 
 				if (place.building !== building) {
-					place[building] = {}
+					place[building as Buildings] = {}
 				}
 
 				Object.assign(
-					place[building],
-					await updateSubSchemas[building].parseAsync(buildings[building]),
+					place[building as Buildings],
+					await updateSubSchemas[building as Buildings].parseAsync(
+						buildings[building as Buildings],
+					),
 				)
 
 				localStorage.setItem("places", JSON.stringify(places))
@@ -102,7 +105,7 @@ export const handlerPlaces = (server: boolean) => [
 	http.delete(
 		server ? `http://localhost:3000${routes.delete}` : routes.delete,
 		({ params }) => {
-			const places = JSON.parse(localStorage.getItem("places"))
+			const places = JSON.parse(localStorage.getItem("places") as string)
 			const placeIndex = places.findIndex(
 				placeData => placeData._id === params.id,
 			)

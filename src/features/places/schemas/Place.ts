@@ -1,6 +1,6 @@
 import { requiredArgSchema } from "@/utils/functions"
 /* eslint-disable no-invalid-this */
-import { listOfBuildings } from "@/features/places/utils/constants.js"
+import { listOfBuildings } from "@/features/places/utils/constants"
 import { Schema } from "mongoose"
 import { z } from "zod"
 import { BarSchema, updateBarSchema } from "./Bar"

@@ -13,7 +13,11 @@ type FormFieldInputType = {
 	label: string
 }
 
-export const FormFieldInput: FC<FormFieldInputType> = ({ placeholder, field, label }) => (
+export const FormFieldInput: FC<FormFieldInputType> = ({
+	placeholder,
+	field,
+	label,
+}) => (
 	<FormItem>
 		<FormLabel>{label}</FormLabel>
 		<FormControl>

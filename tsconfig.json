@@ -19,6 +19,11 @@
 		"types": ["node", "next"],
 		"typeRoots": ["./node_modules/@types", "./@types"]
 	},
-	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/components/layouts/LanguageSwitcher.jsx"],
+	"include": [
+		"next-env.d.ts",
+		"**/*.ts",
+		"**/*.tsx",
+		"src/components/layouts/LanguageSwitcher.jsx"
+	],
 	"exclude": ["node_modules"]
 }

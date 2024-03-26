@@ -1,21 +1,21 @@
 import { requestAPI } from "@/utils/functions"
 
-const defaultOptions = {
+const defaultOptions: RequestInit = {
 	headers: {
 		"Content-Type": "application/json",
 	},
 }
 
-export const requestServerGetPlace = async placeId =>
+export const requestServerGetPlace = async (placeId: string) =>
 	await requestAPI(true, `/places/${placeId}`, defaultOptions)
 
 export const requestGetPlaces = async () =>
 	await requestAPI(false, "/places", defaultOptions)
 
-export const requestGetPlace = async placeId =>
+export const requestGetPlace = async (placeId: string) =>
 	await requestAPI(false, `/places/${placeId}`, defaultOptions)
 
-export const requestDeletePlace = async placeId =>
+export const requestDeletePlace = async (placeId: string) =>
 	await requestAPI(false, `/places/${placeId}`, {
 		method: "DELETE",
 		...defaultOptions,
@@ -28,7 +28,7 @@ export const requestPostPlace = async body =>
 		...defaultOptions,
 	})
 
-export const requestPutPlace = async (placeId, body) =>
+export const requestPutPlace = async (placeId: string, body) =>
 	await requestAPI(false, `/places/${placeId}`, {
 		method: "PUT",
 		body: JSON.stringify(body),

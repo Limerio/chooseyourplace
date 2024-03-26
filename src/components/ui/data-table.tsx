@@ -18,22 +18,35 @@ import {
 	TableRow,
 } from "@/components/ui/table"
 import {
+	ColumnDef,
+	ColumnFiltersState,
 	flexRender,
 	getCoreRowModel,
 	getFilteredRowModel,
 	getPaginationRowModel,
 	getSortedRowModel,
+	SortingState,
 	useReactTable,
 } from "@tanstack/react-table"
 import { useTranslations } from "next-intl"
 import { useState } from "react"
 
+type DataTableProps<TData, TValue> = {
+	columns: ColumnDef<TData, TValue>[]
+	data: TData[]
+	filterInput: string
+}
+
 // eslint-disable-next-line max-lines-per-function
-export const DataTable = ({ columns, data, filterInput }) => {
+export const DataTable = <TData, TValue>({
+	columns,
+	data,
+	filterInput,
+}: DataTableProps<TData, TValue>) => {
 	const t = useTranslations("DataTable")
 	const tUtils = useTranslations("Utils")
-	const [sorting, setSorting] = useState([])
-	const [columnFilters, setColumnFilters] = useState([])
+	const [sorting, setSorting] = useState<SortingState>([])
+	const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
 	const table = useReactTable({
 		data,
 		columns,
@@ -54,7 +67,7 @@ export const DataTable = ({ columns, data, filterInput }) => {
 			<div className="flex items-center py-4">
 				<Input
 					placeholder={t("search", { filterInput: t("filterInput.name") })}
-					value={table.getColumn(filterInput)?.getFilterValue() ?? ""}
+					value={table.getColumn(filterInput)?.getFilterValue() as string ?? ""}
 					onChange={event =>
 						table.getColumn(filterInput)?.setFilterValue(event.target.value)
 					}
@@ -123,7 +136,7 @@ export const DataTable = ({ columns, data, filterInput }) => {
 				>
 					{tUtils("next")}
 				</Button>
-				<Select onValueChange={value => table.setPageSize(value)}>
+				<Select onValueChange={value => table.setPageSize(parseInt(value, 10))}>
 					<SelectTrigger className="w-[180px]">
 						<SelectValue placeholder={t("pages.placeholder")} />
 					</SelectTrigger>
@@ -131,7 +144,7 @@ export const DataTable = ({ columns, data, filterInput }) => {
 						<SelectGroup>
 							<SelectLabel>{t("pages.title")}</SelectLabel>
 							{[10, 20, 30, 40, 50].map(pageSize => (
-								<SelectItem key={pageSize} value={pageSize}>
+								<SelectItem key={pageSize} value={pageSize.toString()}>
 									{pageSize}
 								</SelectItem>
 							))}

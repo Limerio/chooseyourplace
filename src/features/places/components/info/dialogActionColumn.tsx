@@ -10,11 +10,18 @@ import {
 import { Link } from "@/components/ui/link"
 import { DeleteDialogValidation } from "@/features/places/components/delete/dialogValidation"
 import { PlaceDetails } from "@/features/places/components/info"
+import { placeSchema } from "@/features/places/schemas"
 import { DialogTrigger } from "@radix-ui/react-dialog"
 import { DotsHorizontalIcon, EnterFullScreenIcon } from "@radix-ui/react-icons"
 import { useTranslations } from "next-intl"
+import { FC } from "react"
+import { z } from "zod"
 
-export const DialogActionColumn = ({ place }) => {
+type DialogActionColumnProps = {
+	place: z.infer<typeof placeSchema> & { _id: string }
+}
+
+export const DialogActionColumn: FC<DialogActionColumnProps> = ({ place }) => {
 	const t = useTranslations("HomePage")
 	const tUtils = useTranslations("Utils")
 

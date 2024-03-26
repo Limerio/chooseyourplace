@@ -1,4 +1,4 @@
-import type { ReactNode } from "react"
+import React from "react"
 
 export type Constructors =
 	| StringConstructor
@@ -8,7 +8,7 @@ export type Constructors =
 	| ObjectConstructor
 
 export type ReactChildren<Props = unknown> = Props & {
-	children: ReactNode
+	children: string | React.JSX.Element | React.JSX.Element[] | React.ReactNode
 }
 
 export type LangsType = "en" | "fr"

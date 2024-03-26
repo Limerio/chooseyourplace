@@ -9,7 +9,10 @@ afterEach(() => {
 	cleanup()
 })
 
-type CustomRenderOptions = RenderOptions & { keys?: string[]; locale?: LangsType }
+type CustomRenderOptions = RenderOptions & {
+	keys?: string[]
+	locale?: LangsType
+}
 
 const customRender = async (
 	ui: ReactNode,
@@ -32,4 +35,3 @@ const customRender = async (
 
 export * from "@testing-library/react"
 export { customRender as render }
-

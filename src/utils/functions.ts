@@ -2,7 +2,8 @@ import type { Constructors, ReadonlyStringArray } from "@/utils/types"
 import { clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
 
-export const cn = (...inputs: string[]): string => twMerge(clsx(inputs))
+export const cn = (...inputs: (string | undefined)[]): string =>
+	twMerge(clsx(inputs))
 
 type RequiredArgSchemaType = {
 	required: true

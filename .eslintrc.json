@@ -16,7 +16,8 @@
 		"es6": true
 	},
 	"globals": {
-		"RequestInit": true
+		"RequestInit": true,
+		"JSX": true
 	},
 	"parserOptions": {
 		"ecmaVersion": "latest",
@@ -134,7 +135,8 @@
 		],
 		"no-unneeded-ternary": ["error", { "defaultAssignment": false }],
 		"no-unused-expressions": ["error", { "enforceForJSX": true }],
-		"no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+		"no-unused-vars": "off",
+		"@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
 		"no-useless-call": "error",
 		"no-useless-computed-key": ["error", { "enforceForClassMembers": true }],
 		"no-useless-concat": "error",

@@ -6,7 +6,10 @@ type LoadingProps = {
 	isLoading: boolean
 }
 
-export const Loading: FC<ReactChildren<LoadingProps>> = ({ isLoading, children }) => {
+export const Loading: FC<ReactChildren<LoadingProps>> = ({
+	isLoading,
+	children,
+}) => {
 	if (isLoading) {
 		return (
 			<div className="container w-full h-screen flex items-center justify-center">

@@ -3,6 +3,7 @@ import { updatePlaceSchema, updateSubSchemas } from "@/features/places/schemas"
 import { placeQuery } from "@/features/places/schemas/querys"
 import { Redis } from "ioredis"
 import { NextApiRequest, NextApiResponse } from "next"
+import { z } from "zod"
 
 export class PlaceController {
 	static async checkId(
@@ -45,7 +46,9 @@ export class PlaceController {
 		const { placeId } = await placeQuery.parseAsync(req.query)
 		const place = await PlaceController.checkId(placeId, res, redisClient)
 		const { name, building, city, zipcode, country, ...buildings } =
-			await updatePlaceSchema.merge(updatePlaceSchema).parseAsync(req.body)
+			await updatePlaceSchema
+				.merge(z.object(updateSubSchemas))
+				.parseAsync(req.body)
 
 		try {
 			if (!Object.keys(buildings).includes(building || place.building)) {

@@ -1,10 +1,10 @@
+/* eslint-disable no-empty-function */
 import { placeSchema } from "@/features/places/schemas"
 import { barSchema } from "@/features/places/schemas/Bar"
 import { museumSchema } from "@/features/places/schemas/Museum"
 import { parkSchema } from "@/features/places/schemas/Park"
 import { restaurantSchema } from "@/features/places/schemas/Restaurant"
-import { ReactChildren } from "@/utils/types"
-import { createContext, FC, useCallback, useMemo, useState } from "react"
+import React, { createContext, FC, useCallback, useMemo, useState } from "react"
 import { z } from "zod"
 
 type FormDataOptions = {
@@ -14,33 +14,42 @@ type FormDataOptions = {
 
 type MultiStepContextValues = {
 	pageNumber: number
-	step: number | null
-	steps: []
-	next: () => void | null
-	back: () => void | null
-	// eslint-disable-next-line no-unused-vars
-	addDataForm: (newData: DataForm) => void | null
+	step: React.JSX.Element | null
+	steps: React.JSX.Element[]
+	next: () => void
+	back: () => void
+	addDataForm: (newData: DataForm) => void
 	formsData: FormDataOptions[]
 }
 
-export const MultiStepContext = createContext<MultiStepContextValues>({
+type MultiStepProviderProps = {
+	steps: React.JSX.Element[]
+	children: (pageNumber: number, steps: React.JSX.Element[], actualStep: React.JSX.Element | null) => React.JSX.Element
+}
+
+type DataForm = z.infer<
+	| typeof placeSchema
+	| typeof parkSchema
+	| typeof restaurantSchema
+	| typeof museumSchema
+	| typeof barSchema
+	>
+
+	export const MultiStepContext = createContext<MultiStepContextValues>({
 	pageNumber: 0,
 	step: null,
 	steps: [],
-	next: null,
-	back: null,
-	addDataForm: null,
+	next: () => {},
+	back: () => {},
+	addDataForm: () => {},
 	formsData: [],
 })
 
-type MultiStepProviderProps = {
-	steps: []
-}
-
-type DataForm = z.infer<typeof placeSchema | typeof parkSchema | typeof restaurantSchema | typeof museumSchema | typeof barSchema>
-
 // eslint-disable-next-line max-lines-per-function
-export const MultiStepProvider: FC<ReactChildren<MultiStepProviderProps>> = ({ steps, children }) => {
+export const MultiStepProvider: FC<MultiStepProviderProps> = ({
+	steps,
+	children,
+}) => {
 	const [currentStepIndex, setCurrentStepIndex] = useState<number>(0)
 	const [formsData, setFormsData] = useState<FormDataOptions[]>([])
 	const pageNumber = useMemo(() => currentStepIndex + 1, [currentStepIndex])
