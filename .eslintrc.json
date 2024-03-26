@@ -15,6 +15,9 @@
 		"node": true,
 		"es6": true
 	},
+	"globals": {
+		"RequestInit": true
+	},
 	"parserOptions": {
 		"ecmaVersion": "latest",
 		"sourceType": "module"
