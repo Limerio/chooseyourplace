@@ -4,6 +4,7 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { requestPostPlace } from "@/features/places/utils/api"
 import { useMultiStepsForm } from "@/hooks/forms"
 import { capitalize } from "@/utils/functions"
+import { useQueryClient } from "@tanstack/react-query"
 import { useTranslations } from "next-intl"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
@@ -13,6 +14,7 @@ const finalStepCards = ["info", "details"]
 // eslint-disable-next-line max-lines-per-function
 export const FinalStep = () => {
 	const router = useRouter()
+	const queryClient = useQueryClient()
 	const t = useTranslations("CreatePlace")
 	const tUtils = useTranslations("Utils")
 	const { back, formsData } = useMultiStepsForm()
@@ -23,6 +25,10 @@ export const FinalStep = () => {
 		}
 
 		await requestPostPlace(body)
+		await queryClient.refetchQueries({
+			queryKey: ["places"],
+			exact: true,
+		})
 		router.push("/")
 	}
 
