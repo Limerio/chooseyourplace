@@ -1,1 +1,5 @@
-export * from "./Place"
+export * from "./bar"
+export * from "./museum"
+export * from "./park"
+export * from "./place"
+export * from "./restaurant"

@@ -1,7 +1,15 @@
-import { PlaceModel } from "@/features/places/models"
+import { PlaceModel } from "@/features/places/database/models"
 import { updatePlaceSchema, updateSubSchemas } from "@/features/places/schemas"
 
 export class PlaceController {
+	/**
+	 *
+	 * @param {string} placeId
+	 * @param {import("next").NextApiResponse} res
+	 * @param {import("ioredis").Redis} redisClient
+	 * @returns
+	 */
+
 	static async checkId(placeId, res, redisClient) {
 		if (!(await redisClient.get(`places:${placeId}`))) {
 			const place = await PlaceModel.findById(placeId)
@@ -19,12 +27,27 @@ export class PlaceController {
 		return JSON.parse(await redisClient.get(`places:${placeId}`))
 	}
 
+	/**
+	 *
+	 * @param {import("next").NextApiRequest} req
+	 * @param {import("next").NextApiResponse} res
+	 * @param {import("ioredis").Redis} redisClient
+	 * @returns {void}
+	 */
 	static async GET(req, res, redisClient) {
 		const { placeId } = req.query
 		const place = await PlaceController.checkId(placeId, res, redisClient)
 
 		return res.json(place)
 	}
+
+	/**
+	 *
+	 * @param {import("next").NextApiRequest} req
+	 * @param {import("next").NextApiResponse} res
+	 * @param {import("ioredis").Redis} redisClient
+	 * @returns {void}
+	 */
 
 	static async PUT(req, res, redisClient) {
 		const { placeId } = req.query
@@ -70,6 +93,14 @@ export class PlaceController {
 
 		return res.json(newPlace)
 	}
+
+	/**
+	 *
+	 * @param {import("next").NextApiRequest} req
+	 * @param {import("next").NextApiResponse} res
+	 * @param {import("ioredis").Redis} redisClient
+	 * @returns {void}
+	 */
 
 	static async DELETE(req, res, redisClient) {
 		const { placeId } = req.query

@@ -1,48 +1,12 @@
-import { requiredArgSchema } from "@/utils/functions"
-/* eslint-disable no-invalid-this */
-import { listOfBuildings } from "@/features/places/utils/constants.js"
-import { Schema } from "mongoose"
+import {
+	updateBarSchema,
+	updateMuseumSchema,
+	updateParkSchema,
+	updateRestaurantSchema,
+} from "@/features/places/schemas"
+import { listOfBuildings } from "@/features/places/utils/constants"
 import { z } from "zod"
-import { BarSchema, updateBarSchema } from "./Bar.js"
-import { MuseumSchema, updateMuseumSchema } from "./Museum.js"
-import { ParkSchema, updateParkSchema } from "./Park.js"
-import { RestaurantSchema, updateRestaurantSchema } from "./Restaurant.js"
 
-export const PlaceSchema = new Schema(
-	{
-		building: {
-			type: String,
-			enum: listOfBuildings,
-		},
-		name: {
-			...requiredArgSchema(String),
-			unique: true,
-			index: true,
-		},
-		city: requiredArgSchema(String),
-		zipcode: requiredArgSchema(Number),
-		country: requiredArgSchema(String),
-		museum: {
-			type: MuseumSchema,
-			required: () => this?.building === "museum",
-		},
-		park: {
-			type: ParkSchema,
-			required: () => this?.building === "park",
-		},
-		bar: {
-			type: BarSchema,
-			required: () => this?.building === "bar",
-		},
-		restaurant: {
-			type: RestaurantSchema,
-			required: () => this?.building === "restaurant",
-		},
-	},
-	{
-		timestamps: true,
-	},
-)
 const baseSchema = {
 	building: z.enum(listOfBuildings),
 	city: z.string().min(3),

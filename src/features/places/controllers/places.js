@@ -1,7 +1,15 @@
-import { PlaceModel } from "@/features/places/models"
+import { PlaceModel } from "@/features/places/database/models"
 import { filterQueryPlace } from "@/features/places/schemas"
 
 export class PlacesController {
+	/**
+	 *
+	 * @param {import("next").NextApiRequest} req
+	 * @param {import("next").NextApiResponse} res
+	 * @param {import("ioredis").Redis} redisClient
+	 * @returns {void}
+	 */
+
 	static async GET(req, res) {
 		const { q, limit, page, ...query } = req.query
 		const places = q
@@ -23,6 +31,14 @@ export class PlacesController {
 
 		return res.json(await places)
 	}
+
+	/**
+	 *
+	 * @param {import("next").NextApiRequest} req
+	 * @param {import("next").NextApiResponse} res
+	 * @param {import("ioredis").Redis} redisClient
+	 * @returns {void}
+	 */
 
 	static async POST(req, res, redisClient) {
 		const { info, details } = req.body
