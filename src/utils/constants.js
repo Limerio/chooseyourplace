@@ -10,3 +10,9 @@ export const langs = {
 	en: "English",
 	fr: "Français",
 }
+
+export const defaultOptions = {
+	headers: {
+		"Content-Type": "application/json",
+	},
+}
