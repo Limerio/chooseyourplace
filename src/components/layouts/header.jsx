@@ -1,24 +1,36 @@
 import { Logo } from "@/components/layouts"
+import { DialogAdd } from "@/components/layouts/DialogAdd"
 import { LanguageSwitcher } from "@/components/layouts/LanguageSwitcher"
 import { MenuTheme } from "@/components/layouts/MenuTheme"
 import { Button } from "@/components/ui/button"
-import {
-	Dialog,
-	DialogClose,
-	DialogContent,
-	DialogFooter,
-	DialogHeader,
-	DialogTitle,
-	DialogTrigger,
-} from "@/components/ui/dialog"
 import { Link } from "@/components/ui/link"
-import { CreatePlacesForm } from "@/features/places/components/forms/create"
-import { EnterFullScreenIcon } from "@radix-ui/react-icons"
+import { requestDeleteAuthLogout } from "@/features/auth/utils/api"
+import { useUser } from "@/features/users/hooks"
+import { useQueryClient } from "@tanstack/react-query"
 import { useTranslations } from "next-intl"
 
+const navRightItems = tUtils => [
+	{
+		href: "/login",
+		children: tUtils("login"),
+	},
+	{
+		href: "/register",
+		children: tUtils("register"),
+	},
+]
+
 export const Header = () => {
-	const t = useTranslations("Header")
+	const queryClient = useQueryClient()
 	const tUtils = useTranslations("Utils")
+	const { data } = useUser()
+	const logout = () => async () => {
+		await requestDeleteAuthLogout()
+		await queryClient.refetchQueries({
+			queryKey: ["users", "me"],
+			exact: true,
+		})
+	}
 
 	return (
 		<header className="w-full p-4 flex items-center justify-evenly">
@@ -27,38 +39,26 @@ export const Header = () => {
 			</Link>
 			<div className="flex items-center gap-3">
 				<LanguageSwitcher />
-				<Dialog>
-					<DialogTrigger asChild>
-						<Button>{t("add_button")}</Button>
-					</DialogTrigger>
-					<DialogContent className="sm:max-w-[425px]">
-						<DialogHeader>
-							<DialogTitle>{t("dialog.title")}</DialogTitle>
-						</DialogHeader>
-						<CreatePlacesForm />
-						<DialogFooter>
-							<Button variant="destructive">
-								<DialogClose asChild>
-									<Link
-										href="/places/create"
-										className="flex items-center gap-1.5"
-									>
-										<EnterFullScreenIcon />
-										{tUtils("fullScreenMode")}
-									</Link>
-								</DialogClose>
+				{!data?.username ? (
+					navRightItems(tUtils).map(navRightItem => (
+						<Link key={navRightItem.href} href={navRightItem.href}>
+							<Button className="flex items-center w-full h-full gap-1.5">
+								{navRightItem.children}
 							</Button>
-						</DialogFooter>
-					</DialogContent>
-				</Dialog>
+						</Link>
+					))
+				) : (
+					<>
+						<DialogAdd />
+						<Button onClick={logout()} variant="destructive">
+							{tUtils("logout")}
+						</Button>
+					</>
+				)}
 				<MenuTheme />
 			</div>
 		</header>
 	)
 }
 
-Header.messages = [
-	"Header",
-	...MenuTheme.messages,
-	...CreatePlacesForm.messages,
-]
+Header.messages = [...MenuTheme.messages, ...DialogAdd.messages]
