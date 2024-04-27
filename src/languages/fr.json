@@ -7,6 +7,9 @@
 		"finish": "Terminer",
 		"fullScreenMode": "Mode plein écran",
 		"languages": "Langues",
+		"login": "Connexion",
+		"register": "S'inscrire",
+		"logout": "Déconnexion",
 		"place": {
 			"form": {
 				"building": "Bâtiment",
@@ -269,6 +272,42 @@
 					"open": "Ouvrir le menu",
 					"title": "Information à propos de \"{name}\""
 				}
+			}
+		}
+	},
+	"LoginPage": {
+		"title": "Connexion - chooseyourplace",
+		"description": "Connectez-vous à votre compte",
+		"form": {
+			"email": {
+				"placeholder": "Email...",
+				"label": "Votre email"
+			},
+			"password": {
+				"placeholder": "Mot de passe...",
+				"label": "Votre mot de passe"
+			}
+		}
+	},
+	"RegisterPage": {
+		"title": "Inscription - chooseyourplace",
+		"description": "Créé votre compte",
+		"form": {
+			"username": {
+				"placeholder": "Nom d'utilisateur...",
+				"label": "Votre nom d'utilisateur"
+			},
+			"email": {
+				"placeholder": "Email...",
+				"label": "Votre email"
+			},
+			"password": {
+				"placeholder": "Mot de passe...",
+				"label": "Votre mot de passe"
+			},
+			"confirmPassword": {
+				"placeholder": "Répéter le même que précédemment mot de passe...",
+				"label": "Confirmer votre mot de passe"
 			}
 		}
 	}
