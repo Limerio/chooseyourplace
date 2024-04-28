@@ -20,3 +20,22 @@ export const requestDeleteAuthLogout = async () =>
 		method: "DELETE",
 		...defaultOptions,
 	})
+
+/**
+ *
+ * @param {string} token
+ * @returns
+ */
+export const requestGetVerifyToken = async token =>
+	await requestAPI(true, `/auth/verify?token=${token}`, defaultOptions)
+
+/**
+ *
+ * @param {string} token
+ * @returns
+ */
+export const requestPatchVerifyToken = async token =>
+	await requestAPI(false, `/auth/verify?token=${token}`, {
+		method: "PATCH",
+		...defaultOptions,
+	})
