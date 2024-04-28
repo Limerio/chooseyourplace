@@ -1,4 +1,3 @@
-import { UserService } from "@/features/users/services"
 import { decrypt } from "@/lib/jwt"
 import { loginRequiredPaths } from "@/utils/constants"
 import { NextResponse } from "next/server"
@@ -8,7 +7,7 @@ import { NextResponse } from "next/server"
  * @param {import("next/server").NextRequest} req
  * @returns
  */
-const middleware = async req => {
+export const middleware = async req => {
 	if (
 		loginRequiredPaths.find(path => path === req.nextUrl.pathname) ||
 		(req.nextUrl.pathname.startsWith("/places") &&
@@ -22,7 +21,7 @@ const middleware = async req => {
 
 		const { user } = await decrypt(sessionToken)
 
-		if (!(await UserService.exists({ username: user.username }))) {
+		if (!user?.username) {
 			return NextResponse.rewrite(new URL("/login", req.url))
 		}
 
@@ -31,5 +30,3 @@ const middleware = async req => {
 
 	return NextResponse.next()
 }
-
-export default middleware
