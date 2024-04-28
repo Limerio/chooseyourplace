@@ -39,7 +39,7 @@ export class UserService {
 			throw new Error(unknowns.user)
 		}
 
-		return user.toJSON()
+		return user
 	}
 
 	/**
@@ -48,7 +48,7 @@ export class UserService {
 	 * @param {{ username: string, password: string, email: string }} body
 	 * @returns {Promise<void>}
 	 */
-	static async create(redisClient, { password, username, email }) {
+	static async create(redisClient, { password, username, email, token }) {
 		const hashPassword = await bcrypt.hash(
 			password,
 			parseInt(process.env.PASSWORD_SALT, 10),
@@ -57,6 +57,10 @@ export class UserService {
 			username,
 			email,
 			password: hashPassword,
+			verified: {
+				state: false,
+				token,
+			},
 		})
 
 		await newUser.save()
@@ -65,5 +69,15 @@ export class UserService {
 			`users:${newUser._id}`,
 			JSON.stringify(newUser.toJSON()),
 		)
+	}
+
+	/**
+	 *
+	 * @param {object} filter
+	 * @returns {Promise<boolean>}
+	 */
+
+	static async exists(filter) {
+		return Boolean(await UserModel.exists(filter))
 	}
 }
