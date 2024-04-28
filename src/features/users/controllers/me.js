@@ -1,4 +1,4 @@
-import { decrypt } from "@/features/auth/utils/jwt"
+import { decrypt } from "@/lib/jwt"
 
 export class UserMeController {
 	/**
