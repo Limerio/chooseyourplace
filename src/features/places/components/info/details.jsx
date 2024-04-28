@@ -89,6 +89,9 @@ export const PlaceDetails = ({ place }) => {
 		</div>
 	)
 }
+
+PlaceDetails.messages = ["Utils"]
+
 const PlaceTitleDetails = ({ className, ...props }) => (
 	<dt
 		className={cn(
