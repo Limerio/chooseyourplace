@@ -92,5 +92,9 @@ export const pick = (object, keys) =>
 
 		return obj
 	}, {})
-
+/**
+ *
+ * @param {string} title
+ * @returns {string}
+ */
 export const formatTitle = title => title.split("-")[0].trim()
