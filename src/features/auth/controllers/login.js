@@ -1,6 +1,6 @@
 import { loginSchema } from "@/features/auth/schemas/login"
 import { AuthService } from "@/features/auth/services"
-import { encrypt } from "@/features/auth/utils/jwt"
+import { encrypt } from "@/lib/jwt"
 import { serialize } from "cookie"
 
 export class LoginController {
