@@ -1,7 +1,10 @@
 import { Button } from "@/components/ui/button"
 import { Form, FormField } from "@/components/ui/form"
+import {
+	updatePlaceSchema,
+	updateSubSchemas,
+} from "@/features/places/database/schemas"
 import { usePlace } from "@/features/places/hooks"
-import { updatePlaceSchema, updateSubSchemas } from "@/features/places/schemas"
 import { requestPutPlace } from "@/features/places/utils/api"
 import {
 	barFormFields,

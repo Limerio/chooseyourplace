@@ -7,6 +7,9 @@
 		"finish": "Finish",
 		"fullScreenMode": "Full screen mode",
 		"languages": "Languages",
+		"login": "Login",
+		"register": "Register",
+		"logout": "Logout",
 		"place": {
 			"form": {
 				"building": "Building",
@@ -207,7 +210,7 @@
 			}
 		}
 	},
-	"Header": {
+	"DialogAdd": {
 		"add_button": "Add",
 		"dialog": {
 			"title": "Create a place"
@@ -267,6 +270,51 @@
 					"title": "Information about \"{name}\""
 				}
 			}
+		}
+	},
+	"LoginPage": {
+		"title": "Login - chooseyourplace",
+		"description": "Login to your account",
+		"form": {
+			"email": {
+				"placeholder": "Email...",
+				"label": "Your email"
+			},
+			"password": {
+				"placeholder": "Password...",
+				"label": "Your password"
+			}
+		}
+	},
+	"RegisterPage": {
+		"title": "Register - chooseyourplace",
+		"description": "Create an account",
+		"form": {
+			"username": {
+				"placeholder": "Username...",
+				"label": "Your username"
+			},
+			"email": {
+				"placeholder": "Email...",
+				"label": "Your email"
+			},
+			"password": {
+				"placeholder": "Password...",
+				"label": "Your password"
+			},
+			"confirmPassword": {
+				"placeholder": "Repeat the same password...",
+				"label": "Confirm your password"
+			}
+		}
+	},
+	"VerifyPage": {
+		"title": "Verification - chooseyourplace",
+		"description": "Verification of your account",
+		"content": {
+			"title": "Click on the button to verify your account",
+			"redirection": "Redirection in 5 seconds...",
+			"button": "Verify my email"
 		}
 	}
 }
