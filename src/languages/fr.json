@@ -310,5 +310,14 @@
 				"label": "Confirmer votre mot de passe"
 			}
 		}
+	},
+	"VerifyPage": {
+		"title": "Vérification - chooseyourplace",
+		"description": "Vérification de votre compte",
+		"content": {
+			"title": "Cliquez sur le bouton pour vérifier votre compte",
+			"redirection": "Redirection dans 5 secondes...",
+			"button": "Vérifier mon email"
+		}
 	}
 }
