@@ -1,5 +1,7 @@
 import { PlaceModel } from "@/features/places/database/models"
 import { updatePlaceSchema, updateSubSchemas } from "@/features/places/schemas"
+import { UserService } from "@/features/users/services"
+import { decrypt } from "@/lib/jwt"
 
 export class PlaceController {
 	/**
@@ -50,6 +52,16 @@ export class PlaceController {
 	 */
 
 	static async PUT(req, res, redisClient) {
+		if (!req.cookies.session) {
+			return res.status(403).send("Unauthorized")
+		}
+
+		const { user } = await decrypt(req.cookies.session)
+
+		if (!(await UserService.exists({ username: user.username }))) {
+			return res.status(403).send("Unauthorized")
+		}
+
 		const { placeId } = req.query
 		const place = await PlaceController.checkId(placeId, res, redisClient)
 		const { name, building, city, zipcode, country, ...buildings } = req.body
@@ -103,6 +115,16 @@ export class PlaceController {
 	 */
 
 	static async DELETE(req, res, redisClient) {
+		if (!req.cookies.session) {
+			return res.status(403).send("Unauthorized")
+		}
+
+		const { user } = await decrypt(req.cookies.session)
+
+		if (!(await UserService.exists({ username: user.username }))) {
+			return res.status(403).send("Unauthorized")
+		}
+
 		const { placeId } = req.query
 		const place = await PlaceModel.findById(placeId)
 
