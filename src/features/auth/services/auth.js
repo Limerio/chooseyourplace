@@ -10,9 +10,11 @@ export class AuthService {
 				// eslint-disable-next-line no-unused-vars
 				__v,
 				...user
-			} = await UserService.findOne({
-				email,
-			})
+			} = (
+				await UserService.findOne({
+					email,
+				})
+			).toJSON()
 			const checkPassword = await bcrypt.compare(password, userPassword)
 
 			if (!checkPassword) {
