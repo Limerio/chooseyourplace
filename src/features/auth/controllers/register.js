@@ -1,7 +1,12 @@
+import { RegisterAccountEmail } from "@/components/emails/RegisterAccount"
 import { registerSchema } from "@/features/auth/schemas/register"
+import { generateEmailVerificationToken } from "@/features/auth/utils/functions"
 import { UserModel } from "@/features/users/database/models"
 import { UserService } from "@/features/users/services"
+import { sendEmail } from "@/lib/email"
+import { domainName } from "@/utils/constants"
 import { matchs, wrongs } from "@/utils/errors"
+import React from "react"
 
 export class RegisterController {
 	/**
@@ -40,7 +45,18 @@ export class RegisterController {
 				})
 			}
 
-			await UserService.create(redisClient, req.body)
+			const token = generateEmailVerificationToken()
+
+			await UserService.create(redisClient, { token, ...req.body })
+
+			sendEmail(
+				email,
+				"Verify your account",
+				React.createElement(RegisterAccountEmail, {
+					generatedLink: `${domainName}/verify?token=${token}`,
+					username,
+				}),
+			)
 
 			return res.status(201).json({ created: true })
 		} catch (error) {

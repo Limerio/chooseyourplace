@@ -54,6 +54,10 @@ export const RegisterForm = () => {
 		try {
 			await requestPostAuthRegister(values)
 			router.push("/")
+			toast({
+				title: "Check your email",
+				description: "An email was send to verify your account",
+			})
 		} catch (error) {
 			toast({
 				variant: "destructive",
