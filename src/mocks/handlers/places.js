@@ -1,7 +1,4 @@
-import {
-	updatePlaceSchema,
-	updateSubSchemas,
-} from "@/features/places/database/schemas"
+import { updatePlaceSchema, updateSubSchemas } from "@/features/places/schemas"
 import { http, HttpResponse } from "msw"
 
 if (typeof window !== "undefined" && !localStorage.getItem("places")) {
