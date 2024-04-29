@@ -7,6 +7,7 @@ const withPwa = nextPwa({
 	disable: process.env.NODE_ENV === "development",
 })
 const nextConfig = withPwa({
+	output: "standalone",
 	reactStrictMode: true,
 	i18n: {
 		locales: ["en", "fr"],
