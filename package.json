@@ -4,7 +4,7 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
-		"dev": "next dev",
+		"dev": "docker-compose up -d && next dev",
 		"build": "next build",
 		"start": "next start",
 		"lint": "next lint",
@@ -14,7 +14,8 @@
 		"test": "vitest run",
 		"test:watch": "vitest",
 		"test:e2e": "playwright test -c ./playwright.config.cjs",
-		"test:e2e:ui": "playwright test -c ./playwright.config.cjs --ui"
+		"test:e2e:ui": "playwright test -c ./playwright.config.cjs --ui",
+		"email": "email dev --dir src/components/emails --port 3001"
 	},
 	"dependencies": {
 		"@hookform/resolvers": "^3.3.4",
@@ -31,11 +32,14 @@
 		"@radix-ui/react-switch": "^1.0.3",
 		"@radix-ui/react-toast": "^1.1.5",
 		"@radix-ui/react-tooltip": "^1.0.7",
+		"@react-email/components": "^0.0.16",
 		"@tanstack/react-query": "^5.25.0",
 		"@tanstack/react-table": "^8.13.2",
+		"bcrypt": "^5.1.1",
 		"class-variance-authority": "^0.7.0",
 		"clsx": "^2.1.0",
 		"ioredis": "^5.3.2",
+		"jose": "^5.2.4",
 		"lucide-react": "^0.350.0",
 		"mongodb": "^6.4.0",
 		"mongoose": "^8.2.1",
@@ -45,7 +49,9 @@
 		"next-themes": "^0.2.1",
 		"react": "^18",
 		"react-dom": "^18",
+		"react-email": "^2.1.1",
 		"react-hook-form": "^7.51.0",
+		"resend": "^3.2.0",
 		"zod": "^3.22.4"
 	},
 	"devDependencies": {

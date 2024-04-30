@@ -1,4 +1,4 @@
-import { PlaceSchema } from "@/features/places/schemas"
+import { PlaceSchema } from "@/features/places/database/schemas"
 import mongoose from "mongoose"
 
 export const PlaceModel =

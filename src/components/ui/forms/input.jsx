@@ -6,11 +6,16 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 
-export const FormFieldInput = ({ placeholder, field, label }) => (
+export const FormFieldInput = ({
+	placeholder,
+	field,
+	label,
+	type = "text",
+}) => (
 	<FormItem>
 		<FormLabel>{label}</FormLabel>
 		<FormControl>
-			<Input placeholder={placeholder} {...field} />
+			<Input placeholder={placeholder} type={type} {...field} />
 		</FormControl>
 		<FormMessage />
 	</FormItem>

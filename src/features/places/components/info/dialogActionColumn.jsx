@@ -10,6 +10,7 @@ import {
 import { Link } from "@/components/ui/link"
 import { DeleteDialogValidation } from "@/features/places/components/delete/dialogValidation"
 import { PlaceDetails } from "@/features/places/components/info"
+import { useUser } from "@/features/users/hooks"
 import { DialogTrigger } from "@radix-ui/react-dialog"
 import { DotsHorizontalIcon, EnterFullScreenIcon } from "@radix-ui/react-icons"
 import { useTranslations } from "next-intl"
@@ -17,6 +18,7 @@ import { useTranslations } from "next-intl"
 export const DialogActionColumn = ({ place }) => {
 	const t = useTranslations("HomePage")
 	const tUtils = useTranslations("Utils")
+	const { data: userData } = useUser()
 
 	return (
 		<Dialog>
@@ -45,9 +47,11 @@ export const DialogActionColumn = ({ place }) => {
 							</Link>
 						</DialogClose>
 					</Button>
-					<DeleteDialogValidation reload placeId={place._id}>
-						<Button variant="destructive">{tUtils("delete")}</Button>
-					</DeleteDialogValidation>
+					{userData?.username && (
+						<DeleteDialogValidation reload placeId={place._id}>
+							<Button variant="destructive">{tUtils("delete")}</Button>
+						</DeleteDialogValidation>
+					)}
 				</DialogFooter>
 			</DialogContent>
 		</Dialog>

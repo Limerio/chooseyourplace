@@ -1,12 +1,11 @@
 import { ErrorHandler, Head, Loading } from "@/components/layouts"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Link } from "@/components/ui/link"
-import { ScrollArea } from "@/components/ui/scroll-area"
 import { DeleteDialogValidation } from "@/features/places/components/delete"
-import { PlaceDetails } from "@/features/places/components/info"
+import { CardPlaceDetails } from "@/features/places/components/info"
 import { usePlace } from "@/features/places/hooks"
 import { requestServerGetPlace } from "@/features/places/utils/api"
+import { useUser } from "@/features/users/hooks"
 import { MainLayout } from "@/layouts/Main"
 import { serverTranslation } from "@/utils/functions.server"
 import { QueryClient, dehydrate } from "@tanstack/react-query"
@@ -20,6 +19,7 @@ const PlaceDetailsPage = () => {
 	const router = useRouter()
 	const placeId = useMemo(() => router.query.placeId, [router.query.placeId])
 	const { data, isLoading, isError } = usePlace(placeId)
+	const { data: userData } = useUser()
 
 	return (
 		<Loading isLoading={isLoading}>
@@ -29,33 +29,22 @@ const PlaceDetailsPage = () => {
 					description={t("description", { name: data.name })}
 				/>
 				<div className="container flex flex-col gap-8 py-2">
-					<Card>
-						<CardHeader>
-							<CardTitle>
-								<span className="text-3xl text-center">
-									{t.rich("content.title", {
-										name: data.name,
-										nameComponent: chunks => (
-											<span className="font-bold">{chunks}</span>
-										),
-									})}
-								</span>
-							</CardTitle>
-						</CardHeader>
-						<CardContent>
-							<ScrollArea className="h-[600px] w-full p-5">
-								<PlaceDetails place={data} />
-							</ScrollArea>
-						</CardContent>
-					</Card>
-					<Button>
-						<Link className="w-full h-full" href={`/places/${placeId}/update`}>
-							{tUtils("update")}
-						</Link>
-					</Button>
-					<DeleteDialogValidation placeId={placeId}>
-						<Button variant="destructive">{tUtils("delete")}</Button>
-					</DeleteDialogValidation>
+					<CardPlaceDetails />
+					{userData?.username && (
+						<>
+							<Button>
+								<Link
+									className="w-full h-full"
+									href={`/places/${placeId}/update`}
+								>
+									{tUtils("update")}
+								</Link>
+							</Button>
+							<DeleteDialogValidation placeId={placeId}>
+								<Button variant="destructive">{tUtils("delete")}</Button>
+							</DeleteDialogValidation>
+						</>
+					)}
 				</div>
 			</ErrorHandler>
 		</Loading>
@@ -65,7 +54,7 @@ const PlaceDetailsPage = () => {
 PlaceDetailsPage.messages = [
 	"PlaceDetailsPage",
 	"Utils",
-	"PlaceDetails",
+	...CardPlaceDetails.messages,
 	...MainLayout.messages,
 	...Loading.messages,
 	...ErrorHandler.messages,
