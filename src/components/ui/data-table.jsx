@@ -26,7 +26,8 @@ import {
 	useReactTable,
 } from "@tanstack/react-table"
 import { useTranslations } from "next-intl"
-import { useState } from "react"
+import { parseAsInteger, parseAsString, useQueryState } from "nuqs"
+import { useEffect, useState } from "react"
 
 // eslint-disable-next-line max-lines-per-function
 export const DataTable = ({ columns, data, filterInput }) => {
@@ -34,6 +35,9 @@ export const DataTable = ({ columns, data, filterInput }) => {
 	const tUtils = useTranslations("Utils")
 	const [sorting, setSorting] = useState([])
 	const [columnFilters, setColumnFilters] = useState([])
+	const [size, setSize] = useQueryState("size", parseAsInteger.withDefault(10))
+	const [page, setPage] = useQueryState("page", parseAsInteger.withDefault(0))
+	const [search, setSearch] = useQueryState("search", parseAsString)
 	const table = useReactTable({
 		data,
 		columns,
@@ -43,11 +47,23 @@ export const DataTable = ({ columns, data, filterInput }) => {
 		onColumnFiltersChange: setColumnFilters,
 		getFilteredRowModel: getFilteredRowModel(),
 		getPaginationRowModel: getPaginationRowModel(),
+		onPaginationChange: value => {
+			setPage(value.pageIndex)
+			setSize(value.pageSize)
+		},
 		state: {
 			sorting,
 			columnFilters,
+			pagination: {
+				pageIndex: page,
+				pageSize: size,
+			},
 		},
 	})
+
+	useEffect(() => {
+		table.getColumn(filterInput)?.setFilterValue(search)
+	}, [search])
 
 	return (
 		<>
@@ -55,9 +71,7 @@ export const DataTable = ({ columns, data, filterInput }) => {
 				<Input
 					placeholder={t("search", { filterInput: t("filterInput.name") })}
 					value={table.getColumn(filterInput)?.getFilterValue() ?? ""}
-					onChange={event =>
-						table.getColumn(filterInput)?.setFilterValue(event.target.value)
-					}
+					onChange={event => setSearch(event.target.value)}
 					className="max-w-sm"
 				/>
 			</div>
