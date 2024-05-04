@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import {
@@ -35,8 +36,14 @@ export const DataTable = ({ columns, data, filterInput }) => {
 	const tUtils = useTranslations("Utils")
 	const [sorting, setSorting] = useState([])
 	const [columnFilters, setColumnFilters] = useState([])
-	const [size, setSize] = useQueryState("size", parseAsInteger.withDefault(10))
-	const [page, setPage] = useQueryState("page", parseAsInteger.withDefault(0))
+	const [size, setSize] = useQueryState(
+		"size",
+		parseAsInteger.withOptions({ clearOnDefault: true }).withDefault(10),
+	)
+	const [page, setPage] = useQueryState(
+		"page",
+		parseAsInteger.withOptions({ clearOnDefault: true }).withDefault(1),
+	)
 	const [search, setSearch] = useQueryState("search", parseAsString)
 	const table = useReactTable({
 		data,
@@ -47,15 +54,11 @@ export const DataTable = ({ columns, data, filterInput }) => {
 		onColumnFiltersChange: setColumnFilters,
 		getFilteredRowModel: getFilteredRowModel(),
 		getPaginationRowModel: getPaginationRowModel(),
-		onPaginationChange: value => {
-			setPage(value.pageIndex)
-			setSize(value.pageSize)
-		},
 		state: {
 			sorting,
 			columnFilters,
 			pagination: {
-				pageIndex: page,
+				pageIndex: page - 1,
 				pageSize: size,
 			},
 		},
@@ -124,7 +127,7 @@ export const DataTable = ({ columns, data, filterInput }) => {
 				<Button
 					variant="outline"
 					size="sm"
-					onClick={() => table.previousPage()}
+					onClick={() => setPage(page - 1)}
 					disabled={!table.getCanPreviousPage()}
 				>
 					{tUtils("previous")}
@@ -132,12 +135,12 @@ export const DataTable = ({ columns, data, filterInput }) => {
 				<Button
 					variant="outline"
 					size="sm"
-					onClick={() => table.nextPage()}
+					onClick={() => setPage(page + 1)}
 					disabled={!table.getCanNextPage()}
 				>
 					{tUtils("next")}
 				</Button>
-				<Select onValueChange={value => table.setPageSize(value)}>
+				<Select defaultValue={size} onValueChange={value => setSize(value)}>
 					<SelectTrigger className="w-[180px]">
 						<SelectValue placeholder={t("pages.placeholder")} />
 					</SelectTrigger>
