@@ -1,8 +1,6 @@
-version: "3.7"
-
 services:
   mongodb:
-    image: mongo:5.0.25-focal
+    image: mongo:6.0.4-focal
     container_name: database
     ports:
       - 27017:27017

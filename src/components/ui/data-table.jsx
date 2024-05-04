@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import {
@@ -26,7 +27,8 @@ import {
 	useReactTable,
 } from "@tanstack/react-table"
 import { useTranslations } from "next-intl"
-import { useState } from "react"
+import { parseAsInteger, parseAsString, useQueryState } from "nuqs"
+import { useEffect, useState } from "react"
 
 // eslint-disable-next-line max-lines-per-function
 export const DataTable = ({ columns, data, filterInput }) => {
@@ -34,6 +36,15 @@ export const DataTable = ({ columns, data, filterInput }) => {
 	const tUtils = useTranslations("Utils")
 	const [sorting, setSorting] = useState([])
 	const [columnFilters, setColumnFilters] = useState([])
+	const [size, setSize] = useQueryState(
+		"size",
+		parseAsInteger.withOptions({ clearOnDefault: true }).withDefault(10),
+	)
+	const [page, setPage] = useQueryState(
+		"page",
+		parseAsInteger.withOptions({ clearOnDefault: true }).withDefault(1),
+	)
+	const [search, setSearch] = useQueryState("search", parseAsString)
 	const table = useReactTable({
 		data,
 		columns,
@@ -46,8 +57,16 @@ export const DataTable = ({ columns, data, filterInput }) => {
 		state: {
 			sorting,
 			columnFilters,
+			pagination: {
+				pageIndex: page - 1,
+				pageSize: size,
+			},
 		},
 	})
+
+	useEffect(() => {
+		table.getColumn(filterInput)?.setFilterValue(search)
+	}, [search])
 
 	return (
 		<>
@@ -55,9 +74,7 @@ export const DataTable = ({ columns, data, filterInput }) => {
 				<Input
 					placeholder={t("search", { filterInput: t("filterInput.name") })}
 					value={table.getColumn(filterInput)?.getFilterValue() ?? ""}
-					onChange={event =>
-						table.getColumn(filterInput)?.setFilterValue(event.target.value)
-					}
+					onChange={event => setSearch(event.target.value)}
 					className="max-w-sm"
 				/>
 			</div>
@@ -110,7 +127,7 @@ export const DataTable = ({ columns, data, filterInput }) => {
 				<Button
 					variant="outline"
 					size="sm"
-					onClick={() => table.previousPage()}
+					onClick={() => setPage(page - 1)}
 					disabled={!table.getCanPreviousPage()}
 				>
 					{tUtils("previous")}
@@ -118,12 +135,12 @@ export const DataTable = ({ columns, data, filterInput }) => {
 				<Button
 					variant="outline"
 					size="sm"
-					onClick={() => table.nextPage()}
+					onClick={() => setPage(page + 1)}
 					disabled={!table.getCanNextPage()}
 				>
 					{tUtils("next")}
 				</Button>
-				<Select onValueChange={value => table.setPageSize(value)}>
+				<Select defaultValue={size} onValueChange={value => setSize(value)}>
 					<SelectTrigger className="w-[180px]">
 						<SelectValue placeholder={t("pages.placeholder")} />
 					</SelectTrigger>

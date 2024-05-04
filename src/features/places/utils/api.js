@@ -1,10 +1,5 @@
+import { defaultOptions } from "@/utils/constants"
 import { requestAPI } from "@/utils/functions"
-
-const defaultOptions = {
-	headers: {
-		"Content-Type": "application/json",
-	},
-}
 
 export const requestServerGetPlace = async placeId =>
 	await requestAPI(true, `/places/${placeId}`, defaultOptions)

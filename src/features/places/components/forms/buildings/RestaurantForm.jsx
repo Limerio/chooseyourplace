@@ -1,6 +1,6 @@
 import { Form, FormField } from "@/components/ui/form"
 import { MenuForm } from "@/features/places/components/forms/create"
-import { restaurantSchema } from "@/features/places/schemas/Restaurant"
+import { restaurantSchema } from "@/features/places/database/schemas/Restaurant"
 import { restaurantFormFields } from "@/features/places/utils/fields"
 import { useMultiStepsForm } from "@/hooks/forms"
 import { zodResolver } from "@hookform/resolvers/zod"
