@@ -1,6 +1,6 @@
 import { Form, FormField } from "@/components/ui/form"
 import { MenuForm } from "@/features/places/components/forms/create"
-import { barSchema } from "@/features/places/database/schemas/Bar"
+import { barSchema } from "@/features/places/schemas/Bar"
 import { barFormFields } from "@/features/places/utils/fields"
 import { useMultiStepsForm } from "@/hooks/forms"
 
