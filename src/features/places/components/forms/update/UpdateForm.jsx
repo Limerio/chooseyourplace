@@ -1,10 +1,8 @@
 import { Button } from "@/components/ui/button"
 import { Form, FormField } from "@/components/ui/form"
-import {
-	updatePlaceSchema,
-	updateSubSchemas,
-} from "@/features/places/database/schemas"
+import { ToastAction } from "@/components/ui/toast"
 import { usePlace } from "@/features/places/hooks"
+import { updatePlaceSchema, updateSubSchemas } from "@/features/places/schemas"
 import { requestPutPlace } from "@/features/places/utils/api"
 import {
 	barFormFields,
@@ -13,6 +11,8 @@ import {
 	parkFormFields,
 	restaurantFormFields,
 } from "@/features/places/utils/fields"
+import { useToast } from "@/hooks/ui"
+import { useQueryClient } from "@tanstack/react-query"
 import { useTranslations } from "next-intl"
 import { useRouter } from "next/router"
 import { useMemo } from "react"
@@ -25,21 +25,36 @@ const subForms = {
 	park: parkFormFields,
 }
 
+// eslint-disable-next-line max-lines-per-function
 export const UpdateForm = () => {
 	const tForms = useTranslations("Forms")
 	const tUtils = useTranslations("Utils")
 	const router = useRouter()
+	const queryClient = useQueryClient()
 	const placeId = useMemo(() => router.query.placeId, [router.query.placeId])
-	const { data } = usePlace(placeId)
-	const form = useForm({
-		defaultValues: data,
-	})
+	const { data: defaultValues } = usePlace(placeId)
+	const form = useForm({ defaultValues })
+	const { toast } = useToast()
 	const onSubmit = async values => {
-		await updatePlaceSchema
-			.merge(updateSubSchemas[values.building])
-			.parseAsync(values)
-		await requestPutPlace(placeId, values)
-		router.push("/")
+		try {
+			await updatePlaceSchema
+				.merge(updateSubSchemas[values.building])
+				.parseAsync(values)
+			await requestPutPlace(placeId, values)
+			toast({ title: "Place updated" })
+			await queryClient.refetchQueries({
+				queryKey: ["places"],
+				exact: true,
+			})
+			router.push("/")
+		} catch (error) {
+			toast({
+				variant: "destructive",
+				title: "Uh oh! Something went wrong.",
+				description: "There was a problem with your request.",
+				action: <ToastAction altText="Try again">Try again</ToastAction>,
+			})
+		}
 	}
 
 	return (

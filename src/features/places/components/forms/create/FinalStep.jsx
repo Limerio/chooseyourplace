@@ -1,8 +1,10 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { ScrollArea } from "@/components/ui/scroll-area"
+import { ToastAction } from "@/components/ui/toast"
 import { requestPostPlace } from "@/features/places/utils/api"
 import { useMultiStepsForm } from "@/hooks/forms"
+import { useToast } from "@/hooks/ui"
 import { capitalize } from "@/utils/functions"
 import { useQueryClient } from "@tanstack/react-query"
 import { useTranslations } from "next-intl"
@@ -18,18 +20,29 @@ export const FinalStep = () => {
 	const t = useTranslations("CreatePlace")
 	const tUtils = useTranslations("Utils")
 	const { back, formsData } = useMultiStepsForm()
+	const { toast } = useToast()
 	const finishStepClick = () => async () => {
-		const body = {
-			info: formsData[0].data,
-			details: formsData[1].data,
-		}
+		try {
+			const body = {
+				info: formsData[0].data,
+				details: formsData[1].data,
+			}
 
-		await requestPostPlace(body)
-		await queryClient.refetchQueries({
-			queryKey: ["places"],
-			exact: true,
-		})
-		router.push("/")
+			await requestPostPlace(body)
+			toast({ title: "Place created" })
+			await queryClient.refetchQueries({
+				queryKey: ["places"],
+				exact: true,
+			})
+			router.push("/")
+		} catch (error) {
+			toast({
+				variant: "destructive",
+				title: "Uh oh! Something went wrong.",
+				description: "There was a problem with your request.",
+				action: <ToastAction altText="Try again">Try again</ToastAction>,
+			})
+		}
 	}
 
 	return (

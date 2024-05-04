@@ -1,6 +1,6 @@
 import { Form, FormField } from "@/components/ui/form"
 import { MenuForm } from "@/features/places/components/forms/create"
-import { museumSchema } from "@/features/places/database/schemas/Museum"
+import { museumSchema } from "@/features/places/schemas/Museum"
 import { museumFormFields } from "@/features/places/utils/fields"
 import { useMultiStepsForm } from "@/hooks/forms"
 import { zodResolver } from "@hookform/resolvers/zod"
